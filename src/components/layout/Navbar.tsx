@@ -7,7 +7,11 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 import Container from "@/components/ui/Container";
-import { siteConfig } from "@/config/site";
+import {
+  footerContent,
+  navigation,
+  siteContent,
+} from "@/data/site-content";
 
 const SCROLL_THRESHOLD = 24;
 
@@ -81,10 +85,10 @@ export default function Navbar() {
               className="group relative flex shrink-0 flex-col gap-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               <span className="text-[13px] font-semibold tracking-[0.2em] text-white uppercase lg:text-sm">
-                {siteConfig.name}
+                {siteContent.companyName}
               </span>
               <span className="hidden text-[10px] tracking-[0.18em] text-white/55 uppercase sm:block lg:text-[11px]">
-                {siteConfig.tagline}
+                {siteContent.tagline}
               </span>
               <span
                 aria-hidden
@@ -93,7 +97,7 @@ export default function Navbar() {
             </Link>
 
             <ul className="hidden items-center gap-1 xl:flex">
-              {siteConfig.navigation.map((item) => {
+              {navigation.map((item) => {
                 const active = isActive(item.href);
 
                 return (
@@ -128,10 +132,10 @@ export default function Navbar() {
 
             <div className="flex items-center gap-3">
               <Link
-                href="/contact"
+                href={footerContent.contactCta.href}
                 className="hidden rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent md:inline-flex"
               >
-                Get in touch
+                {footerContent.contactCta.label}
               </Link>
 
               <button
@@ -208,7 +212,7 @@ export default function Navbar() {
             >
               <Container className="py-6">
                 <ul className="flex flex-col gap-1">
-                  {siteConfig.navigation.map((item, index) => {
+                  {navigation.map((item, index) => {
                     const active = isActive(item.href);
 
                     return (
@@ -266,11 +270,11 @@ export default function Navbar() {
                   className="mt-6 border-t border-white/10 pt-6"
                 >
                   <Link
-                    href="/contact"
+                    href={footerContent.contactCta.href}
                     onClick={closeMobileMenu}
                     className="flex w-full items-center justify-center rounded-full border border-white/25 bg-white/5 px-5 py-3 text-sm font-medium tracking-wide text-white backdrop-blur-sm transition hover:border-white/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                   >
-                    Get in touch
+                    {footerContent.contactCta.label}
                   </Link>
                 </motion.div>
               </Container>

@@ -1,35 +1,7 @@
-export const siteConfig = {
-  name: "Leo Sky Africa",
-  tagline: "Africa's Gateway to Space",
+import { navigation, siteContent } from "@/data/site-content";
 
-  navigation: [
-    {
-      title: "About",
-      href: "/about",
-    },
-    {
-      title: "Space Education",
-      href: "/space-education",
-    },
-    {
-      title: "Astrotourism",
-      href: "/astrotourism",
-    },
-    {
-      title: "Space Innovation",
-      href: "/space-innovation",
-    },
-    {
-      title: "Events",
-      href: "/events",
-    },
-    {
-      title: "Partners",
-      href: "/partners",
-    },
-    {
-      title: "Contact",
-      href: "/contact",
-    },
-  ],
+export const siteConfig = {
+  name: siteContent.companyName,
+  tagline: siteContent.tagline,
+  navigation,
 };

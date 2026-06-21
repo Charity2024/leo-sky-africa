@@ -4,39 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
-
-const PILLARS = [
-  {
-    kicker: "Learning",
-    title: "Space Education",
-    description:
-      "Inspiring future scientists, engineers, explorers, and innovators through immersive learning experiences and STEM programs.",
-    href: "/space-education",
-    image:
-      "https://images.unsplash.com/photo-1544717297-95a87ad9fcdc?auto=format&fit=crop&w=1600&q=80",
-    alt: "Students learning together in a classroom setting",
-  },
-  {
-    kicker: "Exploration",
-    title: "Astrotourism",
-    description:
-      "Connecting people to the universe through astronomy experiences, dark sky events, and celestial exploration.",
-    href: "/astrotourism",
-    image:
-      "https://images.unsplash.com/photo-1502134249126-9f3755a50d48?auto=format&fit=crop&w=1600&q=80",
-    alt: "Stargazer beneath a vast Milky Way night sky",
-  },
-  {
-    kicker: "Innovation",
-    title: "Space Innovation",
-    description:
-      "Unlocking opportunities in the space economy through innovation, research, entrepreneurship, and future technologies.",
-    href: "/space-innovation",
-    image:
-      "https://images.unsplash.com/photo-1581091226033-d31ca59edee0?auto=format&fit=crop&w=1600&q=80",
-    alt: "Engineers collaborating on advanced technology and research",
-  },
-] as const;
+import { pillarsContent, type Pillar } from "@/data/site-content";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -54,9 +22,11 @@ function PillarDivider() {
 function StoryBlock({
   pillar,
   index,
+  learnMoreLabel,
 }: {
-  pillar: (typeof PILLARS)[number];
+  pillar: Pillar;
   index: number;
+  learnMoreLabel: string;
 }) {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-6% 0px" });
@@ -90,7 +60,7 @@ function StoryBlock({
           >
             <img
               src={pillar.image}
-              alt={pillar.alt}
+              alt={pillar.imageAlt}
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
             />
@@ -137,7 +107,7 @@ function StoryBlock({
                 href={pillar.href}
                 className="group/link mt-9 inline-flex items-center gap-4 text-sm font-medium tracking-wide text-white/85 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#691587] focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:mt-10 sm:text-[15px]"
               >
-                <span>Learn More</span>
+                <span>{learnMoreLabel}</span>
                 <span
                   aria-hidden
                   className="h-px w-10 bg-white/25 transition-all duration-500 group-hover/link:w-16 group-hover/link:bg-[#691587]"
@@ -171,8 +141,7 @@ export default function ThreePillars() {
           transition={{ duration: 0.85, ease }}
           className="mx-auto mb-10 max-w-lg text-center text-sm leading-relaxed text-white/45 sm:mb-12 sm:text-[15px] sm:leading-7"
         >
-          Africa&apos;s future in space will be built through education,
-          exploration, and innovation.
+          {pillarsContent.transitionStatement}
         </motion.p>
 
         <motion.div
@@ -189,20 +158,25 @@ export default function ThreePillars() {
           className="max-w-2xl pb-8 lg:pb-10"
         >
           <p className="mb-4 text-[11px] font-medium tracking-[0.36em] text-white/50 uppercase">
-            What We Do
+            {pillarsContent.eyebrow}
           </p>
           <h2
             id="pillars-heading"
             className="text-2xl leading-[1.14] font-semibold tracking-tight text-white sm:text-3xl lg:text-[2.6rem] lg:leading-[1.1]"
           >
-            Three pathways into Africa&apos;s space future.
+            {pillarsContent.title}
           </h2>
         </motion.div>
       </Container>
 
       <div className="flex flex-col">
-        {PILLARS.map((pillar, index) => (
-          <StoryBlock key={pillar.title} pillar={pillar} index={index} />
+        {pillarsContent.pillars.map((pillar, index) => (
+          <StoryBlock
+            key={pillar.href}
+            pillar={pillar}
+            index={index}
+            learnMoreLabel={pillarsContent.learnMoreLabel}
+          />
         ))}
       </div>
     </section>

@@ -4,12 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
-
-const PILLARS = [
-  { title: "Space Education", href: "/space-education" },
-  { title: "Astrotourism", href: "/astrotourism" },
-  { title: "Space Innovation", href: "/space-innovation" },
-] as const;
+import { heroContent, pillarsContent } from "@/data/site-content";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -38,7 +33,7 @@ export default function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative min-h-dvh overflow-hidden bg-[#390059]"
+      className="relative min-h-dvh overflow-hidden bg-black"
     >
       {!prefersReducedMotion && (
         <video
@@ -54,7 +49,6 @@ export default function Hero() {
         </video>
       )}
 
-      {/* Layered overlay — darkens text zone, preserves lower video */}
       <div aria-hidden className="absolute inset-0 bg-black/45" />
       <div
         aria-hidden
@@ -75,7 +69,7 @@ export default function Hero() {
             {...reveal(0)}
             className="mb-5 text-[10px] font-medium tracking-[0.38em] text-white/70 uppercase sm:mb-6 sm:text-[11px]"
           >
-            Putting Africans in the Space Race
+            {heroContent.eyebrow}
           </motion.p>
 
           <motion.h1
@@ -83,10 +77,12 @@ export default function Hero() {
             {...reveal(0.08)}
             className="text-[2rem] leading-[1.12] font-semibold tracking-tight text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-[2.5rem] sm:leading-[1.1] lg:text-[3.5rem] lg:leading-[1.06] lg:whitespace-nowrap xl:text-[3.75rem]"
           >
-            <span className="block whitespace-nowrap lg:inline">Africa&apos;s Gateway</span>
+            <span className="block whitespace-nowrap lg:inline">
+              {heroContent.title.line1}
+            </span>
             <span className="block whitespace-nowrap lg:inline">
               <span className="hidden lg:inline"> </span>
-              to Space
+              {heroContent.title.line2}
             </span>
           </motion.h1>
 
@@ -94,9 +90,7 @@ export default function Hero() {
             {...reveal(0.16)}
             className="mt-8 max-w-[540px] text-base leading-[1.75] text-white/80 [text-shadow:0_1px_16px_rgba(0,0,0,0.5)] sm:mt-10 sm:text-[17px] sm:leading-[1.8] lg:mt-11 lg:max-w-[580px] lg:text-lg lg:leading-8"
           >
-            Inspiring the next generation through space education, immersive
-            astronomy experiences, and innovation programs that unlock
-            Africa&apos;s future in the global space economy.
+            {heroContent.description}
           </motion.p>
 
           <motion.div
@@ -104,16 +98,16 @@ export default function Hero() {
             className="mt-11 flex flex-col gap-3 sm:mt-14 sm:flex-row sm:items-center sm:gap-4"
           >
             <Link
-              href="/space-education"
+              href={heroContent.primaryCta.href}
               className="inline-flex items-center justify-center rounded-full bg-white px-9 py-3.5 text-[15px] font-semibold tracking-wide text-[#0a0a0a] shadow-[0_2px_20px_rgba(0,0,0,0.25)] transition hover:bg-white/92 hover:shadow-[0_4px_28px_rgba(0,0,0,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/60"
             >
-              Explore Programs
+              {heroContent.primaryCta.label}
             </Link>
             <Link
-              href="/partners"
+              href={heroContent.secondaryCta.href}
               className="inline-flex items-center justify-center rounded-full border border-white/20 bg-transparent px-8 py-3.5 text-sm font-medium tracking-wide text-white/75 transition hover:border-white/40 hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black/60 sm:text-[15px]"
             >
-              Partner With Us
+              {heroContent.secondaryCta.label}
             </Link>
           </motion.div>
 
@@ -123,7 +117,7 @@ export default function Hero() {
             className="mt-14 sm:mt-16"
           >
             <ul className="flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center">
-              {PILLARS.map((pillar, index) => (
+              {pillarsContent.pillars.map((pillar, index) => (
                 <motion.li
                   key={pillar.href}
                   initial={
@@ -166,9 +160,7 @@ export default function Hero() {
       >
         <motion.div
           animate={
-            prefersReducedMotion
-              ? undefined
-              : { y: [0, 6, 0] }
+            prefersReducedMotion ? undefined : { y: [0, 6, 0] }
           }
           transition={
             prefersReducedMotion
@@ -178,14 +170,12 @@ export default function Hero() {
           className="flex flex-col items-center gap-3"
         >
           <span className="text-[10px] font-medium tracking-[0.28em] text-white/45 uppercase">
-            Scroll to Explore
+            {heroContent.scrollIndicator}
           </span>
           <span className="relative flex h-10 w-px items-start justify-center overflow-hidden bg-white/15">
             <motion.span
               animate={
-                prefersReducedMotion
-                  ? undefined
-                  : { y: ["-100%", "100%"] }
+                prefersReducedMotion ? undefined : { y: ["-100%", "100%"] }
               }
               transition={
                 prefersReducedMotion

@@ -27,6 +27,7 @@ export type Pillar = {
   title: string;
   description: string;
   href: string;
+  sectionId: string;
   image: string;
   imageAlt: string;
 };
@@ -66,13 +67,23 @@ export const siteContent = {
 };
 
 export const navigation: readonly NavigationItem[] = [
-  { title: "About", href: "/about" },
-  { title: "Space Education", href: "/space-education" },
-  { title: "Astrotourism", href: "/astrotourism" },
-  { title: "Space Innovation", href: "/space-innovation" },
-  { title: "Events", href: "/events" },
-  { title: "Partners", href: "/partners" },
-  { title: "Contact", href: "/contact" },
+  { title: "About", href: "#about" },
+  { title: "Space Education", href: "#education" },
+  { title: "Astrotourism", href: "#astrotourism" },
+  { title: "Space Innovation", href: "#innovation" },
+  { title: "Events", href: "#events" },
+  { title: "Partners", href: "#partners" },
+  { title: "Contact", href: "#contact" },
+] as const;
+
+export const sectionIds = [
+  "about",
+  "education",
+  "astrotourism",
+  "innovation",
+  "events",
+  "partners",
+  "contact",
 ] as const;
 
 export const heroContent: HeroContent = {
@@ -106,7 +117,8 @@ export const pillarsContent: PillarsContent = {
       title: "Space Education",
       description:
         "Inspiring future scientists, engineers, explorers, and innovators through immersive learning experiences and STEM programs.",
-      href: "/space-education",
+      href: "#education",
+      sectionId: "education",
       image:
         "https://images.unsplash.com/photo-1544717297-95a87ad9fcdc?auto=format&fit=crop&w=1600&q=80",
       imageAlt: "Students learning together in a classroom setting",
@@ -116,7 +128,8 @@ export const pillarsContent: PillarsContent = {
       title: "Astrotourism",
       description:
         "Connecting people to the universe through astronomy experiences, dark sky events, and celestial exploration.",
-      href: "/astrotourism",
+      href: "#astrotourism",
+      sectionId: "astrotourism",
       image:
         "https://images.unsplash.com/photo-1502134249126-9f3755a50d48?auto=format&fit=crop&w=1600&q=80",
       imageAlt: "Stargazer beneath a vast Milky Way night sky",
@@ -126,7 +139,8 @@ export const pillarsContent: PillarsContent = {
       title: "Space Innovation",
       description:
         "Unlocking opportunities in the space economy through innovation, research, entrepreneurship, and future technologies.",
-      href: "/space-innovation",
+      href: "#innovation",
+      sectionId: "innovation",
       image:
         "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1600&q=80",
       imageAlt: "Earth viewed from space above the African continent",
@@ -157,7 +171,7 @@ export const footerContent: FooterContent = {
   exploreHeading: "Explore",
   contactCta: {
     label: "Get in touch",
-    href: "/contact",
+    href: "#contact",
   },
   copyright: "All rights reserved.",
 };

@@ -40,7 +40,11 @@ function StoryBlock({
     <>
       {index > 0 && <PillarDivider />}
 
-      <article ref={ref} className="relative bg-black">
+      <article
+        id={pillar.sectionId}
+        ref={ref}
+        className="relative scroll-mt-32 bg-black"
+      >
         <div
           className={`grid lg:min-h-[78vh] lg:grid-cols-2 ${
             imageLeft ? "" : "lg:[&>*:first-child]:order-2"

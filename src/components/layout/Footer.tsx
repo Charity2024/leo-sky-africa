@@ -10,7 +10,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-auto overflow-hidden border-t border-white/10 bg-black text-white/70">
+    <footer
+      id="contact"
+      className="relative mt-auto scroll-mt-32 overflow-hidden border-t border-white/10 bg-black text-white/70"
+    >
       <Container className="relative">
         <div className="grid gap-12 py-16 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:py-20">
           <div className="flex flex-col gap-6">

@@ -18,9 +18,10 @@ export default function AboutLeoSky() {
 
   return (
     <section
+      id="about"
       ref={ref}
       aria-labelledby="about-leo-sky-heading"
-      className="bg-black"
+      className="scroll-mt-32 bg-black"
     >
       <Container className="px-6 py-24 sm:px-10 lg:px-8 lg:py-32">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">

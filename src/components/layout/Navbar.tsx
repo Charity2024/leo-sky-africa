@@ -10,10 +10,33 @@ import Container from "@/components/ui/Container";
 import {
   footerContent,
   navigation,
+  sectionIds,
   siteContent,
 } from "@/data/site-content";
 
 const SCROLL_THRESHOLD = 24;
+
+const navLinkBase =
+  "relative rounded-full px-3 py-1.5 text-[13px] font-medium tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent lg:px-4 lg:text-sm";
+
+const navLinkInactive =
+  "text-white/65 hover:-translate-y-0.5 hover:text-purple-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.35)]";
+
+const navLinkActive =
+  "text-purple-400 drop-shadow-[0_0_12px_rgba(168,85,247,0.5)]";
+
+const mobileLinkBase =
+  "flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
+
+const mobileLinkInactive =
+  "text-white/65 hover:bg-white/5 hover:text-purple-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.3)]";
+
+const mobileLinkActive =
+  "bg-white/10 text-purple-400 drop-shadow-[0_0_12px_rgba(168,85,247,0.45)]";
+
+function getSectionId(href: string) {
+  return href.startsWith("#") ? href.slice(1) : href;
+}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -22,6 +45,7 @@ export default function Navbar() {
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
@@ -30,6 +54,53 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(null);
+      return;
+    }
+
+    const sectionElements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null);
+
+    if (sectionElements.length === 0) return;
+
+    const visibleSections = new Map<string, number>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+
+          if (entry.isIntersecting) {
+            visibleSections.set(id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(id);
+          }
+        });
+
+        if (visibleSections.size === 0) {
+          setActiveSection(null);
+          return;
+        }
+
+        const mostVisible = [...visibleSections.entries()].reduce(
+          (current, next) => (next[1] > current[1] ? next : current),
+        );
+
+        setActiveSection(mostVisible[0]);
+      },
+      {
+        rootMargin: "-32% 0px -32% 0px",
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+      },
+    );
+
+    sectionElements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -60,7 +131,7 @@ export default function Navbar() {
     : { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const };
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    pathname === "/" && activeSection === getSectionId(href);
 
   return (
     <motion.header
@@ -104,19 +175,17 @@ export default function Navbar() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      aria-current={active ? "page" : undefined}
+                      aria-current={active ? "true" : undefined}
                       className={clsx(
-                        "relative rounded-full px-3 py-1.5 text-[13px] font-medium tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent lg:px-4 lg:text-sm",
-                        active
-                          ? "text-white"
-                          : "text-white/65 hover:text-white",
+                        navLinkBase,
+                        active ? navLinkActive : navLinkInactive,
                       )}
                     >
                       {item.title}
                       {active && (
                         <motion.span
                           layoutId="navbar-active-indicator"
-                          className="absolute inset-x-3 -bottom-0.5 h-px bg-white/50"
+                          className="absolute inset-x-3 -bottom-0.5 h-px bg-purple-400/70 shadow-[0_0_8px_rgba(168,85,247,0.6)]"
                           transition={
                             prefersReducedMotion
                               ? { duration: 0 }
@@ -133,7 +202,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <Link
                 href={footerContent.contactCta.href}
-                className="hidden rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent md:inline-flex"
+                className="hidden rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-400/40 hover:bg-white/10 hover:text-purple-300 hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent md:inline-flex"
               >
                 {footerContent.contactCta.label}
               </Link>
@@ -236,20 +305,18 @@ export default function Navbar() {
                       >
                         <Link
                           href={item.href}
-                          aria-current={active ? "page" : undefined}
+                          aria-current={active ? "true" : undefined}
                           onClick={closeMobileMenu}
                           className={clsx(
-                            "flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
-                            active
-                              ? "bg-white/10 text-white"
-                              : "text-white/65 hover:bg-white/5 hover:text-white",
+                            mobileLinkBase,
+                            active ? mobileLinkActive : mobileLinkInactive,
                           )}
                         >
                           {item.title}
                           {active && (
                             <span
                               aria-hidden
-                              className="h-1.5 w-1.5 rounded-full bg-white/70"
+                              className="h-1.5 w-1.5 rounded-full bg-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.7)]"
                             />
                           )}
                         </Link>
@@ -272,7 +339,7 @@ export default function Navbar() {
                   <Link
                     href={footerContent.contactCta.href}
                     onClick={closeMobileMenu}
-                    className="flex w-full items-center justify-center rounded-full border border-white/25 bg-white/5 px-5 py-3 text-sm font-medium tracking-wide text-white backdrop-blur-sm transition hover:border-white/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                    className="flex w-full items-center justify-center rounded-full border border-white/25 bg-white/5 px-5 py-3 text-sm font-medium tracking-wide text-white backdrop-blur-sm transition-all duration-300 hover:border-purple-400/40 hover:bg-white/10 hover:text-purple-300 hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                   >
                     {footerContent.contactCta.label}
                   </Link>

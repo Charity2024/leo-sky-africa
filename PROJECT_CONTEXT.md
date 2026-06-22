@@ -1,42 +1,46 @@
-# Leo Sky Africa
-
-Africa's premier space education, astrotourism and space innovation company.
-
-## Positioning
-
-Africa's Gateway to Space
-
-## Brand Attributes
-
-- Premium
-- Futuristic
-- Scientific
-- Aspirational
-- African
-- Innovative
-
-## Design Inspiration
-
-- SpaceX
-- Apple
-- National Geographic
-- MasterClass
-
-## Visual Style
-
-- Deep space aesthetics
-- Cinematic imagery
-- Elegant typography
-- Minimal luxury
-- Smooth motion
-
-##Brand colours
-Primary Color : #691587
-Secondary Color : #e089fd
-Accent Color : #fdc005
-Neutral Color : #e1e1e1
-Cool tone : #390059
+# Leo Sky Africa Website
 
 ## Goal
+Position Leo Sky Africa as Africa's premier , astrotourism,space education and space innovation company.
 
-Position Leo Sky Africa as the leading gateway into Africa's space economy.
+## Tech Stack
+- Next.js 15
+- React
+- TypeScript
+- Tailwind CSS
+
+## Brand Colors
+Primary: #4A006E
+Secondary: #6A0DAD
+Accent: #8A2BE2
+Background: #050816
+Text: #FFFFFF
+
+## Design Direction
+- Apple
+- SpaceX
+- Linear
+- Stripe
+
+## Homepage Structure
+
+1. Hero (video background)
+2. Three Pathways
+   - Space Education
+   - Astrotourism
+   - Space Innovation
+3. Impact
+4. Partners
+5. Events & Experiences
+6. Testimonials
+7. CTA
+8. Footer
+
+## Rules
+- Premium
+- Minimal
+- Aerospace aesthetic
+- No generic NGO styling
+- Smooth animations
+- Dark theme
+- Purple glow effects

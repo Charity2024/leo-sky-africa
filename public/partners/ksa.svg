@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none" role="img" aria-label="Kenya Space Agency">
+  <path d="M28 58 L48 22 L68 58" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+  <circle cx="48" cy="38" r="4" fill="#FFFFFF"/>
+  <text x="195" y="40" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="3">KENYA SPACE</text>
+  <text x="195" y="58" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="3">AGENCY</text>
+</svg>

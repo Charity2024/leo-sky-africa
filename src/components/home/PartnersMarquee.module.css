@@ -1,0 +1,51 @@
+@keyframes partners-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: partners-marquee-scroll 45s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+.edgeMask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 767px) {
+  .track {
+    animation-duration: 55s;
+  }
+}

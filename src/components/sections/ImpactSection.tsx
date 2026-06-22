@@ -102,9 +102,10 @@ export default function ImpactSection() {
       <SectionDivider />
 
       <section
+        id="events"
         ref={ref}
         aria-labelledby="impact-heading"
-        className="relative overflow-hidden py-28 lg:py-40"
+        className="relative scroll-mt-32 overflow-hidden py-28 lg:py-40"
       >
         <style jsx>{`
           @keyframes twinkle {

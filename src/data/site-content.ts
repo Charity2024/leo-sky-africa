@@ -134,8 +134,7 @@ export const pillarsContent: PillarsContent = {
         "Inspiring future scientists, engineers, explorers, and innovators through immersive learning experiences and STEM programs.",
       href: "#education",
       sectionId: "education",
-      image:
-        "https://images.unsplash.com/photo-1544717297-95a87ad9fcdc?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/pillar-education.png",
       imageAlt: "Students learning together in a classroom setting",
     },
     {
@@ -145,8 +144,7 @@ export const pillarsContent: PillarsContent = {
         "Connecting people to the universe through astronomy experiences, dark sky events, and celestial exploration.",
       href: "#astrotourism",
       sectionId: "astrotourism",
-      image:
-        "https://images.unsplash.com/photo-1502134249126-9f3755a50d48?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/pillar-astrotourism.png",
       imageAlt: "Stargazer beneath a vast Milky Way night sky",
     },
     {
@@ -156,8 +154,7 @@ export const pillarsContent: PillarsContent = {
         "Unlocking opportunities in the space economy through innovation, research, entrepreneurship, and future technologies.",
       href: "#innovation",
       sectionId: "innovation",
-      image:
-        "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1600&q=80",
+      image: "/images/pillar-innovation.png",
       imageAlt: "Earth viewed from space above the African continent",
     },
   ],
@@ -175,7 +172,7 @@ export const aboutContent: AboutContent = {
     href: "#about",
   },
   image: {
-    src: "https://images.unsplash.com/photo-1516339901603-389e12f7a31b?auto=format&fit=crop&w=1600&q=80",
+    src: "/images/about.png",
     alt: "Astronomical telescope pointed toward a star-filled night sky",
   },
 };
@@ -197,7 +194,7 @@ export const eventsContent: EventsContent = {
     description: "Join space science leaders, educators, and students from across the continent for three days of keynotes, interactive panels, and hands-on space technology workshops mapping Africa's space future.",
     date: "October 12-14, 2026",
     location: "Nairobi, Kenya & Virtual",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/event-summit.png",
     cta: "Register Now",
     href: "#contact",
   },
@@ -207,7 +204,7 @@ export const eventsContent: EventsContent = {
       description: "An immersive weekend of telescope stargazing, astrophotography workshops, and cultural astronomical storytelling under pristine dark skies.",
       date: "August 18-20, 2026",
       location: "Laikipia, Kenya",
-      image: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=800&q=80",
+      image: "/images/event-darksky.png",
       cta: "Join Waitlist",
       href: "#contact",
     },
@@ -216,7 +213,7 @@ export const eventsContent: EventsContent = {
       description: "Collaborate on solving real-world challenges in agriculture, climate monitoring, and urban planning using open-source satellite data.",
       date: "November 6-8, 2026",
       location: "Cape Town, South Africa & Online",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+      image: "/images/event-hackathon.png",
       cta: "Register Team",
       href: "#contact",
     },
@@ -225,7 +222,7 @@ export const eventsContent: EventsContent = {
       description: "Learn about the emerging African space industry and diverse career paths in space policy, engineering, science, and entrepreneurship.",
       date: "September 24, 2026",
       location: "Online Event",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+      image: "/images/event-webinar.png",
       cta: "RSVP Now",
       href: "#contact",
     },

@@ -58,6 +58,21 @@ export type FooterContent = {
   copyright: string;
 };
 
+export type EventItem = {
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  image: string;
+  cta?: string;
+  href: string;
+};
+
+export type EventsContent = {
+  featured: EventItem;
+  upcoming: readonly EventItem[];
+};
+
 export const siteContent = {
   companyName: "Leo Sky Africa",
   tagline: "Africa's Gateway to Space",
@@ -96,11 +111,11 @@ export const heroContent: HeroContent = {
     "Inspiring the next generation through space education, immersive astronomy experiences, and innovation programs that unlock Africa's future in the global space economy.",
   primaryCta: {
     label: "Explore Programs",
-    href: "/space-education",
+    href: "#education",
   },
   secondaryCta: {
     label: "Partner With Us",
-    href: "/partners",
+    href: "#partners",
   },
   scrollIndicator: "Scroll to Explore",
 };
@@ -157,7 +172,7 @@ export const aboutContent: AboutContent = {
   ],
   cta: {
     label: "Our story",
-    href: "/about",
+    href: "#about",
   },
   image: {
     src: "https://images.unsplash.com/photo-1516339901603-389e12f7a31b?auto=format&fit=crop&w=1600&q=80",
@@ -174,4 +189,45 @@ export const footerContent: FooterContent = {
     href: "#contact",
   },
   copyright: "All rights reserved.",
+};
+
+export const eventsContent: EventsContent = {
+  featured: {
+    title: "African Space Education Summit 2026",
+    description: "Join space science leaders, educators, and students from across the continent for three days of keynotes, interactive panels, and hands-on space technology workshops mapping Africa's space future.",
+    date: "October 12-14, 2026",
+    location: "Nairobi, Kenya & Virtual",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80",
+    cta: "Register Now",
+    href: "#contact",
+  },
+  upcoming: [
+    {
+      title: "Astrotourism Dark Sky Camp",
+      description: "An immersive weekend of telescope stargazing, astrophotography workshops, and cultural astronomical storytelling under pristine dark skies.",
+      date: "August 18-20, 2026",
+      location: "Laikipia, Kenya",
+      image: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=800&q=80",
+      cta: "Join Waitlist",
+      href: "#contact",
+    },
+    {
+      title: "Space Innovation Hackathon",
+      description: "Collaborate on solving real-world challenges in agriculture, climate monitoring, and urban planning using open-source satellite data.",
+      date: "November 6-8, 2026",
+      location: "Cape Town, South Africa & Online",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+      cta: "Register Team",
+      href: "#contact",
+    },
+    {
+      title: "Space Careers & Economy Webinar",
+      description: "Learn about the emerging African space industry and diverse career paths in space policy, engineering, science, and entrepreneurship.",
+      date: "September 24, 2026",
+      location: "Online Event",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+      cta: "RSVP Now",
+      href: "#contact",
+    },
+  ],
 };

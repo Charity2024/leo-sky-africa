@@ -19,9 +19,15 @@ export default function PartnersSection() {
       aria-labelledby="partners-heading"
       className="relative scroll-mt-32 overflow-hidden py-24 lg:py-32"
       style={{
-        background: "linear-gradient(180deg, #02020A 0%, #080017 100%)",
+        background:
+          "linear-gradient(180deg, #030303 0%, #390059 55%, #030303 100%)",
       }}
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(105,21,135,0.2),transparent_65%)]"
+      />
+
       <Container className="relative">
         <motion.div
           initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
@@ -33,12 +39,12 @@ export default function PartnersSection() {
           transition={{ duration: 0.9, ease }}
           className="mx-auto max-w-3xl text-center"
         >
-          <p className="mb-5 text-[11px] font-medium tracking-[0.38em] text-white/55 uppercase">
+          <p className="mb-5 text-[11px] font-medium tracking-[0.38em] text-brand-secondary uppercase">
             Trusted Partners
           </p>
           <h2
             id="partners-heading"
-            className="text-xl leading-relaxed font-medium tracking-tight text-white sm:text-2xl sm:leading-snug lg:text-[1.75rem] lg:leading-[1.45]"
+            className="text-xl leading-relaxed font-medium tracking-tight text-brand-cream sm:text-2xl sm:leading-snug lg:text-[1.75rem] lg:leading-[1.45]"
           >
             Building Africa&apos;s space future through strategic partnerships,
             education, and innovation.

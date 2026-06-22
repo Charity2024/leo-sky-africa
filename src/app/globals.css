@@ -6,10 +6,17 @@
   --brand-primary: #691587;
   --brand-secondary: #e089fd;
   --brand-accent: #fdc005;
+  --brand-cream: #fff0fa;
+  --brand-light-purple: #ffb3ff;
+  --brand-purple-tone: #792797;
+  --brand-deep: #390059;
+  --brand-dark: #030303;
   --brand-neutral: #e1e1e1;
-  --brand-cool: #390059;
-  --surface: #481068;
-  --surface-elevated: #551878;
+  --brand-body: rgba(255, 240, 250, 0.75);
+  --brand-muted: rgba(255, 240, 250, 0.55);
+  --brand-border: rgba(224, 137, 253, 0.15);
+  --surface: rgba(3, 3, 3, 0.55);
+  --surface-elevated: rgba(105, 21, 135, 0.12);
 }
 
 @theme inline {
@@ -18,12 +25,18 @@
   --color-brand-primary: var(--brand-primary);
   --color-brand-secondary: var(--brand-secondary);
   --color-brand-accent: var(--brand-accent);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-light-purple: var(--brand-light-purple);
+  --color-brand-purple-tone: var(--brand-purple-tone);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-dark: var(--brand-dark);
   --color-brand-neutral: var(--brand-neutral);
-  --color-brand-cool: var(--brand-cool);
+  --color-brand-body: var(--brand-body);
+  --color-brand-muted: var(--brand-muted);
   --color-surface: var(--surface);
   --color-surface-elevated: var(--surface-elevated);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -33,7 +46,7 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--brand-dark);
+  color: var(--brand-body);
+  font-family: var(--font-sans);
 }

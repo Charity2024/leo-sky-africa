@@ -6,9 +6,9 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
 
 const STATS = [
-  { value: 10000, suffix: "+", label: "Young Africans Inspired" },
-  { value: 50, suffix: "+", label: "Astronomy & Space Events" },
-  { value: 15, suffix: "+", label: "Strategic Partnerships" },
+  { value: 1000, suffix: "+", label: "Students Reached" },
+  { value: 50, suffix: "+", label: "Space Events" },
+  { value: 10, suffix: "+", label: "Partners & Institutions" },
   { value: 3, suffix: "", label: "Core Programs" },
 ] as const;
 
@@ -37,7 +37,7 @@ function SectionDivider() {
   return (
     <div
       aria-hidden
-      className="h-px w-full bg-linear-to-r from-transparent via-[#6A0DAD]/35 to-transparent"
+      className="h-px w-full bg-linear-to-r from-transparent via-brand-primary/40 to-transparent"
     />
   );
 }
@@ -98,14 +98,18 @@ export default function ImpactSection() {
   });
 
   return (
-    <div className="bg-black">
+    <div className="bg-brand-dark">
       <SectionDivider />
 
       <section
-        id="events"
+        id="impact"
         ref={ref}
         aria-labelledby="impact-heading"
         className="relative scroll-mt-32 overflow-hidden py-28 lg:py-40"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(105, 21, 135, 0.35), #030303 70%)",
+        }}
       >
         <style jsx>{`
           @keyframes twinkle {
@@ -121,7 +125,7 @@ export default function ImpactSection() {
           .impact-star {
             position: absolute;
             border-radius: 9999px;
-            background: #ffffff;
+            background: #fff0fa;
             animation: twinkle 3.5s ease-in-out infinite;
             animation-delay: var(--delay);
           }
@@ -136,7 +140,7 @@ export default function ImpactSection() {
 
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_0%,rgba(106,13,173,0.14),transparent_65%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_0%,rgba(224,137,253,0.08),transparent_65%)]"
         />
 
         <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -151,8 +155,8 @@ export default function ImpactSection() {
                 height: star.size,
                 boxShadow:
                   star.size > 1
-                    ? "0 0 8px rgba(138, 43, 226, 0.6)"
-                    : "0 0 3px rgba(255, 255, 255, 0.4)",
+                    ? "0 0 8px rgba(224, 137, 253, 0.5)"
+                    : "0 0 3px rgba(255, 240, 250, 0.35)",
                 ["--delay" as string]: star.delay,
               }}
             />
@@ -161,16 +165,16 @@ export default function ImpactSection() {
 
         <Container className="relative">
           <motion.div {...reveal(0)} className="mx-auto max-w-3xl text-center">
-            <p className="mb-6 text-[11px] font-medium tracking-[0.38em] text-[#B8B8C5] uppercase">
+            <p className="mb-6 text-[11px] font-medium tracking-[0.38em] text-brand-secondary uppercase">
               Our Impact
             </p>
             <h2
               id="impact-heading"
-              className="text-3xl leading-[1.12] font-semibold tracking-tight text-white sm:text-4xl lg:text-[3.25rem] lg:leading-[1.08]"
+              className="text-3xl leading-[1.12] font-semibold tracking-tight text-brand-cream sm:text-4xl lg:text-[3.25rem] lg:leading-[1.08]"
             >
               Building Africa&apos;s Space Future
             </h2>
-            <p className="mx-auto mt-7 max-w-2xl text-base leading-[1.85] text-[#B8B8C5] sm:mt-8 sm:text-lg sm:leading-8">
+            <p className="mx-auto mt-7 max-w-2xl text-base leading-[1.85] text-brand-body sm:mt-8 sm:text-lg sm:leading-8">
               Through education, astronomy experiences, and innovation programs,
               Leo Sky Africa is creating pathways for thousands of young Africans
               to participate in the global space economy.
@@ -186,20 +190,20 @@ export default function ImpactSection() {
                   prefersReducedMotion ? undefined : { y: -10 }
                 }
                 transition={{ duration: 0.4, ease }}
-                className="group relative rounded-2xl border border-[#6A0DAD]/30 bg-[#4A006E]/12 p-9 backdrop-blur-2xl transition-[border-color,box-shadow] duration-500 hover:border-[#8A2BE2]/55 hover:shadow-[0_12px_56px_rgba(106,13,173,0.38)] sm:p-10"
+                className="group relative rounded-2xl border border-[rgba(224,137,253,0.15)] bg-[rgba(3,3,3,0.45)] p-9 backdrop-blur-2xl transition-[border-color,box-shadow] duration-500 hover:border-brand-secondary hover:shadow-[0_12px_56px_rgba(224,137,253,0.25)] sm:p-10"
               >
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_at_top,rgba(138,43,226,0.16),transparent_72%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_at_top,rgba(105,21,135,0.2),transparent_72%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 />
-                <p className="relative text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-[3.25rem]">
+                <p className="relative text-4xl font-semibold tracking-tight text-brand-accent sm:text-5xl lg:text-[3.25rem]">
                   <CountUp
                     value={stat.value}
                     suffix={stat.suffix}
                     active={isInView}
                   />
                 </p>
-                <p className="relative mt-4 text-sm font-medium leading-snug tracking-wide text-[#B8B8C5] sm:text-[15px]">
+                <p className="relative mt-4 text-sm font-medium leading-snug tracking-wide text-brand-body sm:text-[15px]">
                   {stat.label}
                 </p>
               </motion.li>
@@ -211,8 +215,8 @@ export default function ImpactSection() {
             className="mt-20 flex justify-center sm:mt-24 lg:mt-28"
           >
             <Link
-              href="/partners"
-              className="inline-flex items-center justify-center rounded-full border border-[#6A0DAD]/50 bg-[#4A006E]/25 px-10 py-4 text-sm font-semibold tracking-wide text-white backdrop-blur-sm transition hover:border-[#8A2BE2]/70 hover:bg-[#6A0DAD]/30 hover:shadow-[0_0_40px_rgba(138,43,226,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A2BE2] focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:text-[15px]"
+              href="#partners"
+              className="inline-flex items-center justify-center rounded-full border border-brand-secondary/30 bg-brand-primary/25 px-10 py-4 text-sm font-semibold tracking-wide text-brand-cream backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-secondary hover:bg-brand-primary/40 hover:shadow-[0_0_40px_rgba(224,137,253,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark sm:text-[15px]"
             >
               Partner With Leo Sky
             </Link>

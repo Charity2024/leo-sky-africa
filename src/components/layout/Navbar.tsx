@@ -17,22 +17,22 @@ import {
 const SCROLL_THRESHOLD = 24;
 
 const navLinkBase =
-  "relative rounded-full px-3 py-1.5 text-[13px] font-medium tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent lg:px-4 lg:text-sm";
+  "relative rounded-full px-3 py-1.5 text-[13px] font-medium tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent lg:px-4 lg:text-sm";
 
 const navLinkInactive =
-  "text-white/65 hover:-translate-y-0.5 hover:text-purple-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.35)]";
+  "text-brand-body hover:-translate-y-0.5 hover:text-brand-light-purple hover:drop-shadow-[0_0_8px_rgba(255,179,255,0.35)]";
 
 const navLinkActive =
-  "text-purple-400 drop-shadow-[0_0_12px_rgba(168,85,247,0.5)]";
+  "text-brand-secondary drop-shadow-[0_0_12px_rgba(224,137,253,0.5)]";
 
 const mobileLinkBase =
-  "flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
+  "flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
 
 const mobileLinkInactive =
-  "text-white/65 hover:bg-white/5 hover:text-purple-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.3)]";
+  "text-brand-body hover:bg-brand-primary/10 hover:text-brand-light-purple hover:drop-shadow-[0_0_8px_rgba(255,179,255,0.3)]";
 
 const mobileLinkActive =
-  "bg-white/10 text-purple-400 drop-shadow-[0_0_12px_rgba(168,85,247,0.45)]";
+  "bg-brand-primary/15 text-brand-secondary drop-shadow-[0_0_12px_rgba(224,137,253,0.45)]";
 
 function getSectionId(href: string) {
   return href.startsWith("#") ? href.slice(1) : href;
@@ -55,6 +55,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // IntersectionObserver to highlight active sections on scroll
   useEffect(() => {
     if (pathname !== "/") {
       setActiveSection(null);
@@ -93,7 +94,7 @@ export default function Navbar() {
         setActiveSection(mostVisible[0]);
       },
       {
-        rootMargin: "-32% 0px -32% 0px",
+        rootMargin: "-25% 0px -45% 0px", // Offset for sticky navbar & focus area
         threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
       },
     );
@@ -126,6 +127,28 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [mobileOpen, closeMobileMenu]);
 
+  // Smooth scroll handler with offset for sticky navbar
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#") && pathname === "/") {
+      e.preventDefault();
+      const targetId = href.slice(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        const headerOffset = 76; // Match navbar height
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+
+        setActiveSection(targetId);
+        setMobileOpen(false);
+      }
+    }
+  };
+
   const motionTransition = prefersReducedMotion
     ? { duration: 0 }
     : { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const };
@@ -137,34 +160,29 @@ export default function Navbar() {
     <motion.header
       initial={false}
       animate={{
-        backgroundColor: scrolled
-          ? "rgba(5, 5, 10, 0.55)"
-          : "rgba(5, 5, 10, 0.45)",
-        borderColor: "rgba(255, 255, 255, 0.08)",
+        backgroundColor: scrolled ? "rgba(3, 3, 3, 0.85)" : "rgba(3, 3, 3, 0.4)",
+        borderColor: scrolled ? "rgba(224, 137, 253, 0.15)" : "rgba(224, 137, 253, 0.05)",
         boxShadow: scrolled
-          ? "0 4px 24px rgba(0, 0, 0, 0.2)"
+          ? "0 4px 30px rgba(105, 21, 135, 0.15)"
           : "0 0 0 rgba(0, 0, 0, 0)",
       }}
       transition={motionTransition}
-      className="sticky top-0 z-50 border-b backdrop-blur-[16px] backdrop-saturate-150"
+      className="sticky top-0 z-50 border-b backdrop-blur-[12px] backdrop-saturate-150"
     >
       <nav aria-label="Main navigation">
         <Container>
-          <div className="flex h-[52px] items-center justify-between gap-6 lg:h-16">
+          <div className="flex h-[60px] items-center justify-between gap-6 lg:h-20">
             <Link
               href="/"
-              className="group relative flex shrink-0 flex-col gap-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              onClick={(e) => handleNavClick(e, "#top")}
+              className="group relative flex shrink-0 flex-col gap-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-secondary"
             >
-              <span className="text-[13px] font-semibold tracking-[0.2em] text-white uppercase lg:text-sm">
+              <span className="text-[14px] font-bold tracking-[0.2em] text-brand-cream uppercase lg:text-base">
                 {siteContent.companyName}
               </span>
-              <span className="hidden text-[10px] tracking-[0.18em] text-white/55 uppercase sm:block lg:text-[11px]">
+              <span className="hidden text-[10px] tracking-[0.18em] text-brand-secondary uppercase sm:block">
                 {siteContent.tagline}
               </span>
-              <span
-                aria-hidden
-                className="absolute -bottom-1 left-0 h-px w-0 bg-white/40 transition-all duration-300 group-hover:w-full group-focus-visible:w-full"
-              />
             </Link>
 
             <ul className="hidden items-center gap-1 xl:flex">
@@ -175,6 +193,7 @@ export default function Navbar() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
                       aria-current={active ? "true" : undefined}
                       className={clsx(
                         navLinkBase,
@@ -185,7 +204,7 @@ export default function Navbar() {
                       {active && (
                         <motion.span
                           layoutId="navbar-active-indicator"
-                          className="absolute inset-x-3 -bottom-0.5 h-px bg-purple-400/70 shadow-[0_0_8px_rgba(168,85,247,0.6)]"
+                          className="absolute inset-x-3 -bottom-0.5 h-px bg-brand-secondary shadow-[0_0_8px_rgba(224,137,253,0.6)]"
                           transition={
                             prefersReducedMotion
                               ? { duration: 0 }
@@ -202,7 +221,8 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <Link
                 href={footerContent.contactCta.href}
-                className="hidden rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-400/40 hover:bg-white/10 hover:text-purple-300 hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent md:inline-flex"
+                onClick={(e) => handleNavClick(e, footerContent.contactCta.href)}
+                className="hidden rounded-full border border-brand-secondary/20 bg-brand-primary px-5 py-2 text-xs font-semibold text-brand-cream backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-purple-tone hover:shadow-[0_0_20px_rgba(105,21,135,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary md:inline-flex"
               >
                 {footerContent.contactCta.label}
               </Link>
@@ -213,7 +233,7 @@ export default function Navbar() {
                 aria-controls={menuId}
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 onClick={() => setMobileOpen((open) => !open)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white backdrop-blur-sm transition hover:border-white/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent xl:hidden"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-secondary/15 bg-brand-primary/10 text-brand-cream backdrop-blur-sm transition hover:border-brand-secondary/35 hover:bg-brand-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary xl:hidden"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {mobileOpen ? (
@@ -256,7 +276,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm xl:hidden"
+              className="fixed inset-0 z-40 bg-brand-dark/60 backdrop-blur-sm xl:hidden"
               onClick={closeMobileMenu}
             />
 
@@ -277,7 +297,7 @@ export default function Navbar() {
                   : { opacity: 0, y: -12 }
               }
               transition={motionTransition}
-              className="absolute inset-x-0 top-full z-50 border-b border-white/10 bg-[rgba(5,5,10,0.88)] shadow-[0_24px_64px_rgba(0,0,0,0.4)] backdrop-blur-[16px] xl:hidden"
+              className="absolute inset-x-0 top-full z-50 border-b border-brand-secondary/10 bg-[rgba(3,3,3,0.95)] shadow-[0_24px_64px_rgba(105,21,135,0.25)] backdrop-blur-[16px] xl:hidden"
             >
               <Container className="py-6">
                 <ul className="flex flex-col gap-1">
@@ -305,8 +325,8 @@ export default function Navbar() {
                       >
                         <Link
                           href={item.href}
+                          onClick={(e) => handleNavClick(e, item.href)}
                           aria-current={active ? "true" : undefined}
-                          onClick={closeMobileMenu}
                           className={clsx(
                             mobileLinkBase,
                             active ? mobileLinkActive : mobileLinkInactive,
@@ -316,7 +336,7 @@ export default function Navbar() {
                           {active && (
                             <span
                               aria-hidden
-                              className="h-1.5 w-1.5 rounded-full bg-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.7)]"
+                              className="h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_rgba(224,137,253,0.7)]"
                             />
                           )}
                         </Link>
@@ -334,12 +354,12 @@ export default function Navbar() {
                     ...motionTransition,
                     delay: prefersReducedMotion ? 0 : 0.2,
                   }}
-                  className="mt-6 border-t border-white/10 pt-6"
+                  className="mt-6 border-t border-brand-secondary/10 pt-6"
                 >
                   <Link
                     href={footerContent.contactCta.href}
-                    onClick={closeMobileMenu}
-                    className="flex w-full items-center justify-center rounded-full border border-white/25 bg-white/5 px-5 py-3 text-sm font-medium tracking-wide text-white backdrop-blur-sm transition-all duration-300 hover:border-purple-400/40 hover:bg-white/10 hover:text-purple-300 hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                    onClick={(e) => handleNavClick(e, footerContent.contactCta.href)}
+                    className="flex w-full items-center justify-center rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold tracking-wide text-brand-cream backdrop-blur-sm transition-all duration-300 hover:bg-brand-purple-tone hover:shadow-[0_0_20px_rgba(105,21,135,0.45)]"
                   >
                     {footerContent.contactCta.label}
                   </Link>

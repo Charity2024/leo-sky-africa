@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { pillarsContent, type Pillar } from "@/data/site-content";
 
@@ -12,9 +12,9 @@ function PillarDivider() {
   return (
     <div
       aria-hidden
-      className="flex items-center justify-center bg-black px-6 py-10 sm:py-12"
+      className="flex items-center justify-center bg-brand-dark px-6 py-6"
     >
-      <div className="h-px w-full max-w-4xl bg-linear-to-r from-transparent via-white/12 to-transparent" />
+      <div className="h-px w-full max-w-4xl bg-gradient-to-r from-transparent via-brand-secondary/15 to-transparent" />
     </div>
   );
 }
@@ -29,11 +29,20 @@ function StoryBlock({
   learnMoreLabel: string;
 }) {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-6% 0px" });
+  const isInView = useInView(ref, { once: true, margin: "-12% 0px" });
   const prefersReducedMotion = useReducedMotion();
   const imageLeft = index % 2 === 0;
 
-  const hidden = prefersReducedMotion ? false : { opacity: 0, y: 24 };
+  // Track scroll position relative to this section for image parallax
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  // Safe parallax translation of image
+  const yParallax = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+
+  const hidden = prefersReducedMotion ? false : { opacity: 0, y: 30 };
   const visible = { opacity: 1, y: 0 };
 
   return (
@@ -43,82 +52,93 @@ function StoryBlock({
       <article
         id={pillar.sectionId}
         ref={ref}
-        className="relative scroll-mt-32 bg-black"
+        className="relative scroll-mt-24 bg-brand-dark overflow-hidden py-10 lg:py-16"
       >
+        {/* Ambient glow background */}
         <div
-          className={`grid lg:min-h-[78vh] lg:grid-cols-2 ${
-            imageLeft ? "" : "lg:[&>*:first-child]:order-2"
+          aria-hidden
+          className={`pointer-events-none absolute top-1/2 -translate-y-1/2 h-[350px] w-[350px] rounded-full bg-[radial-gradient(circle,rgba(105,21,135,0.08),transparent_70%)] blur-[80px] ${
+            imageLeft ? "right-1/10" : "left-1/10"
           }`}
-        >
-          <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.03 }}
-            animate={
-              prefersReducedMotion
-                ? { opacity: 1, scale: 1 }
-                : isInView
-                  ? { opacity: 1, scale: 1 }
-                  : { opacity: 0, scale: 1.03 }
-            }
-            transition={{ duration: 1.1, ease }}
-            className="group relative min-h-[48vh] overflow-hidden lg:min-h-full"
+        />
+
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div
+            className={`grid gap-10 lg:grid-cols-2 lg:gap-16 items-center ${
+              imageLeft ? "" : "lg:[&>*:first-child]:order-2"
+            }`}
           >
-            <img
-              src={pillar.image}
-              alt={pillar.imageAlt}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
-            />
+            {/* Parallax Image Wrapper */}
             <div
-              aria-hidden
-              className={`absolute inset-0 ${
-                imageLeft
-                  ? "bg-linear-to-r from-transparent via-transparent to-black/35 lg:to-black/65"
-                  : "bg-linear-to-l from-transparent via-transparent to-black/35 lg:to-black/65"
+              className={`relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-brand-secondary/10 shadow-[0_8px_32px_rgba(3,3,3,0.5)] lg:aspect-auto lg:h-[480px] group ${
+                imageLeft ? "lg:order-1" : "lg:order-2"
               }`}
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/15 lg:from-black/25"
-            />
-          </motion.div>
-
-          <motion.div
-            initial={prefersReducedMotion ? false : hidden}
-            animate={
-              prefersReducedMotion ? visible : isInView ? visible : hidden
-            }
-            transition={{
-              duration: 0.95,
-              ease,
-              delay: prefersReducedMotion ? 0 : 0.12,
-            }}
-            className="flex items-center px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-24 xl:px-24"
-          >
-            <div className="max-w-xl">
-              <p className="mb-4 text-[11px] font-medium tracking-[0.3em] text-white/40 uppercase">
-                {pillar.kicker}
-              </p>
-
-              <h3 className="text-[1.75rem] leading-[1.12] font-semibold tracking-tight text-white sm:text-3xl lg:text-[2.35rem] lg:leading-[1.1] xl:text-4xl">
-                {pillar.title}
-              </h3>
-
-              <p className="mt-5 text-base leading-[1.85] text-white/62 sm:mt-6 sm:text-[17px] sm:leading-8">
-                {pillar.description}
-              </p>
-
-              <Link
-                href={pillar.href}
-                className="group/link mt-9 inline-flex items-center gap-4 text-sm font-medium tracking-wide text-white/85 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#691587] focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:mt-10 sm:text-[15px]"
-              >
-                <span>{learnMoreLabel}</span>
-                <span
-                  aria-hidden
-                  className="h-px w-10 bg-white/25 transition-all duration-500 group-hover/link:w-16 group-hover/link:bg-[#691587]"
-                />
-              </Link>
+            >
+              <div className="absolute inset-0 bg-brand-dark/20 z-10 transition-opacity duration-500 group-hover:opacity-10" />
+              <motion.img
+                src={pillar.image}
+                alt={pillar.imageAlt}
+                loading="lazy"
+                style={{ y: prefersReducedMotion ? 0 : yParallax }}
+                className="absolute -top-[15%] left-0 h-[130%] w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 z-20 bg-gradient-to-t from-brand-dark/60 via-transparent to-brand-primary/10"
+              />
+              <div
+                aria-hidden
+                className={`absolute inset-0 z-20 hidden lg:block bg-gradient-to-${
+                  imageLeft ? "r" : "l"
+                } from-transparent via-transparent to-brand-dark/80`}
+              />
             </div>
-          </motion.div>
+
+            {/* Glassmorphism Content Box */}
+            <motion.div
+              initial={prefersReducedMotion ? false : hidden}
+              animate={prefersReducedMotion ? visible : isInView ? visible : hidden}
+              transition={{
+                duration: 0.95,
+                ease,
+                delay: prefersReducedMotion ? 0 : 0.1,
+              }}
+              className={`relative z-30 flex items-center ${
+                imageLeft ? "lg:order-2 lg:pl-6" : "lg:order-1 lg:pr-6"
+              }`}
+            >
+              <div className="group/card relative w-full rounded-2xl border border-brand-secondary/10 bg-brand-primary/5 p-8 backdrop-blur-md transition-all duration-500 hover:border-brand-secondary/35 hover:bg-brand-primary/10 hover:shadow-[0_0_40px_rgba(105,21,135,0.25)] md:p-10 lg:p-12">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_at_top_right,rgba(224,137,253,0.1),transparent_65%)] opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
+                />
+                
+                <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-accent/20 bg-brand-accent/5 px-3 py-1 text-[10px] font-semibold tracking-[0.25em] text-brand-accent uppercase">
+                  <span>🚀</span>
+                  <span>{pillar.kicker}</span>
+                </p>
+
+                <h3 className="text-[1.75rem] leading-[1.12] font-bold tracking-tight text-brand-cream sm:text-3xl lg:text-[2.25rem] lg:leading-[1.1]">
+                  {pillar.title}
+                </h3>
+
+                <p className="mt-5 text-base leading-[1.8] text-brand-body/95 sm:mt-6 sm:text-[17px] sm:leading-8">
+                  {pillar.description}
+                </p>
+
+                <Link
+                  href={pillar.href}
+                  className="group/link mt-8 inline-flex items-center gap-4 text-sm font-semibold tracking-wide text-brand-secondary transition-all duration-300 hover:text-brand-light-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark sm:mt-10 sm:text-[15px]"
+                >
+                  <span>{learnMoreLabel}</span>
+                  <span
+                    aria-hidden
+                    className="h-px w-8 bg-brand-secondary/40 transition-all duration-500 group-hover/link:w-16 group-hover/link:bg-brand-secondary"
+                  />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </article>
     </>
@@ -131,8 +151,8 @@ export default function ThreePillars() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section aria-labelledby="pillars-heading" className="bg-black">
-      <Container className="px-6 pt-16 sm:px-10 lg:px-8 lg:pt-20">
+    <section aria-labelledby="pillars-heading" className="bg-brand-dark py-16 lg:py-24">
+      <Container className="px-6 pb-6 sm:px-10 lg:px-8">
         <motion.p
           initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
           animate={
@@ -143,7 +163,7 @@ export default function ThreePillars() {
                 : { opacity: 0, y: 12 }
           }
           transition={{ duration: 0.85, ease }}
-          className="mx-auto mb-10 max-w-lg text-center text-sm leading-relaxed text-white/45 sm:mb-12 sm:text-[15px] sm:leading-7"
+          className="mx-auto mb-8 max-w-lg text-center text-sm leading-relaxed text-brand-muted sm:mb-10 sm:text-[15px] sm:leading-7"
         >
           {pillarsContent.transitionStatement}
         </motion.p>
@@ -159,16 +179,16 @@ export default function ThreePillars() {
                 : { opacity: 0, y: 20 }
           }
           transition={{ duration: 0.95, ease, delay: prefersReducedMotion ? 0 : 0.08 }}
-          className="max-w-2xl pb-8 lg:pb-10"
+          className="max-w-3xl pb-6 border-b border-brand-secondary/10"
         >
-          <p className="mb-4 text-[11px] font-medium tracking-[0.36em] text-white/50 uppercase">
+          <p className="mb-3 text-[11px] font-medium tracking-[0.36em] text-brand-secondary uppercase">
             {pillarsContent.eyebrow}
           </p>
           <h2
             id="pillars-heading"
-            className="text-2xl leading-[1.14] font-semibold tracking-tight text-white sm:text-3xl lg:text-[2.6rem] lg:leading-[1.1]"
+            className="text-3xl leading-[1.12] font-bold tracking-tight text-brand-cream sm:text-4xl lg:text-[2.75rem]"
           >
-            {pillarsContent.title}
+            Three Pathways Into Africa&apos;s Space Future
           </h2>
         </motion.div>
       </Container>

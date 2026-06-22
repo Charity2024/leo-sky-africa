@@ -3,8 +3,8 @@ import AboutLeoSky from "@/components/sections/AboutLeoSky";
 import Hero from "@/components/sections/Hero";
 import ImpactSection from "@/components/sections/ImpactSection";
 import PartnersSection from "@/components/sections/PartnersSection";
-import ProgramsSection from "@/components/sections/ProgramsSection";
 import ThreePillars from "@/components/sections/ThreePillars";
+import EventsSection from "@/components/sections/EventsSection";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <ThreePillars />
       <ImpactSection />
-      <ProgramsSection />
+      <EventsSection />
       <PartnersSection />
       <AboutLeoSky />
     </SiteLayout>

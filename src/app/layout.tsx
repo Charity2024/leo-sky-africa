@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
+import { baseMetadata, createOrganizationSchema } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-  title: "Leo Sky Africa | Africa's Gateway to Space",
-  description: "Inspiring the next generation through space education, immersive astronomy experiences (astrotourism), and space innovation programs that unlock Africa's future in the global space economy.",
+  ...baseMetadata,
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
@@ -12,11 +14,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className="h-full antialiased"
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className="h-full antialiased">
+      <head>
+        <link rel="icon" href="/logo/logo-mark.svg" type="image/svg+xml" />
+      </head>
+      <body className="flex min-h-full flex-col">
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(createOrganizationSchema()),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

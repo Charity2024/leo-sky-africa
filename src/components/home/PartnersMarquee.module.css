@@ -11,7 +11,7 @@
 .track {
   display: flex;
   width: max-content;
-  animation: partners-marquee-scroll 45s linear infinite;
+  animation: partners-marquee-scroll 30s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
 }

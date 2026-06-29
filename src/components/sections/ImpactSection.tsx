@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
+import CountUp from "@/components/ui/CountUp";
 
 const STATS = [
   { value: 1000, suffix: "+", label: "Students Reached" },
@@ -39,47 +40,6 @@ function SectionDivider() {
       aria-hidden
       className="h-px w-full bg-linear-to-r from-transparent via-brand-primary/40 to-transparent"
     />
-  );
-}
-
-function CountUp({
-  value,
-  suffix,
-  active,
-}: {
-  value: number;
-  suffix: string;
-  active: boolean;
-}) {
-  const prefersReducedMotion = useReducedMotion();
-  const [display, setDisplay] = useState(prefersReducedMotion ? value : 0);
-
-  useEffect(() => {
-    if (!active) return;
-
-    if (prefersReducedMotion) {
-      setDisplay(value);
-      return;
-    }
-
-    const duration = 2200;
-    const startTime = performance.now();
-
-    const tick = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplay(Math.round(eased * value));
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-
-    requestAnimationFrame(tick);
-  }, [active, value, prefersReducedMotion]);
-
-  return (
-    <>
-      {display.toLocaleString()}
-      {suffix}
-    </>
   );
 }
 
@@ -215,7 +175,7 @@ export default function ImpactSection() {
             className="mt-20 flex justify-center sm:mt-24 lg:mt-28"
           >
             <Link
-              href="#partners"
+              href="/partners"
               className="inline-flex items-center justify-center rounded-full border border-brand-secondary/30 bg-brand-primary/25 px-10 py-4 text-sm font-semibold tracking-wide text-brand-cream backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-secondary hover:bg-brand-primary/40 hover:shadow-[0_0_40px_rgba(224,137,253,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark sm:text-[15px]"
             >
               Partner With Leo Sky

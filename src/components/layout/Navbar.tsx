@@ -7,12 +7,8 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 import Container from "@/components/ui/Container";
-import {
-  footerContent,
-  navigation,
-  sectionIds,
-  siteContent,
-} from "@/data/site-content";
+import BrandLogo from "@/components/ui/BrandLogo";
+import { footerContent, navigation } from "@/data/site-content";
 
 const SCROLL_THRESHOLD = 24;
 
@@ -25,17 +21,15 @@ const navLinkInactive =
 const navLinkActive =
   "text-brand-secondary drop-shadow-[0_0_12px_rgba(224,137,253,0.5)]";
 
-const mobileLinkBase =
-  "flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent";
+function getNavPath(href: string) {
+  if (href.startsWith("/#")) return { pathname: "/", hash: href.slice(2) };
+  return { pathname: href, hash: null };
+}
 
-const mobileLinkInactive =
-  "text-brand-body hover:bg-brand-primary/10 hover:text-brand-light-purple hover:drop-shadow-[0_0_8px_rgba(255,179,255,0.3)]";
-
-const mobileLinkActive =
-  "bg-brand-primary/15 text-brand-secondary drop-shadow-[0_0_12px_rgba(224,137,253,0.45)]";
-
-function getSectionId(href: string) {
-  return href.startsWith("#") ? href.slice(1) : href;
+function isNavActive(pathname: string, href: string, activeHash: string | null) {
+  const { pathname: navPath, hash } = getNavPath(href);
+  if (hash) return pathname === "/" && activeHash === hash;
+  return pathname === navPath || pathname.startsWith(`${navPath}/`);
 }
 
 export default function Navbar() {
@@ -45,67 +39,48 @@ export default function Navbar() {
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [activeHash, setActiveHash] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
-
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // IntersectionObserver to highlight active sections on scroll
+  // IntersectionObserver for home page section highlighting
   useEffect(() => {
-    if (pathname !== "/") {
-      setActiveSection(null);
-      return;
-    }
+    if (pathname !== "/") return;
 
-    const sectionElements = sectionIds
+    const sectionIds = ["about", "pillars", "impact", "events", "partners"];
+    const elements = sectionIds
       .map((id) => document.getElementById(id))
-      .filter((element): element is HTMLElement => element !== null);
+      .filter((el): el is HTMLElement => el !== null);
 
-    if (sectionElements.length === 0) return;
+    if (elements.length === 0) return;
 
-    const visibleSections = new Map<string, number>();
-
+    const visible = new Map<string, number>();
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const id = entry.target.id;
-
-          if (entry.isIntersecting) {
-            visibleSections.set(id, entry.intersectionRatio);
-          } else {
-            visibleSections.delete(id);
-          }
+          if (entry.isIntersecting) visible.set(entry.target.id, entry.intersectionRatio);
+          else visible.delete(entry.target.id);
         });
-
-        if (visibleSections.size === 0) {
-          setActiveSection(null);
+        if (visible.size === 0) {
+          setActiveHash(null);
           return;
         }
-
-        const mostVisible = [...visibleSections.entries()].reduce(
-          (current, next) => (next[1] > current[1] ? next : current),
-        );
-
-        setActiveSection(mostVisible[0]);
+        const best = [...visible.entries()].reduce((a, b) => (b[1] > a[1] ? b : a));
+        setActiveHash(best[0]);
       },
-      {
-        rootMargin: "-25% 0px -45% 0px", // Offset for sticky navbar & focus area
-        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
-      },
+      { rootMargin: "-25% 0px -45% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
     );
 
-    sectionElements.forEach((element) => observer.observe(element));
+    elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [pathname]);
 
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  const effectiveActiveHash = pathname === "/" ? activeHash : null;
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -118,34 +93,26 @@ export default function Navbar() {
 
   useEffect(() => {
     if (!mobileOpen) return;
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeMobileMenu();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMobileMenu();
     };
-
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [mobileOpen, closeMobileMenu]);
 
-  // Smooth scroll handler with offset for sticky navbar
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#") && pathname === "/") {
+    const { pathname: navPath, hash } = getNavPath(href);
+    if (hash && pathname === "/") {
       e.preventDefault();
-      const targetId = href.slice(1);
-      const element = document.getElementById(targetId);
-      if (element) {
-        const headerOffset = 76; // Match navbar height
-        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: prefersReducedMotion ? "auto" : "smooth",
-        });
-
-        setActiveSection(targetId);
+      const el = document.getElementById(hash);
+      if (el) {
+        const offset = el.getBoundingClientRect().top + window.scrollY - 76;
+        window.scrollTo({ top: offset, behavior: prefersReducedMotion ? "auto" : "smooth" });
+        setActiveHash(hash);
         setMobileOpen(false);
       }
+    } else if (navPath !== pathname) {
+      setMobileOpen(false);
     }
   };
 
@@ -153,52 +120,32 @@ export default function Navbar() {
     ? { duration: 0 }
     : { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const };
 
-  const isActive = (href: string) =>
-    pathname === "/" && activeSection === getSectionId(href);
-
   return (
     <motion.header
       initial={false}
       animate={{
-        backgroundColor: scrolled ? "rgba(3, 3, 3, 0.85)" : "rgba(3, 3, 3, 0.4)",
+        backgroundColor: scrolled ? "rgba(3, 3, 3, 0.88)" : "rgba(3, 3, 3, 0.45)",
         borderColor: scrolled ? "rgba(224, 137, 253, 0.15)" : "rgba(224, 137, 253, 0.05)",
-        boxShadow: scrolled
-          ? "0 4px 30px rgba(105, 21, 135, 0.15)"
-          : "0 0 0 rgba(0, 0, 0, 0)",
+        boxShadow: scrolled ? "0 4px 30px rgba(105, 21, 135, 0.15)" : "0 0 0 rgba(0, 0, 0, 0)",
       }}
       transition={motionTransition}
-      className="sticky top-0 z-50 border-b backdrop-blur-[12px] backdrop-saturate-150"
+      className="sticky top-0 z-50 border-b backdrop-blur-[14px] backdrop-saturate-150"
     >
       <nav aria-label="Main navigation">
         <Container>
-          <div className="flex h-[60px] items-center justify-between gap-6 lg:h-20">
-            <Link
-              href="/"
-              onClick={(e) => handleNavClick(e, "#top")}
-              className="group relative flex shrink-0 flex-col gap-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-secondary"
-            >
-              <span className="text-[14px] font-bold tracking-[0.2em] text-brand-cream uppercase lg:text-base">
-                {siteContent.companyName}
-              </span>
-              <span className="hidden text-[10px] tracking-[0.18em] text-brand-secondary uppercase sm:block">
-                {siteContent.tagline}
-              </span>
-            </Link>
+          <div className="flex h-[60px] items-center justify-between gap-6 lg:h-[72px]">
+            <BrandLogo priority className="max-h-8 lg:max-h-9" />
 
             <ul className="hidden items-center gap-1 xl:flex">
               {navigation.map((item) => {
-                const active = isActive(item.href);
-
+                const active = isNavActive(pathname, item.href, effectiveActiveHash);
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      aria-current={active ? "true" : undefined}
-                      className={clsx(
-                        navLinkBase,
-                        active ? navLinkActive : navLinkInactive,
-                      )}
+                      aria-current={active ? "page" : undefined}
+                      className={clsx(navLinkBase, active ? navLinkActive : navLinkInactive)}
                     >
                       {item.title}
                       {active && (
@@ -221,7 +168,6 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <Link
                 href={footerContent.contactCta.href}
-                onClick={(e) => handleNavClick(e, footerContent.contactCta.href)}
                 className="hidden rounded-full border border-brand-secondary/20 bg-brand-primary px-5 py-2 text-xs font-semibold text-brand-cream backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-purple-tone hover:shadow-[0_0_20px_rgba(105,21,135,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary md:inline-flex"
               >
                 {footerContent.contactCta.label}
@@ -232,30 +178,16 @@ export default function Navbar() {
                 aria-expanded={mobileOpen}
                 aria-controls={menuId}
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
-                onClick={() => setMobileOpen((open) => !open)}
+                onClick={() => setMobileOpen((o) => !o)}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-secondary/15 bg-brand-primary/10 text-brand-cream backdrop-blur-sm transition hover:border-brand-secondary/35 hover:bg-brand-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary xl:hidden"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {mobileOpen ? (
-                    <motion.span
-                      key="close"
-                      initial={prefersReducedMotion ? false : { opacity: 0, rotate: -90 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={prefersReducedMotion ? undefined : { opacity: 0, rotate: 90 }}
-                      transition={{ duration: 0.2 }}
-                      className="inline-flex"
-                    >
+                    <motion.span key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.2 }} className="inline-flex">
                       <X className="h-5 w-5" aria-hidden />
                     </motion.span>
                   ) : (
-                    <motion.span
-                      key="menu"
-                      initial={prefersReducedMotion ? false : { opacity: 0, rotate: 90 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={prefersReducedMotion ? undefined : { opacity: 0, rotate: -90 }}
-                      transition={{ duration: 0.2 }}
-                      className="inline-flex"
-                    >
+                    <motion.span key="menu" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }} className="inline-flex">
                       <Menu className="h-5 w-5" aria-hidden />
                     </motion.span>
                   )}
@@ -266,7 +198,7 @@ export default function Navbar() {
         </Container>
       </nav>
 
-      <AnimatePresence>
+      <AnimatePresence key={pathname}>
         {mobileOpen && (
           <>
             <motion.button
@@ -275,95 +207,59 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
               className="fixed inset-0 z-40 bg-brand-dark/60 backdrop-blur-sm xl:hidden"
               onClick={closeMobileMenu}
             />
-
             <motion.div
               id={menuId}
               role="dialog"
               aria-modal="true"
               aria-label="Mobile navigation"
-              initial={
-                prefersReducedMotion
-                  ? { opacity: 1 }
-                  : { opacity: 0, y: -12 }
-              }
+              initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={
-                prefersReducedMotion
-                  ? { opacity: 0 }
-                  : { opacity: 0, y: -12 }
-              }
+              exit={{ opacity: 0, y: -12 }}
               transition={motionTransition}
-              className="absolute inset-x-0 top-full z-50 border-b border-brand-secondary/10 bg-[rgba(3,3,3,0.95)] shadow-[0_24px_64px_rgba(105,21,135,0.25)] backdrop-blur-[16px] xl:hidden"
+              className="absolute inset-x-0 top-full z-50 border-b border-brand-secondary/10 bg-[rgba(3,3,3,0.96)] shadow-[0_24px_64px_rgba(105,21,135,0.25)] backdrop-blur-[16px] xl:hidden"
             >
-              <Container className="py-6">
+              <Container className="py-5">
                 <ul className="flex flex-col gap-1">
                   {navigation.map((item, index) => {
-                    const active = isActive(item.href);
-
+                    const active = isNavActive(pathname, item.href, effectiveActiveHash);
                     return (
                       <motion.li
                         key={item.href}
-                        initial={
-                          prefersReducedMotion
-                            ? false
-                            : { opacity: 0, x: -12 }
-                        }
+                        initial={{ opacity: 0, x: -12 }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={
-                          prefersReducedMotion
-                            ? undefined
-                            : { opacity: 0, x: -8 }
-                        }
-                        transition={{
-                          ...motionTransition,
-                          delay: prefersReducedMotion ? 0 : index * 0.04,
-                        }}
+                        transition={{ ...motionTransition, delay: index * 0.04 }}
                       >
                         <Link
                           href={item.href}
                           onClick={(e) => handleNavClick(e, item.href)}
-                          aria-current={active ? "true" : undefined}
+                          aria-current={active ? "page" : undefined}
                           className={clsx(
-                            mobileLinkBase,
-                            active ? mobileLinkActive : mobileLinkInactive,
+                            "flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/50",
+                            active
+                              ? "bg-brand-primary/15 text-brand-secondary"
+                              : "text-brand-body hover:bg-brand-primary/10 hover:text-brand-light-purple",
                           )}
                         >
                           {item.title}
                           {active && (
-                            <span
-                              aria-hidden
-                              className="h-1.5 w-1.5 rounded-full bg-brand-secondary shadow-[0_0_8px_rgba(224,137,253,0.7)]"
-                            />
+                            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-secondary" />
                           )}
                         </Link>
                       </motion.li>
                     );
                   })}
                 </ul>
-
-                <motion.div
-                  initial={
-                    prefersReducedMotion ? false : { opacity: 0, y: 8 }
-                  }
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    ...motionTransition,
-                    delay: prefersReducedMotion ? 0 : 0.2,
-                  }}
-                  className="mt-6 border-t border-brand-secondary/10 pt-6"
-                >
+                <div className="mt-5 border-t border-brand-secondary/10 pt-5">
                   <Link
                     href={footerContent.contactCta.href}
-                    onClick={(e) => handleNavClick(e, footerContent.contactCta.href)}
-                    className="flex w-full items-center justify-center rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold tracking-wide text-brand-cream backdrop-blur-sm transition-all duration-300 hover:bg-brand-purple-tone hover:shadow-[0_0_20px_rgba(105,21,135,0.45)]"
+                    className="flex w-full items-center justify-center rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-brand-cream"
                   >
                     {footerContent.contactCta.label}
                   </Link>
-                </motion.div>
+                </div>
               </Container>
             </motion.div>
           </>

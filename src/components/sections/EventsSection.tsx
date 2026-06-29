@@ -1,8 +1,10 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
+import BrandImage from "@/components/ui/BrandImage";
 import { eventsContent } from "@/data/site-content";
 import { Calendar, MapPin } from "lucide-react";
 
@@ -71,13 +73,15 @@ export default function EventsSection() {
           <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12 items-center">
             {/* Featured Image */}
             <div className="relative aspect-video lg:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-brand-secondary/10 group-hover:border-brand-secondary/20">
-              <img
+              <BrandImage
                 src={featured.image}
                 alt={featured.title}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-103"
-                loading="lazy"
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                wrapperClassName="absolute inset-0 h-full w-full"
+                rounded="2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/50 to-transparent" />
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-brand-dark/50 to-transparent" />
             </div>
 
             {/* Featured details */}
@@ -106,26 +110,29 @@ export default function EventsSection() {
               </div>
 
               <div className="mt-8">
-                <a
+                <Link
                   href={featured.href}
                   className="inline-flex items-center justify-center rounded-full bg-brand-primary px-7 py-3 text-sm font-semibold tracking-wide text-brand-cream shadow-[0_4px_20px_rgba(105,21,135,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-purple-tone hover:shadow-[0_6px_24px_rgba(105,21,135,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary"
                 >
                   {featured.cta || "Register Now"}
-                </a>
+                </Link>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Upcoming Events Carousel */}
+        {/* Upcoming Events */}
         <motion.div {...reveal(0.24)}>
-          <div className="flex items-center justify-between mb-8 border-b border-brand-secondary/10 pb-4">
+          <div className="mb-8 flex items-center justify-between border-b border-brand-secondary/10 pb-4">
             <h3 className="text-xl font-bold tracking-tight text-brand-cream uppercase sm:text-2xl">
               Upcoming Programs
             </h3>
-            <span className="text-xs font-medium text-brand-muted hidden sm:inline">
-              Swipe or scroll to explore &rarr;
-            </span>
+            <Link
+              href="/events"
+              className="text-xs font-semibold text-brand-secondary transition-colors hover:text-brand-light-purple"
+            >
+              View all events →
+            </Link>
           </div>
 
           {/* Carousel Track */}
@@ -144,12 +151,14 @@ export default function EventsSection() {
                 <div className="group/item relative h-full rounded-2xl border border-brand-secondary/10 bg-brand-primary/5 p-5 transition-all duration-500 hover:border-brand-secondary/35 hover:bg-brand-primary/10 hover:shadow-[0_8px_32px_rgba(105,21,135,0.15)] flex flex-col justify-between">
                   <div>
                     {/* Event image */}
-                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-brand-secondary/5 mb-5">
-                      <img
+                    <div className="relative mb-5 aspect-video w-full overflow-hidden rounded-xl border border-brand-secondary/5">
+                      <BrandImage
                         src={event.image}
                         alt={event.title}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover/item:scale-105"
-                        loading="lazy"
+                        fill
+                        sizes="350px"
+                        wrapperClassName="h-full w-full"
+                        rounded="xl"
                       />
                     </div>
 
@@ -172,13 +181,13 @@ export default function EventsSection() {
                       <MapPin className="h-3.5 w-3.5 text-brand-secondary" />
                       <span className="truncate max-w-[140px]">{event.location}</span>
                     </span>
-                    <a
+                    <Link
                       href={event.href}
                       className="text-xs font-semibold text-brand-cream hover:text-brand-light-purple transition-all duration-300 inline-flex items-center gap-1 group-hover/item:translate-x-1"
                     >
                       <span>{event.cta || "Learn More"}</span>
                       <span>&rarr;</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

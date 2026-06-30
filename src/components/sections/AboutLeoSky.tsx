@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Container from "@/components/ui/Container";
-import { aboutContent } from "@/data/site-content";
+import { aboutContent } from "@/content/about";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 

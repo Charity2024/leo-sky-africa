@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
 import SiteLayout from "@/components/layout/SiteLayout";
-import PillarPageTemplate from "@/components/pillar/PillarPageTemplate";
-import { pillarPages } from "@/data/pillars";
+import AstrotourismPageView from "@/components/pillar/AstrotourismPage";
+import { astrotourismContent, astrotourismPageMetadata } from "@/content/astrotourism";
 import { createPageMetadata } from "@/lib/metadata";
 
-const content = pillarPages.astrotourism;
-
 export const metadata: Metadata = createPageMetadata({
-  title: "Astrotourism",
-  description: content.heroDescription,
+  title: astrotourismPageMetadata.title,
+  description: astrotourismPageMetadata.description,
   path: "/astrotourism",
 });
 
 export default function AstrotourismPage() {
   return (
     <SiteLayout>
-      <PillarPageTemplate content={content} />
+      <AstrotourismPageView content={astrotourismContent} />
     </SiteLayout>
   );
 }

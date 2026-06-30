@@ -1,4 +1,4 @@
-import { navigation, siteContent } from "@/data/site-content";
+import { navigation, siteContent } from "@/content/site";
 
 export const siteConfig = {
   name: siteContent.companyName,

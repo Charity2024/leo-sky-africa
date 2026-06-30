@@ -1,6 +1,11 @@
 # Leo Sky Africa — Asset Directory
 
-Place client-provided assets in the folders below. Components reference these paths via `src/data/`.
+Place client-provided assets in the folders below. Components reference these paths via `src/content/`.
+
+## `/public/logos/`
+| File | Usage |
+|------|-------|
+| Partner logo SVGs and PNGs | Partners marquee, partners page |
 
 ## `/public/logo/`
 | File | Usage |
@@ -23,10 +28,9 @@ Place client-provided assets in the folders below. Components reference these pa
 | `pillar-innovation.png` | Space Innovation imagery |
 | `about.png` | About / mission section |
 | `event-*.png` | Event card thumbnails |
-| `ksa.png` | Kenya Space Agency partner logo |
 
 ## `/public/partners/`
-Partner logos for the infinite marquee (SVG or PNG, transparent background).
+Deprecated — use `/public/logos/` for partner logos instead.
 
 ## `/public/events/`
 Full-resolution event photos for the Events page gallery and detail views.

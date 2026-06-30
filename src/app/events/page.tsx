@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import { eventsPageMetadata } from "@/content/home";
 import { createPageMetadata } from "@/lib/metadata";
 import EventsPageClient from "./EventsPageClient";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Events",
-  description:
-    "Join Leo Sky Africa's space education summits, astrotourism dark sky camps, innovation hackathons, and webinars across the continent.",
+  title: eventsPageMetadata.title,
+  description: eventsPageMetadata.description,
   path: "/events",
 });
 

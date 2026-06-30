@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { heroContent, pillarsContent } from "@/data/site-content";
+import { heroContent, heroMedia, pillarsContent } from "@/content/home";
 import { easePremium } from "@/lib/motion";
 
 export default function Hero() {
@@ -59,7 +59,7 @@ export default function Hero() {
             className="h-full w-full object-cover"
             aria-hidden
           >
-            <source src="/videos/hero.mp4" type="video/mp4" />
+            <source src={heroMedia.video} type="video/mp4" />
           </video>
         )}
         {/* 60–70% dark overlay for text readability */}
@@ -120,7 +120,7 @@ export default function Hero() {
 
           <motion.nav
             {...reveal(0.55)}
-            aria-label="Core programs navigation"
+            aria-label={heroContent.navAriaLabel}
             className="mt-16 border-t border-brand-secondary/10 pt-8"
           >
             <ul className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">

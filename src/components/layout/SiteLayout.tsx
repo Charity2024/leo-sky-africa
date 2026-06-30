@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import PageTransition from "@/components/ui/PageTransition";
 
+import HashScrollHandler from "./HashScrollHandler";
+
 interface SiteLayoutProps {
   children: ReactNode;
 }
@@ -12,6 +14,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
   return (
     <>
       <LoadingScreen />
+      <HashScrollHandler />
       <Navbar />
       <main id="main-content" className="flex-1">
         <PageTransition>{children}</PageTransition>

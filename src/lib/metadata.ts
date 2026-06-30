@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteContent } from "@/data/site-content";
+import { brandAssets, siteContent, siteDescription } from "@/content/site";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://leoskyafrica.space";
 
@@ -9,13 +9,12 @@ export const baseMetadata: Metadata = {
     default: `${siteContent.companyName} | ${siteContent.tagline}`,
     template: `%s | ${siteContent.companyName}`,
   },
-  description:
-    "Inspiring the next generation through space education, immersive astronomy experiences, and space innovation programs that unlock Africa's future in the global space economy.",
+  description: siteDescription,
   keywords: [
     "Leo Sky Africa",
     "space education Africa",
     "astrotourism",
-    "space innovation",
+    "Leo Sky Labs",
     "African space economy",
   ],
   authors: [{ name: siteContent.companyName }],
@@ -31,6 +30,10 @@ export const baseMetadata: Metadata = {
     images: ["/opengraph-image"],
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [{ url: brandAssets.logoMark, type: "image/svg+xml" }],
+    shortcut: [{ url: brandAssets.logoMark, type: "image/svg+xml" }],
+  },
 };
 
 export function createPageMetadata({
@@ -59,7 +62,7 @@ export function createOrganizationSchema() {
     "@type": "Organization",
     name: siteContent.companyName,
     url: siteUrl,
-    logo: `${siteUrl}/logo/logo.svg`,
+    logo: `${siteUrl}${brandAssets.logo}`,
     description: baseMetadata.description,
     slogan: siteContent.tagline,
     address: {

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import PartnersMarquee from "@/components/home/PartnersMarquee";
+import { partnersSectionContent } from "@/content/partners";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -11,6 +12,7 @@ export default function PartnersSection() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-8% 0px" });
   const prefersReducedMotion = useReducedMotion();
+  const section = partnersSectionContent;
 
   return (
     <section
@@ -40,14 +42,13 @@ export default function PartnersSection() {
           className="mx-auto max-w-3xl text-center"
         >
           <p className="mb-5 text-[11px] font-medium tracking-[0.38em] text-brand-secondary uppercase">
-            Trusted Partners
+            {section.eyebrow}
           </p>
           <h2
             id="partners-heading"
             className="text-xl leading-relaxed font-medium tracking-tight text-brand-cream sm:text-2xl sm:leading-snug lg:text-[1.75rem] lg:leading-[1.45]"
           >
-            Building Africa&apos;s space future through strategic partnerships,
-            education, and innovation.
+            {section.title}
           </h2>
         </motion.div>
       </Container>

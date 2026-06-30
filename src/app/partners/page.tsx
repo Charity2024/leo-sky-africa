@@ -4,12 +4,14 @@ import Container from "@/components/ui/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import PartnersMarquee from "@/components/home/PartnersMarquee";
 import Button from "@/components/ui/Button";
+import { partnersPageContent } from "@/content/partners";
 import { createPageMetadata } from "@/lib/metadata";
+
+const content = partnersPageContent;
 
 export const metadata: Metadata = createPageMetadata({
   title: "Partners",
-  description:
-    "Building Africa's space future through strategic partnerships with NASA, ESA, UNESCO, Kenya Space Agency, and leading institutions.",
+  description: content.metadataDescription,
   path: "/partners",
 });
 
@@ -23,9 +25,9 @@ export default function PartnersPage() {
         />
         <Container>
           <SectionHeader
-            eyebrow="Trusted Partners"
-            title="Building Africa's space future together."
-            description="We collaborate with space agencies, universities, and observatories to deliver world-class education, tourism, and innovation programs across the continent."
+            eyebrow={content.hero.eyebrow}
+            title={content.hero.title}
+            description={content.hero.description}
             align="center"
           />
         </Container>
@@ -41,14 +43,10 @@ export default function PartnersPage() {
       <section className="bg-brand-dark py-16 lg:py-24">
         <Container>
           <div className="mx-auto max-w-2xl rounded-3xl border border-brand-secondary/15 bg-brand-primary/10 px-8 py-14 text-center backdrop-blur-md">
-            <h2 className="text-2xl font-bold text-brand-cream sm:text-3xl">
-              Partner with Leo Sky Africa
-            </h2>
-            <p className="mt-4 text-brand-body/85">
-              Join our network of institutions shaping Africa&apos;s gateway to space.
-            </p>
+            <h2 className="text-2xl font-bold text-brand-cream sm:text-3xl">{content.cta.title}</h2>
+            <p className="mt-4 text-brand-body/85">{content.cta.description}</p>
             <div className="mt-8">
-              <Button href="/contact">Become a partner</Button>
+              <Button href={content.cta.button.href}>{content.cta.button.label}</Button>
             </div>
           </div>
         </Container>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import BrandImage from "@/components/ui/BrandImage";
-import { eventsContent } from "@/data/site-content";
+import { eventsContent, eventsSectionContent } from "@/content/home";
 import { Calendar, MapPin } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -26,6 +26,7 @@ export default function EventsSection() {
 
   const featured = eventsContent.featured;
   const upcoming = eventsContent.upcoming;
+  const section = eventsSectionContent;
 
   return (
     <section
@@ -47,16 +48,16 @@ export default function EventsSection() {
         {/* Header */}
         <motion.div {...reveal(0)} className="mb-16 max-w-2xl">
           <p className="mb-4 text-[11px] font-semibold tracking-[0.38em] text-brand-secondary uppercase">
-            Space Events
+            {section.eyebrow}
           </p>
           <h2
             id="events-heading"
             className="text-3xl leading-[1.12] font-bold tracking-tight text-brand-cream sm:text-4xl lg:text-[2.75rem]"
           >
-            Connect With the Cosmos
+            {section.title}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-brand-body/90">
-            Join our astro-tourism camps, educational summits, and hackathons designed to launch Africa into the global space economy.
+            {section.description}
           </p>
         </motion.div>
 
@@ -87,7 +88,7 @@ export default function EventsSection() {
             {/* Featured details */}
             <div className="flex flex-col justify-center">
               <span className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-brand-accent/20 bg-brand-accent/10 px-3.5 py-1 text-[10px] font-bold tracking-widest text-brand-accent uppercase">
-                ★ FEATURED EVENT
+                {section.featuredBadge}
               </span>
 
               <h3 className="text-2xl font-bold tracking-tight text-brand-cream sm:text-3xl lg:text-[2rem] lg:leading-tight">
@@ -114,7 +115,7 @@ export default function EventsSection() {
                   href={featured.href}
                   className="inline-flex items-center justify-center rounded-full bg-brand-primary px-7 py-3 text-sm font-semibold tracking-wide text-brand-cream shadow-[0_4px_20px_rgba(105,21,135,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-purple-tone hover:shadow-[0_6px_24px_rgba(105,21,135,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary"
                 >
-                  {featured.cta || "Register Now"}
+                  {featured.cta || section.defaultCta}
                 </Link>
               </div>
             </div>
@@ -125,13 +126,13 @@ export default function EventsSection() {
         <motion.div {...reveal(0.24)}>
           <div className="mb-8 flex items-center justify-between border-b border-brand-secondary/10 pb-4">
             <h3 className="text-xl font-bold tracking-tight text-brand-cream uppercase sm:text-2xl">
-              Upcoming Programs
+              {section.upcomingTitle}
             </h3>
             <Link
               href="/events"
               className="text-xs font-semibold text-brand-secondary transition-colors hover:text-brand-light-purple"
             >
-              View all events →
+              {section.viewAllLabel}
             </Link>
           </div>
 
@@ -185,7 +186,7 @@ export default function EventsSection() {
                       href={event.href}
                       className="text-xs font-semibold text-brand-cream hover:text-brand-light-purple transition-all duration-300 inline-flex items-center gap-1 group-hover/item:translate-x-1"
                     >
-                      <span>{event.cta || "Learn More"}</span>
+                      <span>{event.cta || section.defaultLearnMore}</span>
                       <span>&rarr;</span>
                     </Link>
                   </div>

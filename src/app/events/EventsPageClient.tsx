@@ -10,15 +10,17 @@ import Container from "@/components/ui/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import BrandImage from "@/components/ui/BrandImage";
 import Button from "@/components/ui/Button";
-import { eventsContent } from "@/data/site-content";
+import { eventsContent, eventsPageContent } from "@/content/home";
 import { easePremium } from "@/lib/motion";
 
 function EventCard({
   event,
   index,
+  defaultLearnMore,
 }: {
   event: (typeof eventsContent.upcoming)[number];
   index: number;
+  defaultLearnMore: string;
 }) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -57,7 +59,7 @@ function EventCard({
             href={event.href}
             className="text-xs font-semibold text-brand-secondary hover:text-brand-light-purple"
           >
-            {event.cta ?? "Learn more"} →
+            {event.cta ?? defaultLearnMore} →
           </Link>
         </div>
       </div>
@@ -70,6 +72,7 @@ export default function EventsPageClient() {
   const headerRef = useRef<HTMLDivElement>(null);
   const headerInView = useInView(headerRef, { once: true });
 
+  const page = eventsPageContent;
   const events = tab === "upcoming" ? eventsContent.upcoming : eventsContent.past;
 
   return (
@@ -87,15 +90,12 @@ export default function EventsPageClient() {
             transition={{ duration: 0.9, ease: easePremium }}
           >
             <p className="mb-4 text-[11px] font-medium tracking-[0.36em] text-brand-secondary uppercase">
-              Space Events
+              {page.eyebrow}
             </p>
             <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-brand-cream sm:text-5xl">
-              Connect With the Cosmos
+              {page.title}
             </h1>
-            <p className="mt-5 max-w-2xl text-lg text-brand-body/90">
-              Join our astro-tourism camps, educational summits, and hackathons designed to launch
-              Africa into the global space economy.
-            </p>
+            <p className="mt-5 max-w-2xl text-lg text-brand-body/90">{page.description}</p>
           </motion.div>
         </Container>
       </section>
@@ -115,7 +115,7 @@ export default function EventsPageClient() {
               </div>
               <div>
                 <span className="mb-3 inline-flex rounded-full border border-brand-accent/20 bg-brand-accent/10 px-3 py-1 text-[10px] font-bold tracking-widest text-brand-accent uppercase">
-                  Featured Event
+                  {page.featuredBadge}
                 </span>
                 <h2 className="text-2xl font-bold text-brand-cream sm:text-3xl">
                   {eventsContent.featured.title}
@@ -133,7 +133,7 @@ export default function EventsPageClient() {
                 </div>
                 <div className="mt-6">
                   <Button href={eventsContent.featured.href}>
-                    {eventsContent.featured.cta ?? "Register"}
+                    {eventsContent.featured.cta ?? page.defaultCta}
                   </Button>
                 </div>
               </div>
@@ -144,7 +144,7 @@ export default function EventsPageClient() {
 
       <section className="bg-brand-dark py-16 lg:py-24">
         <Container>
-          <SectionHeader eyebrow="Calendar" title="Upcoming & past events" className="mb-8" />
+          <SectionHeader eyebrow={page.calendarEyebrow} title={page.calendarTitle} className="mb-8" />
 
           <div className="mb-10 flex gap-2" role="tablist" aria-label="Event filter">
             {(["upcoming", "past"] as const).map((t) => (
@@ -161,14 +161,14 @@ export default function EventsPageClient() {
                     : "border border-brand-secondary/20 text-brand-body hover:border-brand-secondary/40",
                 )}
               >
-                {t === "upcoming" ? "Upcoming Events" : "Past Events"}
+                {t === "upcoming" ? page.tabs.upcoming : page.tabs.past}
               </button>
             ))}
           </div>
 
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="tabpanel">
             {events.map((event, index) => (
-              <EventCard key={event.title} event={event} index={index} />
+              <EventCard key={event.title} event={event} index={index} defaultLearnMore={page.defaultLearnMore} />
             ))}
           </ul>
         </Container>
@@ -177,8 +177,8 @@ export default function EventsPageClient() {
       <section className="bg-brand-dark py-16 lg:py-24">
         <Container>
           <SectionHeader
-            eyebrow="Gallery"
-            title="Moments from our events"
+            eyebrow={page.galleryEyebrow}
+            title={page.galleryTitle}
             align="center"
             className="mb-10"
           />
@@ -197,7 +197,7 @@ export default function EventsPageClient() {
             ))}
           </div>
           <div className="mt-14 text-center">
-            <Button href="/contact">Register for an event</Button>
+            <Button href={page.registerCta.href}>{page.registerCta.label}</Button>
           </div>
         </Container>
       </section>

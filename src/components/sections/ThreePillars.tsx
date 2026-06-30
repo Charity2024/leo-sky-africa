@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import BrandImage from "@/components/ui/BrandImage";
-import { pillarsContent } from "@/data/site-content";
+import { pillarsContent } from "@/content/home";
 import { easePremium } from "@/lib/motion";
 
 export default function ThreePillars() {
@@ -14,7 +14,7 @@ export default function ThreePillars() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="pillars" aria-labelledby="pillars-heading" className="scroll-mt-24 bg-brand-dark py-16 lg:py-24">
+    <section id="pillars" aria-labelledby="pillars-heading" className="scroll-mt-24 bg-brand-dark py-24 lg:py-32">
       <Container>
         <motion.p
           initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
@@ -55,6 +55,8 @@ export default function ThreePillars() {
           {pillarsContent.pillars.map((pillar, index) => (
             <motion.li
               key={pillar.href}
+              id={pillar.sectionId}
+              className="scroll-mt-24"
               initial={prefersReducedMotion ? false : { opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-8% 0px" }}

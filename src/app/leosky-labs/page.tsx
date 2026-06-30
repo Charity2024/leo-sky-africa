@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
 import SiteLayout from "@/components/layout/SiteLayout";
 import PillarPageTemplate from "@/components/pillar/PillarPageTemplate";
-import { pillarPages } from "@/data/pillars";
+import { labsContent, labsPageMetadata } from "@/content/labs";
 import { createPageMetadata } from "@/lib/metadata";
 
-const content = pillarPages["space-innovation"];
-
 export const metadata: Metadata = createPageMetadata({
-  title: "Space Innovation",
-  description: content.heroDescription,
-  path: "/space-innovation",
+  title: labsPageMetadata.title,
+  description: labsPageMetadata.description,
+  path: "/leosky-labs",
 });
 
-export default function SpaceInnovationPage() {
+export default function LeoSkyLabsPage() {
   return (
     <SiteLayout>
-      <PillarPageTemplate content={content} />
+      <PillarPageTemplate content={labsContent} />
     </SiteLayout>
   );
 }

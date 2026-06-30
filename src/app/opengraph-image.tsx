@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
+import { openGraphContent } from "@/content/site";
 
 export const runtime = "edge";
-export const alt = "Leo Sky Africa — Africa's Gateway to Space";
+export const alt = openGraphContent.alt;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -50,7 +51,7 @@ export default function OpenGraphImage() {
             marginBottom: 16,
           }}
         >
-          LEO SKY AFRICA
+          {openGraphContent.titleLine1}
         </div>
         <div
           style={{
@@ -59,7 +60,7 @@ export default function OpenGraphImage() {
             letterSpacing: "0.15em",
           }}
         >
-          AFRICA&apos;S GATEWAY TO SPACE
+          {openGraphContent.titleLine2}
         </div>
       </div>
     ),

@@ -1,5 +1,6 @@
 import SiteLayout from "@/components/layout/SiteLayout";
 import AboutLeoSky from "@/components/sections/AboutLeoSky";
+import ContactSection from "@/components/sections/ContactSection";
 import Hero from "@/components/sections/Hero";
 import ImpactSection from "@/components/sections/ImpactSection";
 import PartnersSection from "@/components/sections/PartnersSection";
@@ -15,6 +16,7 @@ export default function Home() {
       <EventsSection />
       <PartnersSection />
       <AboutLeoSky />
+      <ContactSection />
     </SiteLayout>
   );
 }

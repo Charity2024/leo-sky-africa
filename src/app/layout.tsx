@@ -15,9 +15,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <head>
-        <link rel="icon" href="/logo/logo-mark.svg" type="image/svg+xml" />
-      </head>
       <body className="flex min-h-full flex-col">
         <Script
           id="organization-schema"

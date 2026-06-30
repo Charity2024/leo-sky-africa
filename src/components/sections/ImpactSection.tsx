@@ -5,13 +5,7 @@ import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import CountUp from "@/components/ui/CountUp";
-
-const STATS = [
-  { value: 1000, suffix: "+", label: "Students Reached" },
-  { value: 50, suffix: "+", label: "Space Events" },
-  { value: 10, suffix: "+", label: "Partners & Institutions" },
-  { value: 3, suffix: "", label: "Core Programs" },
-] as const;
+import { impactContent } from "@/content/home";
 
 const STARS = [
   { top: "8%", left: "12%", size: 1, delay: "0s" },
@@ -126,23 +120,21 @@ export default function ImpactSection() {
         <Container className="relative">
           <motion.div {...reveal(0)} className="mx-auto max-w-3xl text-center">
             <p className="mb-6 text-[11px] font-medium tracking-[0.38em] text-brand-secondary uppercase">
-              Our Impact
+              {impactContent.eyebrow}
             </p>
             <h2
               id="impact-heading"
               className="text-3xl leading-[1.12] font-semibold tracking-tight text-brand-cream sm:text-4xl lg:text-[3.25rem] lg:leading-[1.08]"
             >
-              Building Africa&apos;s Space Future
+              {impactContent.title}
             </h2>
             <p className="mx-auto mt-7 max-w-2xl text-base leading-[1.85] text-brand-body sm:mt-8 sm:text-lg sm:leading-8">
-              Through education, astronomy experiences, and innovation programs,
-              Leo Sky Africa is creating pathways for thousands of young Africans
-              to participate in the global space economy.
+              {impactContent.description}
             </p>
           </motion.div>
 
           <ul className="mt-20 grid grid-cols-1 gap-6 sm:mt-24 sm:grid-cols-2 sm:gap-7 lg:mt-32 lg:grid-cols-4 lg:gap-7">
-            {STATS.map((stat, index) => (
+            {impactContent.stats.map((stat, index) => (
               <motion.li
                 key={stat.label}
                 {...reveal(0.14 + index * 0.1)}
@@ -175,10 +167,10 @@ export default function ImpactSection() {
             className="mt-20 flex justify-center sm:mt-24 lg:mt-28"
           >
             <Link
-              href="/partners"
+              href={impactContent.cta.href}
               className="inline-flex items-center justify-center rounded-full border border-brand-secondary/30 bg-brand-primary/25 px-10 py-4 text-sm font-semibold tracking-wide text-brand-cream backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-secondary hover:bg-brand-primary/40 hover:shadow-[0_0_40px_rgba(224,137,253,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark sm:text-[15px]"
             >
-              Partner With Leo Sky
+              {impactContent.cta.label}
             </Link>
           </motion.div>
         </Container>

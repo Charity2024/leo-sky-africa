@@ -8,12 +8,14 @@ import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 import Container from "@/components/ui/Container";
 import BrandLogo from "@/components/ui/BrandLogo";
-import { footerContent, navigation } from "@/data/site-content";
+import Button from "@/components/ui/Button";
+import { footerContent, navigation, sectionIds } from "@/content/site";
+import { getHashFromHref, scrollToSection } from "@/lib/scroll";
 
 const SCROLL_THRESHOLD = 24;
 
 const navLinkBase =
-  "relative rounded-full px-3 py-1.5 text-[13px] font-medium tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent lg:px-4 lg:text-sm";
+  "relative rounded-full px-3 py-1.5 text-[13px] font-medium tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent lg:px-3.5 lg:text-sm";
 
 const navLinkInactive =
   "text-brand-body hover:-translate-y-0.5 hover:text-brand-light-purple hover:drop-shadow-[0_0_8px_rgba(255,179,255,0.35)]";
@@ -21,15 +23,10 @@ const navLinkInactive =
 const navLinkActive =
   "text-brand-secondary drop-shadow-[0_0_12px_rgba(224,137,253,0.5)]";
 
-function getNavPath(href: string) {
-  if (href.startsWith("/#")) return { pathname: "/", hash: href.slice(2) };
-  return { pathname: href, hash: null };
-}
-
 function isNavActive(pathname: string, href: string, activeHash: string | null) {
-  const { pathname: navPath, hash } = getNavPath(href);
+  const hash = getHashFromHref(href);
   if (hash) return pathname === "/" && activeHash === hash;
-  return pathname === navPath || pathname.startsWith(`${navPath}/`);
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export default function Navbar() {
@@ -48,11 +45,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // IntersectionObserver for home page section highlighting
   useEffect(() => {
     if (pathname !== "/") return;
 
-    const sectionIds = ["about", "pillars", "impact", "events", "partners"];
     const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -101,17 +96,16 @@ export default function Navbar() {
   }, [mobileOpen, closeMobileMenu]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    const { pathname: navPath, hash } = getNavPath(href);
+    const hash = getHashFromHref(href);
     if (hash && pathname === "/") {
       e.preventDefault();
-      const el = document.getElementById(hash);
-      if (el) {
-        const offset = el.getBoundingClientRect().top + window.scrollY - 76;
-        window.scrollTo({ top: offset, behavior: prefersReducedMotion ? "auto" : "smooth" });
-        setActiveHash(hash);
-        setMobileOpen(false);
-      }
-    } else if (navPath !== pathname) {
+      scrollToSection(hash, prefersReducedMotion ? "auto" : "smooth");
+      setActiveHash(hash);
+      window.history.replaceState(null, "", `/#${hash}`);
+      setMobileOpen(false);
+    } else if (hash) {
+      setMobileOpen(false);
+    } else {
       setMobileOpen(false);
     }
   };
@@ -133,10 +127,12 @@ export default function Navbar() {
     >
       <nav aria-label="Main navigation">
         <Container>
-          <div className="flex h-[60px] items-center justify-between gap-6 lg:h-[72px]">
-            <BrandLogo priority className="max-h-8 lg:max-h-9" />
+          <div className="grid h-[60px] grid-cols-[1fr_auto_1fr] items-center lg:h-[72px]">
+            <div className="justify-self-start">
+              <BrandLogo priority className="h-7 w-auto max-w-[148px] sm:h-8 sm:max-w-[168px] lg:h-9 lg:max-w-[188px]" />
+            </div>
 
-            <ul className="hidden items-center gap-1 xl:flex">
+            <ul className="hidden items-center justify-center gap-0.5 xl:flex">
               {navigation.map((item) => {
                 const active = isNavActive(pathname, item.href, effectiveActiveHash);
                 return (
@@ -165,13 +161,14 @@ export default function Navbar() {
               })}
             </ul>
 
-            <div className="flex items-center gap-3">
-              <Link
+            <div className="flex items-center justify-end gap-3">
+              <Button
                 href={footerContent.contactCta.href}
-                className="hidden rounded-full border border-brand-secondary/20 bg-brand-primary px-5 py-2 text-xs font-semibold text-brand-cream backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-purple-tone hover:shadow-[0_0_20px_rgba(105,21,135,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary md:inline-flex"
+                variant="ghost"
+                className="hidden px-5 py-2 text-xs md:inline-flex"
               >
                 {footerContent.contactCta.label}
-              </Link>
+              </Button>
 
               <button
                 type="button"
@@ -253,12 +250,9 @@ export default function Navbar() {
                   })}
                 </ul>
                 <div className="mt-5 border-t border-brand-secondary/10 pt-5">
-                  <Link
-                    href={footerContent.contactCta.href}
-                    className="flex w-full items-center justify-center rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-brand-cream"
-                  >
+                  <Button href={footerContent.contactCta.href} className="w-full py-3 text-sm">
                     {footerContent.contactCta.label}
-                  </Link>
+                  </Button>
                 </div>
               </Container>
             </motion.div>

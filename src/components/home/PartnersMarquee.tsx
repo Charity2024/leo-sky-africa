@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import clsx from "clsx";
-import { partners } from "@/data/partners";
+import { partners, partnersMarqueeLabel } from "@/content/partners";
 import styles from "./PartnersMarquee.module.css";
 
 function PartnerLogo({
@@ -65,7 +65,7 @@ export default function PartnersMarquee() {
 
       <div
         className={clsx(styles.marquee, styles.edgeMask, "relative overflow-hidden py-8")}
-        aria-label="Partner organization logos"
+        aria-label={partnersMarqueeLabel}
       >
         <div className={styles.track}>
           <LogoSet id="first" />

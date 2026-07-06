@@ -12,6 +12,7 @@ import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import CountUp from "@/components/ui/CountUp";
 import Button from "@/components/ui/Button";
 import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
+import PillarGallery from "@/components/pillar/PillarGallery";
 import type { PillarPageContent, PillarLayoutVariant } from "@/content/types";
 import { isGalleryPlaceholder } from "@/lib/media";
 import { easePremium } from "@/lib/motion";
@@ -20,7 +21,7 @@ type PillarPageTemplateProps = {
   content: PillarPageContent;
 };
 
-function FaqAccordion({ items }: { items: PillarPageContent["faq"]["items"] }) {
+function FaqAccordion({ items }: { items: readonly { question: string; answer: string }[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const prefersReducedMotion = useReducedMotion();
 
@@ -162,6 +163,8 @@ function MissionSection({
   content: PillarPageContent;
   variant: PillarLayoutVariant;
 }) {
+  if (!content.mission) return null;
+
   if (variant === "astrotourism") {
     return (
       <section className="bg-brand-dark py-24 lg:py-32">
@@ -213,6 +216,7 @@ function ProgramsSection({
   variant: PillarLayoutVariant;
 }) {
   const prefersReducedMotion = useReducedMotion();
+  if (!content.programs) return null;
 
   if (variant === "astrotourism") {
     return (
@@ -237,7 +241,7 @@ function ProgramsSection({
                 className="grid gap-6 rounded-2xl border border-brand-secondary/10 bg-brand-primary/5 p-8 backdrop-blur-md transition-all duration-500 hover:border-brand-secondary/25 lg:grid-cols-[200px_1fr] lg:items-center"
               >
                 <p className="text-[11px] font-semibold tracking-[0.28em] text-brand-accent uppercase">
-                  {content.programs.itemLabel} {String(index + 1).padStart(2, "0")}
+                  {content.programs?.itemLabel || "Program"} {String(index + 1).padStart(2, "0")}
                 </p>
                 <div>
                   <h3 className="text-xl font-semibold text-brand-cream">{program.title}</h3>
@@ -321,106 +325,15 @@ function GallerySection({
   content: PillarPageContent;
   variant: PillarLayoutVariant;
 }) {
-  const images = content.gallery.images;
-
-  if (variant === "astrotourism") {
-    return (
-      <section className="bg-brand-dark py-24 lg:py-32">
-        <Container>
-          <SectionHeader
-            eyebrow={content.gallery.eyebrow}
-            title={content.gallery.title}
-            className="mb-14"
-          />
-          <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
-            {images.map((img, index) => (
-              <div
-                key={img.src}
-                className={clsx(
-                  "relative aspect-[4/3] lg:aspect-auto lg:min-h-[220px]",
-                  index === 0 && "lg:col-span-2 lg:row-span-2 lg:min-h-[460px]",
-                )}
-              >
-                {isGalleryPlaceholder(img.src) ? (
-                  <ImagePlaceholder label={img.alt} className="h-full w-full" />
-                ) : (
-                  <BrandImage
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    wrapperClassName="h-full w-full"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-    );
-  }
-
-  if (variant === "labs") {
-    return (
-      <section className="bg-brand-dark py-24 lg:py-32">
-        <Container>
-          <SectionHeader
-            eyebrow={content.gallery.eyebrow}
-            title={content.gallery.title}
-            className="mb-10"
-          />
-          <div className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-2 lg:-mx-8 lg:px-8">
-            {images.map((img) => (
-              <div key={img.src} className="relative h-64 w-72 shrink-0 sm:h-72 sm:w-80">
-                {isGalleryPlaceholder(img.src) ? (
-                  <ImagePlaceholder label={img.alt} className="h-full w-full" />
-                ) : (
-                  <BrandImage
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="320px"
-                    wrapperClassName="h-full w-full"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-    );
-  }
-
+  const layout = variant === "astrotourism" ? "grid-3" : variant === "labs" ? "masonry" : "masonry";
+  
   return (
-    <section className="bg-brand-dark py-24 lg:py-32">
-      <Container>
-        <SectionHeader
-          eyebrow={content.gallery.eyebrow}
-          title={content.gallery.title}
-          className="mb-14"
-        />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {images.map((img, index) => (
-            <div
-              key={img.src}
-              className={clsx("relative aspect-[4/3]", index === 0 && "sm:col-span-2 sm:row-span-2 sm:aspect-[16/10]")}
-            >
-              {isGalleryPlaceholder(img.src) ? (
-                <ImagePlaceholder label={img.alt} className="h-full w-full" />
-              ) : (
-                <BrandImage
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                  wrapperClassName="h-full w-full"
-                />
-              )}
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
+    <PillarGallery
+      eyebrow={content.gallery.eyebrow}
+      title={content.gallery.title}
+      images={content.gallery.images}
+      layout={layout}
+    />
   );
 }
 
@@ -435,6 +348,8 @@ function ImpactSection({
   impactRef: React.RefObject<HTMLElement | null>;
   impactInView: boolean;
 }) {
+  if (!content.impact) return null;
+
   return (
     <section
       ref={impactRef}
@@ -541,7 +456,8 @@ function TestimonialsSection({
 }
 
 function RelatedEventsSection({ content }: { content: PillarPageContent }) {
-  if (content.relatedEvents.length === 0) return null;
+  if (!content.relatedEvents || content.relatedEvents.length === 0) return null;
+  if (!content.relatedEventsSection) return null;
 
   return (
     <section className="bg-brand-dark py-24 lg:py-32">
@@ -629,7 +545,7 @@ export default function PillarPageTemplate({ content }: PillarPageTemplateProps)
     ),
     testimonials: <TestimonialsSection key="testimonials" content={content} variant={variant} />,
     events: <RelatedEventsSection key="events" content={content} />,
-    faq: (
+    faq: content.faq ? (
       <section key="faq" className="bg-brand-dark py-24 lg:py-32">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr]">
@@ -638,7 +554,7 @@ export default function PillarPageTemplate({ content }: PillarPageTemplateProps)
           </div>
         </Container>
       </section>
-    ),
+    ) : null,
     cta: <CtaSection key="cta" content={content} />,
   };
 

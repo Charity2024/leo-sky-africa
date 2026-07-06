@@ -7,102 +7,108 @@ export const labsContent: PillarPageContent = {
   layoutVariant: "labs",
   kicker: "Innovation",
   title: "Leo Sky Labs",
-  tagline: "Unlocking Africa's role in the global space economy.",
+  tagline: "Where African ideas become space technologies.",
   heroDescription:
-    "A launchpad for African innovators — satellite technology, research partnerships, space startups, and future technologies built for the continent.",
+    "Leo Sky's research, innovation, and engineering hub — developing satellite systems, hardware prototypes, and aerospace technologies that position Africa in the global space economy.",
   heroImage: `${mediaPaths.images}/pillar-innovation.png`,
   heroWatermark: { position: "left", opacity: 0.07 },
   mission: {
-    eyebrow: "Our Mission",
-    title: "Building Africa's space economy from the ground up.",
+    eyebrow: "Why It Matters",
+    title: "Building Africa's sovereign space capabilities.",
     paragraphs: [
-      "The global space economy is projected to exceed $1 trillion by 2040. Leo Sky Labs ensures African entrepreneurs, researchers, and startups claim their share.",
-      "We connect talent with satellite data, mentorship, and funding pathways to solve real challenges in agriculture, climate, connectivity, and beyond.",
+      "The global space economy will exceed $1 trillion by 2040. Leo Sky Labs ensures African engineers and researchers claim their share through indigenous technology development.",
+      "We bridge the gap between concept and deployment — transforming ideas into functional satellite systems, payloads, and aerospace hardware.",
     ],
   },
   programs: {
-    eyebrow: "What We Offer",
-    title: "From research to orbit.",
-    itemLabel: "Program",
+    eyebrow: "Our Approach",
+    title: "From prototype to payload.",
+    itemLabel: "Focus Area",
     items: [
       {
-        title: "Satellite Technology Lab",
+        title: "Satellite Systems Development",
         description:
-          "Hands-on access to Earth observation datasets with guided projects in agriculture, disaster response, and environmental monitoring.",
+          "Designing and testing CubeSat components, communication systems, and payload integration.",
+        image: `${mediaPaths.gallery}/leosky-labs/prototype-1.jpg`,
       },
       {
-        title: "Space Startup Studio",
+        title: "Hardware & Rapid Prototyping",
         description:
-          "Mentorship, pitch training, and investor introductions for early-stage African space-tech ventures ready to scale.",
+          "Advanced fabrication for aerospace components, sensor systems, and experimental hardware.",
+        image: `${mediaPaths.gallery}/leosky-labs/engineering-lab.jpg`,
       },
       {
-        title: "Innovation Hackathons",
+        title: "Payload Engineering",
         description:
-          "Intensive weekends solving real-world challenges using open-source satellite data and emerging space technologies.",
+          "Developing instruments and technology demonstrators for satellite platforms.",
+        image: `${mediaPaths.gallery}/leosky-labs/testing.jpg`,
       },
       {
-        title: "Research Partnerships",
+        title: "Research & Experimentation",
         description:
-          "Collaborative programs connecting African universities and founders with international space agencies and observatories.",
+          "Applied research in orbital mechanics, signal processing, and space simulation.",
+        image: `${mediaPaths.images}/pillar-innovation.png`,
       },
     ],
   },
   gallery: {
-    eyebrow: "Gallery",
-    title: "Innovation in progress.",
+    eyebrow: "Innovation in Action",
+    title: "Engineers, prototypes, experiments, technologies shaping Africa's future in space.",
     images: [
       { src: `${mediaPaths.images}/pillar-innovation.png`, alt: "Earth from space above Africa" },
-      { src: `${mediaPaths.gallery}/innovation-1.jpg`, alt: "Space hackathon team collaboration" },
-      { src: `${mediaPaths.gallery}/innovation-2.jpg`, alt: "Satellite data analysis workshop" },
-      { src: `${mediaPaths.gallery}/innovation-3.jpg`, alt: "Startup pitch event" },
+      { src: `${mediaPaths.gallery}/leosky-labs/prototype-1.jpg`, alt: "Satellite hardware prototype" },
+      { src: `${mediaPaths.gallery}/leosky-labs/engineering-lab.jpg`, alt: "Engineering lab workspace" },
+      { src: `${mediaPaths.gallery}/leosky-labs/testing.jpg`, alt: "Payload testing in progress" },
+      { src: `${mediaPaths.gallery}/leosky-labs/prototype-1.jpg`, alt: "CubeSat assembly" },
+      { src: `${mediaPaths.gallery}/leosky-labs/engineering-lab.jpg`, alt: "3D printing aerospace components" },
     ],
   },
   impact: {
     eyebrow: "Impact",
-    title: "Driving African innovation forward.",
+    title: "Building Africa's space technology future.",
     stats: [
-      { value: 350, suffix: "+", label: "Innovators Engaged" },
-      { value: 8, suffix: "", label: "Hackathons Hosted" },
-      { value: 15, suffix: "", label: "Startups Supported" },
-      { value: 4, suffix: "", label: "Research Partnerships" },
+      { value: 12, suffix: "", label: "Prototypes Developed" },
+      { value: 5, suffix: "", label: "Research Projects" },
+      { value: 3, suffix: "", label: "Payload Integrations" },
+      { value: 45, suffix: "+", label: "Engineers & Researchers" },
     ],
   },
   testimonials: {
-    eyebrow: "Testimonials",
-    title: "Builders and founders.",
+    eyebrow: "Voices",
+    title: "From our community.",
     items: [
       {
         quote:
-          "The hackathon gave our team access to satellite data we never knew existed. We built a crop monitoring prototype in 48 hours.",
-        author: "Fatima Hassan",
-        role: "Co-founder, AgriOrbit",
+          "Leo Sky Labs gave us access to fabrication equipment and expertise that doesn't exist elsewhere. We built our first flight-ready prototype in three months.",
+        author: "Dr. Aisha Mbeki",
+        role: "Systems Engineer, Satellite Africa",
       },
       {
         quote:
-          "Leo Sky Labs connected us with mentors from ESA and NASA. That network changed our trajectory entirely.",
-        author: "Kwame Asante",
-        role: "CEO, Orbital Africa",
+          "The payload integration program connected our university research with flight opportunities. Our students are now building real space hardware.",
+        author: "Prof. Emmanuel Okafor",
+        role: "Director, Space Research Lab, University of Lagos",
       },
     ],
   },
   faq: {
     eyebrow: "FAQ",
-    title: "Getting started.",
+    title: "Common questions.",
     items: [
       {
-        question: "Who can join Leo Sky Labs programs?",
+        question: "What type of projects does Leo Sky Labs work on?",
         answer:
-          "Developers, researchers, entrepreneurs, and students with an interest in applying space technology to African challenges.",
+          "We focus on satellite systems, payload development, hardware prototyping, and applied aerospace research. Projects range from CubeSat components to sensor systems for Earth observation.",
       },
       {
-        question: "Do I need a technical background?",
+        question: "Can researchers access lab facilities?",
         answer:
-          "Hackathons welcome multidisciplinary teams. Technical, design, business, and domain expertise are all valuable.",
+          "Yes. We offer facility access and technical support for university researchers and qualified projects aligned with our mission of advancing African space capabilities.",
       },
       {
-        question: "How does the startup studio work?",
+        question: "How do I propose a research collaboration?",
         answer:
-          "Selected ventures receive 12 weeks of mentorship, workspace access, and introductions to investors and space industry partners.",
+          "Submit a project proposal through our contact form. We review proposals quarterly and prioritize projects with clear pathways to deployment or publication.",
       },
     ],
   },
@@ -122,9 +128,9 @@ export const labsContent: PillarPageContent = {
     },
   ],
   cta: {
-    title: "Build the future of African space.",
-    description: "Join our next hackathon or apply to the startup studio.",
-    primaryLabel: "Apply now",
+    title: "Transform your idea into space technology.",
+    description: "Partner with Leo Sky Labs for research collaboration, facility access, and prototype development.",
+    primaryLabel: "Start a conversation",
     primaryHref: "/#contact",
     secondaryLabel: "View events",
     secondaryHref: "/events",

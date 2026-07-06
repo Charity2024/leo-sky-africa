@@ -18,7 +18,7 @@ import type { PillarPageContent } from "@/content/types";
 import { isGalleryPlaceholder } from "@/lib/media";
 import { easePremium } from "@/lib/motion";
 
-type SpaceEducationPageProps = {
+type LabsPageProps = {
   content: PillarPageContent;
 };
 
@@ -37,11 +37,10 @@ function GalleryImage({ src, alt, className }: { src: string; alt: string; class
   );
 }
 
-export default function SpaceEducationPage({ content }: SpaceEducationPageProps) {
+export default function LabsPage({ content }: LabsPageProps) {
   const prefersReducedMotion = useReducedMotion();
   const impactRef = useRef<HTMLElement>(null);
   const impactInView = useInView(impactRef, { once: true, margin: "-10% 0px" });
-  const learningExperience = content.learningExperience;
   const heroCta = content.heroCta ?? content.cta;
 
   const reveal = (delay = 0) =>
@@ -57,40 +56,26 @@ export default function SpaceEducationPage({ content }: SpaceEducationPageProps)
     <>
       {/* Hero */}
       <section
-        aria-labelledby="education-hero-heading"
+        aria-labelledby="labs-hero-heading"
         className="relative flex min-h-dvh items-end overflow-hidden bg-brand-dark"
       >
         <div className="absolute inset-0">
-          {content.heroVideo && !prefersReducedMotion ? (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster={content.heroImage}
-              className="h-full w-full object-cover"
-              aria-hidden
-            >
-              <source src={content.heroVideo} type="video/mp4" />
-            </video>
-          ) : (
-            <BrandImage
-              src={content.heroImage}
-              alt={content.title}
-              fill
-              sizes="100vw"
-              hoverZoom={false}
-              revealOnScroll={false}
-              priority
-              className="object-cover"
-              wrapperClassName="absolute inset-0"
-            />
-          )}
+          <BrandImage
+            src={content.heroImage}
+            alt={content.title}
+            fill
+            sizes="100vw"
+            hoverZoom={false}
+            revealOnScroll={false}
+            priority
+            className="object-cover"
+            wrapperClassName="absolute inset-0"
+          />
           <div className="absolute inset-0 bg-brand-dark/65" />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/30 via-transparent to-brand-dark" />
           <HeroLogoWatermark
-            position={content.heroWatermark?.position ?? "right"}
-            opacity={content.heroWatermark?.opacity ?? 0.06}
+            position={content.heroWatermark?.position ?? "left"}
+            opacity={content.heroWatermark?.opacity ?? 0.07}
           />
         </div>
 
@@ -100,7 +85,7 @@ export default function SpaceEducationPage({ content }: SpaceEducationPageProps)
               {content.kicker}
             </p>
             <h1
-              id="education-hero-heading"
+              id="labs-hero-heading"
               className="text-4xl font-bold tracking-tight text-brand-cream sm:text-5xl lg:text-6xl xl:text-[4.25rem] xl:leading-[1.05]"
             >
               {content.title}
@@ -121,7 +106,7 @@ export default function SpaceEducationPage({ content }: SpaceEducationPageProps)
         </Container>
       </section>
 
-      {/* Why Space Education - Glassmorphism */}
+      {/* Mission - Glassmorphism */}
       {content.mission && (
         <section className="bg-brand-dark py-32 lg:py-48">
           <Container>
@@ -185,43 +170,6 @@ export default function SpaceEducationPage({ content }: SpaceEducationPageProps)
         </section>
       )}
 
-      {/* Learning Experience - Glassmorphism with subtle gradient */}
-      {learningExperience && (
-        <section 
-          className="py-32 lg:py-48"
-          style={{ background: "radial-gradient(ellipse 80% 50% at 50% 30%, rgba(105, 21, 135, 0.12), #030303 70%)" }}
-        >
-          <Container>
-            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl lg:aspect-[3/4]">
-                <GalleryImage src={learningExperience.image.src} alt={learningExperience.image.alt} />
-              </div>
-              <div className="rounded-3xl border border-brand-secondary/10 bg-brand-primary/5 p-12 backdrop-blur-md lg:p-16">
-                <SectionHeader
-                  eyebrow={learningExperience.eyebrow}
-                  title={learningExperience.title}
-                  className="mb-10"
-                />
-                <div className="space-y-6">
-                  {learningExperience.paragraphs.map((paragraph, index) => (
-                    <motion.p
-                      key={index}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-8% 0px" }}
-                      transition={{ duration: 0.85, delay: 0.2 + index * 0.1, ease: easePremium }}
-                      className="text-lg leading-relaxed text-brand-body/90 sm:text-xl"
-                    >
-                      {paragraph}
-                    </motion.p>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Container>
-        </section>
-      )}
-
       {/* Impact - Glassmorphism cards */}
       {content.impact && (
         <section
@@ -279,6 +227,50 @@ export default function SpaceEducationPage({ content }: SpaceEducationPageProps)
           title={content.relatedEventsSection?.title}
           showStatus={false}
         />
+      )}
+
+      {/* Testimonials - Glassmorphism cards */}
+      {content.testimonials && (
+        <section className="bg-brand-dark py-32 lg:py-48">
+          <Container>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-8% 0px" }}
+              transition={{ duration: 0.85, ease: easePremium }}
+              className="mb-20 text-center"
+            >
+              <p className="mb-4 text-[11px] font-medium tracking-[0.36em] text-brand-secondary uppercase">
+                {content.testimonials.eyebrow}
+              </p>
+              <h2 className="text-3xl font-bold tracking-tight text-brand-cream sm:text-4xl lg:text-5xl">
+                {content.testimonials.title}
+              </h2>
+            </motion.div>
+            <div className="grid gap-8 lg:grid-cols-2">
+              {content.testimonials.items.map((testimonial, index) => (
+                <motion.blockquote
+                  key={testimonial.author}
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-8% 0px" }}
+                  transition={{ duration: 0.85, delay: index * 0.1, ease: easePremium }}
+                  className="rounded-3xl border border-brand-secondary/10 bg-brand-primary/5 p-10 backdrop-blur-md lg:p-12"
+                >
+                  <p className="text-xl leading-relaxed text-brand-body/90 sm:text-2xl">
+                    &ldquo;{testimonial.quote}&rdquo;
+                  </p>
+                  <footer className="mt-8 border-t border-brand-secondary/10 pt-6">
+                    <cite className="not-italic">
+                      <span className="block text-sm font-semibold text-brand-cream">{testimonial.author}</span>
+                      <span className="text-xs text-brand-muted">{testimonial.role}</span>
+                    </cite>
+                  </footer>
+                </motion.blockquote>
+              ))}
+            </div>
+          </Container>
+        </section>
       )}
 
       {/* CTA - Premium with animated starfield */}

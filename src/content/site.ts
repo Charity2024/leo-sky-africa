@@ -49,6 +49,9 @@ export const footerContent: FooterContent = {
   newsletterSubmitLabel: "Join",
   newsletterSuccessMessage: "Thank you for subscribing.",
   newsletterEmailLabel: "Email address",
+  blogHeading: "Blog",
+  blogViewAllLabel: "View all posts →",
+  blogViewAllHref: "/blog",
   contactCta: {
     label: "Get in touch",
     href: "/#contact",

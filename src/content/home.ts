@@ -199,3 +199,40 @@ export const eventsPageMetadata = {
   description:
     "Join Leo Sky Africa's space education summits, astrotourism dark sky camps, innovation hackathons, and webinars across the continent.",
 } as const;
+
+export const blogContent = {
+  eyebrow: "Blog",
+  title: "Insights from the cosmos.",
+  description: "Explore our latest articles on space education, astrotourism, and African innovation in the space sector.",
+  posts: [
+    {
+      title: "The Future of Space Education in Africa",
+      excerpt: "How African institutions are building pathways to careers in the global space economy through innovative STEM programs.",
+      date: "June 15, 2026",
+      author: "Dr. Amara Osei",
+      category: "Education",
+      image: `${mediaPaths.images}/pillar-education.png`,
+      href: "/blog/future-space-education-africa",
+    },
+    {
+      title: "Dark Sky Tourism: A Sustainable Opportunity",
+      excerpt: "Exploring how astrotourism can create economic opportunities while preserving Africa's pristine night skies.",
+      date: "May 28, 2026",
+ author: "Samuel Kipkorir",
+      category: "Astrotourism",
+      image: `${mediaPaths.images}/pillar-astrotourism.png`,
+      href: "/blog/dark-sky-tourism-sustainable",
+    },
+    {
+      title: "Building Africa's First CubeSat",
+      excerpt: "Inside Leo Sky Labs' journey from concept to prototype, developing indigenous satellite capabilities.",
+      date: "May 10, 2026",
+      author: "Dr. Aisha Mbeki",
+      category: "Innovation",
+      image: `${mediaPaths.images}/pillar-innovation.png`,
+      href: "/blog/building-africas-first-cubesat",
+    },
+  ],
+  viewAllLabel: "View all posts →",
+  viewAllHref: "/blog",
+};

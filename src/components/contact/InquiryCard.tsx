@@ -122,21 +122,7 @@ function useInquiryForm(cardId: ContactCardType) {
       requireField("purpose", "purpose");
     }
 
-    if (cardId === "proposal") {
-      requireField("organization", "organization");
-      requireEmail();
-      requireField("projectType", "projectType");
-      requireField("budget", "budget");
-      requireField("description", "description");
-    }
 
-    if (cardId === "partnership") {
-      requireField("organization", "organization");
-      requireField("contactPerson", "contactPerson");
-      requireEmail();
-      requireField("partnershipType", "partnershipType");
-      requireField("message", "message");
-    }
 
     setErrors(next);
     return Object.keys(next).length === 0;

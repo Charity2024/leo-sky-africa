@@ -20,76 +20,82 @@ export const educationContent: PillarPageContent = {
     secondaryHref: "/#contact",
   },
   mission: {
-    eyebrow: "Why Space Education",
-    title: "Making space science accessible across the continent.",
+    eyebrow: "Why It Matters",
+    title: "Developing Africa's next generation of scientists, engineers, and innovators.",
     paragraphs: [
-      "Leo Sky Africa's Space Education pillar delivers hands-on astronomy, rocketry, and satellite literacy programs designed for schools, universities, and community centres.",
-      "We partner with educators and institutions to build lasting pathways from classroom curiosity to careers in the space economy.",
-      "For a continent of over 1.4 billion people, space education is not a luxury — it is the foundation of Africa's scientific sovereignty and economic future.",
+      "Africa's youth represent the continent's greatest resource. Space education transforms curiosity into capability, equipping students with STEM skills that transcend the classroom.",
+      "We partner with schools and institutions to build lasting pathways from classroom discovery to careers in the global space economy.",
+      "Space literacy is the foundation of Africa's scientific sovereignty and economic future.",
     ],
   },
   learningExperience: {
-    eyebrow: "Learning Experience",
-    title: "Hands-on discovery, from classroom to cosmos.",
+    eyebrow: "Our Approach",
+    title: "Hands-on discovery that inspires and empowers.",
     paragraphs: [
-      "Every Leo Sky Africa program blends theory with practice — students build rockets, operate telescopes, analyse satellite data, and present their findings to peers and mentors.",
-      "Our facilitators bring world-class expertise to local contexts, ensuring that learning feels relevant, rigorous, and inspiring regardless of where students begin.",
+      "Every program blends theory with practice — students build rockets, operate telescopes, analyse satellite data, and present findings to peers and mentors.",
+      "Our facilitators bring world-class expertise to local contexts, ensuring learning feels relevant, rigorous, and inspiring.",
     ],
     image: {
-      src: `${mediaPaths.gallery}/education-1.jpg`,
+      src: `${mediaPaths.gallery}/education/workshop-1.jpg`,
       alt: "Students engaged in a hands-on space science workshop",
     },
   },
   programs: {
-    eyebrow: "Programs",
-    title: "Pathways into space science.",
-    itemLabel: "Program",
+    eyebrow: "What We Do",
+    title: "Programmes that reach students and educators.",
+    itemLabel: "Programme",
     items: [
       {
-        title: "School Astronomy Programs",
+        title: "Space Academy",
         description:
-          "Curriculum-aligned STEM and astronomy modules for primary and secondary schools, with portable telescope kits and trained facilitators.",
+          "Curriculum-aligned STEM and astronomy modules with portable telescope kits.",
+        image: `${mediaPaths.gallery}/education/workshop-1.jpg`,
       },
       {
-        title: "Youth Space Camps",
+        title: "Space Camps",
         description:
-          "Multi-day residential camps combining stargazing, rocketry, robotics, and satellite data challenges for students aged 12–18.",
+          "Multi-day camps with stargazing, rocketry, robotics, and satellite data.",
+        image: `${mediaPaths.gallery}/education/camp-1.jpg`,
       },
       {
-        title: "Teacher Development",
+        title: "Astronomy Workshops",
         description:
-          "Professional workshops equipping educators to deliver engaging, standards-aligned space science and astronomy content.",
+          "Professional workshops for educators to deliver space science content.",
+        image: `${mediaPaths.gallery}/education/workshop-2.jpg`,
       },
       {
         title: "Space Careers Pathways",
         description:
-          "Mentorship, industry talks, and internship connections linking students and graduates with African and international space organisations.",
+          "Mentorship and internship connections with space organisations.",
+        image: `${mediaPaths.images}/pillar-education.png`,
       },
     ],
   },
   gallery: {
-    eyebrow: "Gallery",
-    title: "Learning in action.",
+    eyebrow: "Learning in Action",
+    title: "Inspiring curiosity, building STEM skills, empowering the next generation.",
     images: [
       { src: `${mediaPaths.images}/pillar-education.png`, alt: "Students in a space education workshop" },
-      { src: `${mediaPaths.gallery}/education-1.jpg`, alt: "Telescope observation session" },
-      { src: `${mediaPaths.gallery}/education-2.jpg`, alt: "STEM classroom activity" },
-      { src: `${mediaPaths.gallery}/education-3.jpg`, alt: "Youth space camp participants" },
+      { src: `${mediaPaths.gallery}/education/workshop-1.jpg`, alt: "Telescope observation session" },
+      { src: `${mediaPaths.gallery}/education/workshop-2.jpg`, alt: "STEM classroom activity" },
+      { src: `${mediaPaths.gallery}/education/camp-1.jpg`, alt: "Youth space camp participants" },
+      { src: `${mediaPaths.gallery}/education/workshop-1.jpg`, alt: "Hands-on learning" },
+      { src: `${mediaPaths.gallery}/education/camp-1.jpg`, alt: "Students building rockets" },
     ],
   },
   impact: {
     eyebrow: "Impact",
-    title: "Education that reaches thousands.",
+    title: "Building Africa's STEM future.",
     stats: [
       { value: 1200, suffix: "+", label: "Students Reached" },
       { value: 45, suffix: "+", label: "Schools Partnered" },
-      { value: 28, suffix: "", label: "Educator Workshops" },
+      { value: 85, suffix: "+", label: "Educators Trained" },
       { value: 12, suffix: "", label: "Space Camps Delivered" },
     ],
   },
   testimonials: {
-    eyebrow: "Testimonials",
-    title: "Voices from the classroom.",
+    eyebrow: "Voices",
+    title: "From our community.",
     items: [
       {
         quote:
@@ -152,7 +158,7 @@ export const educationContent: PillarPageContent = {
   ],
   cta: {
     title: "Bring space education to your community.",
-    description: "Partner with Leo Sky Africa to deliver world-class space science programs.",
+    description: "Partner with Leo Sky Africa to deliver world-class space science programs that inspire the next generation.",
     primaryLabel: "Get in touch",
     primaryHref: "/#contact",
     secondaryLabel: "View events",

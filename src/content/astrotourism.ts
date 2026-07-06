@@ -7,182 +7,198 @@ export const astrotourismContent: PillarPageContent = {
   layoutVariant: "astrotourism",
   kicker: "Exploration",
   title: "Astrotourism",
-  tagline: "Connecting people to the universe under Africa's darkest skies.",
+  tagline: "Discover Africa Through the Universe",
   heroDescription:
-    "Luxury dark sky experiences, astronomy nights, and celestial journeys that blend nature, adventure, and astrophotography beneath Africa's most pristine skies.",
+    "Pioneering astrotourism in Africa. Connecting people with the cosmos, preserving dark skies, and inspiring the next generation to look up and dream.",
   heroImage: `${mediaPaths.images}/pillar-astrotourism.png`,
   heroWatermark: { position: "center", opacity: 0.05 },
   heroCta: {
-    primaryLabel: "Book an experience",
-    primaryHref: "/#contact",
-    secondaryLabel: "View destinations",
-    secondaryHref: "#destinations",
+    primaryLabel: "Plan an Experience",
+    primaryHref: "#experiences",
+    secondaryLabel: "Learn More",
+    secondaryHref: "#why-matters",
   },
-  mission: {
-    eyebrow: "Introduction",
-    title: "Africa's skies are the world's greatest observatory.",
+  whyAstrotourismMatters: {
+    eyebrow: "Why It Matters",
+    title: "Africa's dark skies are a global treasure.",
     paragraphs: [
-      "From the Namib Desert to the Laikipia Plateau, Africa offers some of the planet's most pristine dark skies. Leo Sky Africa opens these experiences to travellers, communities, and astronomy enthusiasts.",
-      "Our astrotourism programs combine scientific observation with cultural storytelling, creating unforgettable journeys beneath the cosmos.",
+      "From the Namib Desert to Laikipia Plateau, Africa offers some of the world's most pristine dark skies — natural observatories with unparalleled views of the cosmos.",
+      "For millennia, African communities have used the stars for navigation, agriculture, and storytelling. Astrotourism preserves this heritage while creating sustainable opportunities.",
+      "Light pollution threatens ecosystems, wildlife, and human health. Responsible astrotourism protects these environments while inspiring the next generation of scientists and dreamers.",
     ],
   },
-  destinations: {
-    eyebrow: "Destinations",
-    title: "Where the universe feels closest.",
-    featured: {
-      name: "Laikipia Dark Sky Reserve",
-      location: "Laikipia Plateau, Kenya",
-      description:
-        "One of East Africa's premier dark sky locations — vast horizons, minimal light pollution, and expert-led observation from luxury tented camps beneath the Milky Way.",
-      image: {
-        src: `${mediaPaths.gallery}/astro-2.jpg`,
-        alt: "Dark sky camp beneath the Milky Way on the Laikipia Plateau",
-      },
-    },
-  },
-  visitorJourney: {
-    eyebrow: "Visitor Journey",
-    title: "From arrival to departure.",
-    steps: [
-      {
-        phase: "Arrival",
-        title: "Welcome beneath the stars",
-        description:
-          "Private transfer to your dark sky destination. Settle into luxury accommodations as the sun sets over the African landscape.",
-      },
-      {
-        phase: "Orientation",
-        title: "Meet your guides",
-        description:
-          "An intimate briefing on the night's celestial highlights — planets, constellations, and deep-sky objects visible from your location.",
-      },
-      {
-        phase: "Observation",
-        title: "Telescope sessions",
-        description:
-          "Guided stargazing with professional-grade telescopes. Expert astronomers translate the cosmos into stories you will never forget.",
-      },
-      {
-        phase: "Immersion",
-        title: "Dining under the sky",
-        description:
-          "Curated meals served al fresco, paired with astrophotography workshops or cultural storytelling from local communities.",
-      },
-      {
-        phase: "Departure",
-        title: "Carry the cosmos home",
-        description:
-          "A personalised star map of your experience, astrophotography prints, and a lasting connection to Africa's greatest natural observatory.",
-      },
+  leadership: {
+    eyebrow: "Our Leadership",
+    title: "Pioneering astrotourism across Africa.",
+    paragraphs: [
+      "We're building a movement, not just offering experiences. As pioneers in Kenya and across the continent, we create public astronomy events that bring communities together under the stars.",
+      "Working at the intersection of science and tourism, we build awareness of dark sky tourism as sustainable development. Making the cosmos accessible to everyone.",
+      "We collaborate with communities, schools, and institutions to create experiences that are educational, inspiring, and economically beneficial. Every event ignites curiosity about the universe.",
     ],
   },
-  programs: {
+  signatureExperiences: {
     eyebrow: "Experiences",
-    title: "Journeys beneath the stars.",
+    title: "Premium astronomy designed to inspire.",
     itemLabel: "Experience",
     items: [
       {
-        title: "Dark Sky Expeditions",
+        title: "Stargazing",
         description:
-          "Multi-night journeys to certified dark sky reserves with professional telescopes, expert guides, and luxury camp accommodations.",
+          "Guided telescope sessions under pristine dark skies.",
+        image: `${mediaPaths.gallery}/astrotourism/stargazing-1.jpg`,
       },
       {
         title: "Astronomy Nights",
         description:
-          "Curated evening stargazing experiences combining telescope observation, celestial storytelling, and fine dining under the stars.",
+          "Curated evening events with celestial storytelling.",
+        image: `${mediaPaths.images}/pillar-astrotourism.png`,
       },
       {
-        title: "Astrophotography Retreats",
+        title: "Telescope Sessions",
         description:
-          "Hands-on workshops capturing the Milky Way, planetary transits, and deep-sky objects in Africa's clearest skies.",
+          "Hands-on professional telescope operation.",
+        image: `${mediaPaths.gallery}/astrotourism/dark-sky-camp.jpg`,
       },
       {
-        title: "Private Celestial Experiences",
+        title: "Educational Tours",
         description:
-          "Bespoke journeys for travellers, corporate retreats, and celebrations seeking an unforgettable connection with the cosmos.",
+          "Immersive journeys for schools and groups.",
+        image: `${mediaPaths.gallery}/astrotourism/astrophotography.jpg`,
+      },
+      {
+        title: "School Camps",
+        description:
+          "Multi-day residential programs for students.",
+        image: `${mediaPaths.gallery}/astrotourism/stargazing-1.jpg`,
+      },
+      {
+        title: "Community Events",
+        description:
+          "Public astronomy festivals for everyone.",
+        image: `${mediaPaths.images}/pillar-astrotourism.png`,
+      },
+      {
+        title: "Astrophotography",
+        description:
+          "Workshops for capturing the night sky.",
+        image: `${mediaPaths.gallery}/astrotourism/dark-sky-camp.jpg`,
+      },
+      {
+        title: "Corporate Experiences",
+        description:
+          "Bespoke stargazing for teams.",
+        image: `${mediaPaths.gallery}/astrotourism/astrophotography.jpg`,
       },
     ],
   },
   gallery: {
     eyebrow: "Gallery",
-    title: "Under African skies.",
+    title: "Experiences Under African Skies",
     images: [
       { src: `${mediaPaths.images}/pillar-astrotourism.png`, alt: "Milky Way over African landscape" },
-      { src: `${mediaPaths.gallery}/astro-1.jpg`, alt: "Telescope stargazing session" },
-      { src: `${mediaPaths.gallery}/astro-2.jpg`, alt: "Dark sky camp at night" },
-      { src: `${mediaPaths.gallery}/astro-3.jpg`, alt: "Astrophotography workshop" },
+      { src: `${mediaPaths.gallery}/astrotourism/stargazing-1.jpg`, alt: "Telescope stargazing session" },
+      { src: `${mediaPaths.gallery}/astrotourism/dark-sky-camp.jpg`, alt: "Dark sky camp at night" },
+      { src: `${mediaPaths.gallery}/astrotourism/astrophotography.jpg`, alt: "Astrophotography workshop" },
+      { src: `${mediaPaths.images}/pillar-astrotourism.png`, alt: "Night sky observation" },
+      { src: `${mediaPaths.gallery}/astrotourism/stargazing-1.jpg`, alt: "Community stargazing event" },
     ],
   },
-  impact: {
-    eyebrow: "Impact",
-    title: "Tourism that inspires and preserves.",
-    stats: [
-      { value: 800, suffix: "+", label: "Stargazers Hosted" },
-      { value: 15, suffix: "", label: "Dark Sky Locations" },
-      { value: 24, suffix: "", label: "Astro Events" },
-      { value: 6, suffix: "", label: "Community Partners" },
+  whyChooseLeoSky: {
+    eyebrow: "Why Leo Sky",
+    title: "Experience with Africa's astrotourism pioneers.",
+    items: [
+      {
+        title: "Expert Facilitators",
+        description:
+          "Our team brings expertise in astronomy, science communication, and education — ensuring every experience is accurate and inspiring.",
+      },
+      {
+        title: "Scientific Approach",
+        description:
+          "We go beyond entertainment. Every experience is grounded in real astronomy, making learning integral to the journey.",
+      },
+      {
+        title: "Premium Experiences",
+        description:
+          "From equipment to location, every detail is carefully planned to deliver unforgettable, high-quality astronomy experiences.",
+      },
+      {
+        title: "Community Engagement",
+        description:
+          "We work with local communities, schools, and institutions to ensure our experiences benefit everyone and create lasting impact.",
+      },
+      {
+        title: "Africa's Space Future",
+        description:
+          "Astrotourism is part of our broader mission to inspire the next generation of African scientists and space leaders.",
+      },
+      {
+        title: "Trusted Partner",
+        description:
+          "We partner with leading schools, universities, and organisations across Kenya and Africa, delivering experiences that meet the highest standards.",
+      },
+    ],
+  },
+  featuredExperiences: {
+    eyebrow: "Featured",
+    title: "Real activities, real impact.",
+    items: [
+      {
+        title: "Public Stargazing",
+        description:
+          "Regular community astronomy nights with telescope viewing, constellation tours, and educational talks.",
+        location: "Multiple locations across Kenya",
+      },
+      {
+        title: "Astronomy Festivals",
+        description:
+          "Annual celebrations bringing together astronomers, educators, and communities for multi-day events under the stars.",
+        location: "Laikipia, Kenya",
+      },
+      {
+        title: "Community Nights",
+        description:
+          "Partnership events making astronomy accessible and inspiring curiosity about the universe.",
+        location: "Rural Kenya",
+      },
+      {
+        title: "School Experiences",
+        description:
+          "Tailored programs combining curriculum-aligned astronomy education with hands-on telescope observation.",
+        location: "Schools across Kenya",
+      },
+      {
+        title: "Astrophotography",
+        description:
+          "Specialized workshops teaching techniques for capturing stunning images of the night sky.",
+        location: "Dark sky reserves",
+      },
     ],
   },
   testimonials: {
-    eyebrow: "Testimonials",
-    title: "Unforgettable experiences.",
+    eyebrow: "Voices",
+    title: "From our community.",
     items: [
       {
         quote:
-          "Standing under the Laikipia sky with Leo Sky Africa was the most profound travel experience of my life. Pure magic.",
-        author: "Sarah Chen",
-        role: "Travel Writer, Condé Nast Traveller",
+          "Students who had never looked through a telescope were seeing Saturn's rings for the first time. The impact on their interest in science has been incredible.",
+        author: "Grace Wanjiku",
+        role: "Principal, Nairobi Primary Academy",
       },
       {
         quote:
-          "Our corporate retreat stargazing evening was elegant, educational, and completely unique. Our team is still talking about it.",
-        author: "David Okello",
-        role: "CEO, Horizon Ventures",
+          "Families, children, and elders all gathered together, learning about constellations and looking at planets. This is what community engagement should look like.",
+        author: "Samuel Kipkorir",
+        role: "Community Leader, Laikipia County",
       },
     ],
   },
-  faq: {
-    eyebrow: "FAQ",
-    title: "Planning your journey.",
-    items: [
-      {
-        question: "What is the best time for stargazing in East Africa?",
-        answer:
-          "Dry seasons (June–October and January–February) offer the clearest skies. New moon periods provide optimal dark sky conditions.",
-      },
-      {
-        question: "Do I need prior astronomy experience?",
-        answer:
-          "No. Our experiences are designed for all levels, from first-time stargazers to experienced amateur astronomers.",
-      },
-      {
-        question: "Can you arrange private group experiences?",
-        answer:
-          "Yes. We design bespoke astrotourism packages for groups, corporate events, and special celebrations.",
-      },
-    ],
-  },
-  relatedEventsSection: {
-    eyebrow: "Events",
-    title: "Related events",
-  },
-  relatedEvents: [
-    {
-      title: "Astrotourism Dark Sky Camp",
-      description: "Weekend of telescope stargazing and astrophotography.",
-      date: "August 18–20, 2026",
-      location: "Laikipia, Kenya",
-      image: `${mediaPaths.images}/event-darksky.png`,
-      href: "/events",
-      cta: "Join waitlist",
-    },
-  ],
   cta: {
-    title: "Experience Africa's greatest show.",
-    description: "Book a dark sky experience or partner with us on astrotourism development.",
-    primaryLabel: "Book an experience",
+    title: "Experience the universe like never before.",
+    description: "Whether you're a school, family, traveller, or organisation, Leo Sky creates unforgettable astronomy experiences that inspire curiosity and connect people with the cosmos.",
+    primaryLabel: "Plan an Experience",
     primaryHref: "/#contact",
-    secondaryLabel: "View events",
+    secondaryLabel: "View Events",
     secondaryHref: "/events",
   },
 };

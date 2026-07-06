@@ -62,6 +62,9 @@ export type FooterContent = {
   newsletterSubmitLabel: string;
   newsletterSuccessMessage: string;
   newsletterEmailLabel: string;
+  blogHeading: string;
+  blogViewAllLabel: string;
+  blogViewAllHref: string;
   contactCta: CtaLink;
   copyright: string;
   social: readonly { label: string; href: string }[];
@@ -201,6 +204,7 @@ export type PartnersPageContent = {
 export type Program = {
   title: string;
   description: string;
+  image?: string;
 };
 
 export type Testimonial = {
@@ -249,7 +253,17 @@ export type PillarPageContent = {
     secondaryLabel: string;
     secondaryHref: string;
   };
-  mission: {
+  mission?: {
+    eyebrow: string;
+    title: string;
+    paragraphs: readonly string[];
+  };
+  whyAstrotourismMatters?: {
+    eyebrow: string;
+    title: string;
+    paragraphs: readonly string[];
+  };
+  leadership?: {
     eyebrow: string;
     title: string;
     paragraphs: readonly string[];
@@ -270,7 +284,13 @@ export type PillarPageContent = {
     title: string;
     steps: readonly JourneyStep[];
   };
-  programs: {
+  programs?: {
+    eyebrow: string;
+    title: string;
+    itemLabel: string;
+    items: readonly Program[];
+  };
+  signatureExperiences?: {
     eyebrow: string;
     title: string;
     itemLabel: string;
@@ -281,23 +301,40 @@ export type PillarPageContent = {
     title: string;
     images: readonly { src: string; alt: string }[];
   };
-  impact: {
+  impact?: {
     eyebrow: string;
     title: string;
     stats: readonly StatItem[];
+  };
+  whyChooseLeoSky?: {
+    eyebrow: string;
+    title: string;
+    items: readonly {
+      title: string;
+      description: string;
+    }[];
+  };
+  featuredExperiences?: {
+    eyebrow: string;
+    title: string;
+    items: readonly {
+      title: string;
+      description: string;
+      location: string;
+    }[];
   };
   testimonials: {
     eyebrow: string;
     title: string;
     items: readonly Testimonial[];
   };
-  faq: {
+  faq?: {
     eyebrow: string;
     title: string;
     items: readonly FaqItem[];
   };
-  relatedEvents: readonly EventItem[];
-  relatedEventsSection: {
+  relatedEvents?: readonly EventItem[];
+  relatedEventsSection?: {
     eyebrow: string;
     title: string;
   };

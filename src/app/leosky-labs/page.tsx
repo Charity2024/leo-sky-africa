@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import SiteLayout from "@/components/layout/SiteLayout";
-import PillarPageTemplate from "@/components/pillar/PillarPageTemplate";
+import LabsPage from "@/components/pillar/LabsPage";
 import { labsContent, labsPageMetadata } from "@/content/labs";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function LeoSkyLabsPage() {
   return (
     <SiteLayout>
-      <PillarPageTemplate content={labsContent} />
+      <LabsPage content={labsContent} />
     </SiteLayout>
   );
 }

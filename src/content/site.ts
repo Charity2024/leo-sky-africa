@@ -77,6 +77,11 @@ export const sectionIds = navigation
   .filter((id): id is string => Boolean(id));
 
 export const footerContent: FooterContent = {
+  newsletterHeading: "Stay Updated",
+  newsletterSuccessMessage: "Thank you for subscribing!",
+  newsletterEmailLabel: "Email address",
+  newsletterPlaceholder: "Enter your email",
+  newsletterSubmitLabel: "Subscribe",
   description: "Africa's premier space education, astrotourism and innovation company—empowering the next generation through education, exploration and innovation.",
 
   exploreHeading: "Explore",
@@ -90,7 +95,7 @@ export const footerContent: FooterContent = {
   blogViewAllHref: socialLinks.story,
 
   contactCta: {
-    label: "Chat on WhatsApp",
+    label: "Get In Touch",
     href: socialLinks.whatsapp,
   },
 

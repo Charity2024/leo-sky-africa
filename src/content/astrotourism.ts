@@ -74,7 +74,7 @@ export const astrotourismContent: PillarPageContent = {
       { src: `${mediaPaths.gallery}/astrotourism/Stargazing.png`, alt: "Milky Way over African landscape" },
       { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "Telescope stargazing session" },
       { src: `${mediaPaths.gallery}/astrotourism/Community.png`, alt: "Dark sky camp at night" },
-      { src: `${mediaPaths.images}/dome.png`, alt: "Immersive planetarium experience" },
+      { src: `${mediaPaths.gallery}/astrotourism/Planeterium.png`, alt: "Immersive planetarium experience" },
       { src: `${mediaPaths.gallery}/astrotourism/Maasai.png`, alt: "Community stargazing event" },
     ],
   },

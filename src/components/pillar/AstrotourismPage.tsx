@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import BrandImage from "@/components/ui/BrandImage";
 import Button from "@/components/ui/Button";
-//import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
 import Starfield from "@/components/ui/Starfield";
 import PremiumCarousel from "@/components/pillar/PremiumCarousel";
 import PremiumGallery from "@/components/pillar/PremiumGallery";

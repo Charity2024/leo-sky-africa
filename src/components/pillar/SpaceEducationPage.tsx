@@ -9,7 +9,6 @@ import BrandImage from "@/components/ui/BrandImage";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import CountUp from "@/components/ui/CountUp";
 import Button from "@/components/ui/Button";
-//import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
 import PremiumCarousel from "@/components/pillar/PremiumCarousel";
 import PremiumGallery from "@/components/pillar/PremiumGallery";
 import Starfield from "@/components/ui/Starfield";

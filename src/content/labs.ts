@@ -29,19 +29,19 @@ export const labsContent: PillarPageContent = {
         title: "Satellite Systems Development",
         description:
           "Designing and testing CubeSat components, communication systems, and payload integration.",
-        image: `${mediaPaths.gallery}/astrotourism/Community.png`,
+        image: `${mediaPaths.gallery}/leosky-labs/rockets.png`,
       },
       {
         title: "Hardware & Rapid Prototyping",
         description:
           "Advanced fabrication for aerospace components, sensor systems, and experimental hardware.",
-        image: `${mediaPaths.gallery}/astrotourism/Telescope.png`,
+        image: `${mediaPaths.images}/dome.png`,
       },
       {
         title: "Payload Engineering",
         description:
           "Developing instruments and technology demonstrators for satellite platforms.",
-        image: `${mediaPaths.gallery}/astrotourism/Planeterium.png`,
+        image: `${mediaPaths.gallery}/leosky-labs/rockets.png`,
       },
     ],
   },
@@ -50,11 +50,10 @@ export const labsContent: PillarPageContent = {
     title: "Engineers, prototypes, experiments, technologies shaping Africa's future in space.",
     images: [
       { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Earth from space above Africa" },
-      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "Satellite hardware prototype" },
+      { src: `${mediaPaths.images}/dome.png`, alt: "Satellite hardware prototype" },
       { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Engineering lab workspace" },
-      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "Payload testing in progress" },
-      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "" },
-     { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Engineering lab workspace" },
+      { src: `${mediaPaths.images}/pillar-innovation.png`, alt: "Payload testing in progress" },
+      { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Research facility" },
     ],
   },
   impact: {

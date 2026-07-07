@@ -7,7 +7,6 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import BrandImage from "@/components/ui/BrandImage";
 import CountUp from "@/components/ui/CountUp";
 import Button from "@/components/ui/Button";
-//import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
 import PremiumCarousel from "@/components/pillar/PremiumCarousel";
 import PremiumGallery from "@/components/pillar/PremiumGallery";
 import Starfield from "@/components/ui/Starfield";

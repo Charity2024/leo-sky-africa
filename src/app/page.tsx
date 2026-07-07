@@ -6,8 +6,6 @@ import ImpactSection from "@/components/sections/ImpactSection";
 import PartnersSection from "@/components/sections/PartnersSection";
 import ThreePillars from "@/components/sections/ThreePillars";
 import EventsSection from "@/components/sections/EventsSection";
-import BlogSection from "@/components/sections/BlogSection";
-import { blogContent } from "@/content/home";
 
 export default function Home() {
   return (

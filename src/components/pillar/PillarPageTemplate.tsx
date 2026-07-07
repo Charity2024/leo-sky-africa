@@ -15,7 +15,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import BrandImage from "@/components/ui/BrandImage";
 import CountUp from "@/components/ui/CountUp";
 import Button from "@/components/ui/Button";
-import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
+//import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
 import PillarGallery from "@/components/pillar/PillarGallery";
 import type { PillarPageContent, PillarLayoutVariant } from "@/content/types";
 import { easePremium } from "@/lib/motion";
@@ -136,10 +136,10 @@ function HeroSection({
               "bg-[linear-gradient(135deg,rgba(57,0,89,0.55)_0%,rgba(3,3,3,0.65)_50%,rgba(3,3,3,0.75)_100%)]",
           )}
         />
-        <HeroLogoWatermark
+        {/* <HeroLogoWatermark
           position={content.heroWatermark?.position ?? "left"}
           opacity={content.heroWatermark?.opacity ?? 0.07}
-        />
+        /> */}
       </div>
       <Container className="relative z-10 pb-16 pt-32 lg:pb-20">
         <motion.div

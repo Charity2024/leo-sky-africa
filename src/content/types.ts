@@ -60,6 +60,11 @@ type FooterSocial = {
 };
 
 export interface FooterContent {
+  newsletterHeading: ReactNode;
+  newsletterSuccessMessage: ReactNode;
+  newsletterEmailLabel: ReactNode;
+  newsletterPlaceholder: string | undefined;
+  newsletterSubmitLabel: ReactNode;
   description: string;
 
   exploreHeading: string;

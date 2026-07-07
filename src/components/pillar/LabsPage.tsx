@@ -7,7 +7,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import BrandImage from "@/components/ui/BrandImage";
 import CountUp from "@/components/ui/CountUp";
 import Button from "@/components/ui/Button";
-import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
+//import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
 import PremiumCarousel from "@/components/pillar/PremiumCarousel";
 import PremiumGallery from "@/components/pillar/PremiumGallery";
 import Starfield from "@/components/ui/Starfield";
@@ -55,10 +55,10 @@ export default function LabsPage({ content }: LabsPageProps) {
           />
           <div className="absolute inset-0 bg-brand-dark/65" />
           <div className="absolute inset-0 bg-linear-to-b from-brand-dark/30 via-transparent to-brand-dark" />
-          <HeroLogoWatermark
+          {/* <HeroLogoWatermark
             position={content.heroWatermark?.position ?? "left"}
             opacity={content.heroWatermark?.opacity ?? 0.07}
-          />
+          /> */}
         </div>
 
         <Container className="relative z-10 pb-20 pt-32 lg:pb-28">

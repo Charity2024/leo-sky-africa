@@ -77,8 +77,7 @@ export const sectionIds = navigation
   .filter((id): id is string => Boolean(id));
 
 export const footerContent: FooterContent = {
-  description:
-    "Africa's premier space education, astrotourism and innovation company—empowering the next generation through education, exploration and innovation.",
+  description: "Africa's premier space education, astrotourism and innovation company—empowering the next generation through education, exploration and innovation.",
 
   exploreHeading: "Explore",
 
@@ -119,10 +118,12 @@ export const footerContent: FooterContent = {
       icon: "x"
     },
   ],
+  socialHeading: "",
+  tagline: ""
 };
 
 export const openGraphContent = {
-  alt: "Leo Sky Africa — Africa's Gateway to Space",
+  alt: "Leo Sky Africa, Africa's Gateway to Space",
   titleLine1: "LEO SKY AFRICA",
   titleLine2: "AFRICA'S GATEWAY TO SPACE",
 } as const;

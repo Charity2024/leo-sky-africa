@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import BrandImage from "@/components/ui/BrandImage";
 import Button from "@/components/ui/Button";
-import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
+//import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
 import Starfield from "@/components/ui/Starfield";
 import PremiumCarousel from "@/components/pillar/PremiumCarousel";
 import PremiumGallery from "@/components/pillar/PremiumGallery";
@@ -55,10 +55,10 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
           />
           <div className="absolute inset-0 bg-brand-dark/60" />
           <div className="absolute inset-0 bg-linear-to-t from-brand-dark via-brand-dark/40 to-brand-dark/20" />
-          <HeroLogoWatermark
+          {/* <HeroLogoWatermark
             position={content.heroWatermark?.position ?? "center"}
             opacity={content.heroWatermark?.opacity ?? 0.05}
-          />
+          /> */}
         </div>
 
         <Container className="relative z-10 py-32 text-center">

@@ -3,47 +3,34 @@ import { mediaPaths } from "./site";
 
 export const partners: readonly Partner[] = [
   {
-    name: "NASA",
-    logo: `${mediaPaths.logos}/nasa.svg`,
-    url: "https://www.nasa.gov",
-    width: 240,
-    height: 80,
-  },
-  {
-    name: "European Space Agency",
-    logo: `${mediaPaths.logos}/esa.svg`,
-    url: "https://www.esa.int",
-    width: 240,
-    height: 80,
-  },
-  {
-    name: "UNESCO",
-    logo: `${mediaPaths.logos}/unesco.svg`,
-    url: "https://www.unesco.org",
-    width: 280,
-    height: 80,
-  },
-  {
-    name: "Kenya Space Agency",
-    logo: `${mediaPaths.logos}/ksa.png`,
+    name: "KSA",
+    logo: `${mediaPaths.logos}/ksa.svg`,
     url: "https://www.ksa.go.ke",
     width: 320,
     height: 80,
   },
   {
-    name: "University Partner",
-    logo: `${mediaPaths.logos}/university.svg`,
-    url: "https://www.unesco.org/en/fieldoffice/nairobi",
-    width: 300,
+    name: "Women in Space",
+    logo: `${mediaPaths.logos}/Women.svg`,
+    url: "https://www.womeninspace.org",
+    width: 240,
     height: 80,
   },
   {
-    name: "Observatory Partner",
-    logo: `${mediaPaths.logos}/observatory.svg`,
-    url: "https://www.esa.int",
-    width: 300,
+    name: "ACORN",
+    logo: `${mediaPaths.logos}/Acorn.svg`,
+    url: "https://www.acornspace.org",
+    width: 280,
     height: 80,
   },
+  {
+    name: "Sopa",
+    logo: `${mediaPaths.logos}/Sopa.svg`,
+    url: "https://www.sopalodge.org",
+    width: 320,
+    height: 80,
+  },
+  
 ] as const;
 
 export const partnersSectionContent: PartnersSectionContent = {

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import BrandImage from "@/components/ui/BrandImage";
-import { eventsContent, eventsSectionContent } from "@/content/home";
+import { eventsContent, eventsSectionContent } from "@/content/events";
 import { Calendar, MapPin } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -106,7 +106,9 @@ export default function EventsSection() {
                 </div>
                 <div className="flex items-center gap-3 text-sm text-brand-muted">
                   <MapPin className="h-4.5 w-4.5 text-brand-secondary" />
-                  <span className="text-brand-cream/90">{featured.location}</span>
+                  <span className="text-brand-cream/90">
+                    {featured.location}
+                  </span>
                 </div>
               </div>
 
@@ -137,7 +139,7 @@ export default function EventsSection() {
           </div>
 
           {/* Carousel Track */}
-          <div 
+          <div
             className="flex gap-6 overflow-x-auto pb-8 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-brand-secondary/20 scroll-smooth snap-x snap-mandatory"
             style={{
               scrollbarWidth: "none", // Firefox
@@ -146,7 +148,7 @@ export default function EventsSection() {
           >
             {upcoming.map((event, index) => (
               <div
-                key={index}
+                key={`${event.title}-${index}`}
                 className="w-[280px] sm:w-[350px] shrink-0 snap-start snap-always"
               >
                 <div className="group/item relative h-full rounded-2xl border border-brand-secondary/10 bg-brand-primary/5 p-5 transition-all duration-500 hover:border-brand-secondary/35 hover:bg-brand-primary/10 hover:shadow-[0_8px_32px_rgba(105,21,135,0.15)] flex flex-col justify-between">
@@ -180,7 +182,9 @@ export default function EventsSection() {
                   <div className="mt-6 pt-4 border-t border-brand-secondary/10 flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-xs text-brand-muted">
                       <MapPin className="h-3.5 w-3.5 text-brand-secondary" />
-                      <span className="truncate max-w-[140px]">{event.location}</span>
+                      <span className="truncate max-w-[140px]">
+                        {event.location}
+                      </span>
                     </span>
                     <Link
                       href={event.href}

@@ -37,7 +37,10 @@ export const inquiryFormContent: InquiryFormContent = {
       { id: "email", name: "email", label: "Email", type: "email" },
       { id: "message", name: "message", label: "Message", as: "textarea" },
     ],
-  } as any,
+    meeting: [],
+    proposal: [],
+    partnership: [],
+  } satisfies InquiryFormContent["fields"],
 };
 
 export const contactPageMetadata = {

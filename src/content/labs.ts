@@ -10,7 +10,7 @@ export const labsContent: PillarPageContent = {
   tagline: "Where African ideas become space technologies.",
   heroDescription:
     "Leo Sky's research, innovation, and engineering hub — developing satellite systems, hardware prototypes, and aerospace technologies that position Africa in the global space economy.",
-  heroImage: `${mediaPaths.images}/pillar-innovation.png`,
+  heroImage: `${mediaPaths.gallery}/leosky-labs/rockets.png`,
   heroWatermark: { position: "left", opacity: 0.07 },
   mission: {
     eyebrow: "Why It Matters",
@@ -29,25 +29,19 @@ export const labsContent: PillarPageContent = {
         title: "Satellite Systems Development",
         description:
           "Designing and testing CubeSat components, communication systems, and payload integration.",
-        image: `${mediaPaths.gallery}/leosky-labs/prototype-1.jpg`,
+        image: `${mediaPaths.gallery}/astrotourism/Community.png`,
       },
       {
         title: "Hardware & Rapid Prototyping",
         description:
           "Advanced fabrication for aerospace components, sensor systems, and experimental hardware.",
-        image: `${mediaPaths.gallery}/leosky-labs/engineering-lab.jpg`,
+        image: `${mediaPaths.gallery}/astrotourism/Telescope.png`,
       },
       {
         title: "Payload Engineering",
         description:
           "Developing instruments and technology demonstrators for satellite platforms.",
-        image: `${mediaPaths.gallery}/leosky-labs/testing.jpg`,
-      },
-      {
-        title: "Research & Experimentation",
-        description:
-          "Applied research in orbital mechanics, signal processing, and space simulation.",
-        image: `${mediaPaths.images}/pillar-innovation.png`,
+        image: `${mediaPaths.gallery}/astrotourism/Planeterium.png`,
       },
     ],
   },
@@ -55,12 +49,12 @@ export const labsContent: PillarPageContent = {
     eyebrow: "Innovation in Action",
     title: "Engineers, prototypes, experiments, technologies shaping Africa's future in space.",
     images: [
-      { src: `${mediaPaths.images}/pillar-innovation.png`, alt: "Earth from space above Africa" },
-      { src: `${mediaPaths.gallery}/leosky-labs/prototype-1.jpg`, alt: "Satellite hardware prototype" },
-      { src: `${mediaPaths.gallery}/leosky-labs/engineering-lab.jpg`, alt: "Engineering lab workspace" },
-      { src: `${mediaPaths.gallery}/leosky-labs/testing.jpg`, alt: "Payload testing in progress" },
-      { src: `${mediaPaths.gallery}/leosky-labs/prototype-1.jpg`, alt: "CubeSat assembly" },
-      { src: `${mediaPaths.gallery}/leosky-labs/engineering-lab.jpg`, alt: "3D printing aerospace components" },
+      { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Earth from space above Africa" },
+      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "Satellite hardware prototype" },
+      { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Engineering lab workspace" },
+      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "Payload testing in progress" },
+      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "" },
+     { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Engineering lab workspace" },
     ],
   },
   impact: {
@@ -91,42 +85,6 @@ export const labsContent: PillarPageContent = {
       },
     ],
   },
-  faq: {
-    eyebrow: "FAQ",
-    title: "Common questions.",
-    items: [
-      {
-        question: "What type of projects does Leo Sky Labs work on?",
-        answer:
-          "We focus on satellite systems, payload development, hardware prototyping, and applied aerospace research. Projects range from CubeSat components to sensor systems for Earth observation.",
-      },
-      {
-        question: "Can researchers access lab facilities?",
-        answer:
-          "Yes. We offer facility access and technical support for university researchers and qualified projects aligned with our mission of advancing African space capabilities.",
-      },
-      {
-        question: "How do I propose a research collaboration?",
-        answer:
-          "Submit a project proposal through our contact form. We review proposals quarterly and prioritize projects with clear pathways to deployment or publication.",
-      },
-    ],
-  },
-  relatedEventsSection: {
-    eyebrow: "Events",
-    title: "Related events",
-  },
-  relatedEvents: [
-    {
-      title: "Leo Sky Labs Hackathon",
-      description: "Build solutions with open-source satellite data.",
-      date: "November 6–8, 2026",
-      location: "Cape Town & Online",
-      image: `${mediaPaths.images}/event-hackathon.png`,
-      href: "/events",
-      cta: "Register team",
-    },
-  ],
   cta: {
     title: "Transform your idea into space technology.",
     description: "Partner with Leo Sky Labs for research collaboration, facility access, and prototype development.",

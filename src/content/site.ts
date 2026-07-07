@@ -4,7 +4,7 @@ export const siteContent = {
   companyName: "Leo Sky Africa",
   tagline: "Africa's Gateway to Space",
   email: "info@leoskyafrica.space",
-  phone: "+254 700 000 000",
+  phone: "+254 700 000 000", // Update later
   location: "Nairobi, Kenya",
 } as const;
 
@@ -17,22 +17,59 @@ export const brandAssets = {
 
 export const mediaPaths = {
   images: "/images",
+  gallery: "/gallery",
   videos: "/videos",
   logos: "/logos",
-  gallery: "/gallery",
+} as const;
+
+export const socialLinks = {
+  whatsapp: "https://wa.me/254700000000", // Replace later
+  instagram: "https://instagram.com/leoskyafrica",
+  linkedin: "https://linkedin.com/company/leoskyafrica",
+  youtube: "https://youtube.com/@leoskyafrica",
+  x: "https://x.com/leoskyafrica",
+
+  // Replace with the actual article later
+  story: "https://blog.leoskyafrica.space",
 } as const;
 
 export const siteDescription =
-  "Inspiring the next generation through space education, immersive astronomy experiences, and Leo Sky Labs programs that unlock Africa's future in the global space economy.";
+  "Leo Sky Africa is Africa's premier space education, astrotourism and innovation company, inspiring the next generation to participate in the global space economy.";
 
 export const navigation: readonly NavigationItem[] = [
-  { title: "About", href: "/#about", sectionId: "about" },
-  { title: "Space Education", href: "/#education", sectionId: "education" },
-  { title: "Astrotourism", href: "/#astrotourism", sectionId: "astrotourism" },
-  { title: "Leo Sky Labs", href: "/#labs", sectionId: "labs" },
-  { title: "Events", href: "/#events", sectionId: "events" },
-  { title: "Partners", href: "/#partners", sectionId: "partners" },
-  { title: "Contact", href: "/#contact", sectionId: "contact" },
+  {
+    title: "About",
+    href: "/#about",
+    sectionId: "about",
+  },
+  {
+    title: "Space Education",
+    href: "/space-education",
+  },
+  {
+    title: "Astrotourism",
+    href: "/astrotourism",
+  },
+  {
+    title: "Leo Sky Labs",
+    href: "/leosky-labs",
+  },
+  {
+    title: "Events",
+    href: "/events",
+  },
+  {
+    title: "Partners",
+    href: "/partners",
+  },
+  {
+    title: "Our Story",
+    href: socialLinks.story,
+  },
+  {
+    title: "Contact",
+    href: socialLinks.whatsapp,
+  },
 ] as const;
 
 export const sectionIds = navigation
@@ -41,27 +78,46 @@ export const sectionIds = navigation
 
 export const footerContent: FooterContent = {
   description:
-    "Africa's premier space education, astrotourism, and innovation company — opening the continent's gateway to the space economy.",
+    "Africa's premier space education, astrotourism and innovation company—empowering the next generation through education, exploration and innovation.",
+
   exploreHeading: "Explore",
-  contactHeading: "Contact",
-  newsletterHeading: "Newsletter",
-  newsletterPlaceholder: "Your email",
-  newsletterSubmitLabel: "Join",
-  newsletterSuccessMessage: "Thank you for subscribing.",
-  newsletterEmailLabel: "Email address",
-  blogHeading: "Blog",
-  blogViewAllLabel: "View all posts →",
-  blogViewAllHref: "/blog",
+
+  contactHeading: "Connect",
+
+  blogHeading: "Learn More",
+
+  blogViewAllLabel: "Read Our Story",
+
+  blogViewAllHref: socialLinks.story,
+
   contactCta: {
-    label: "Get in touch",
-    href: "/#contact",
+    label: "Chat on WhatsApp",
+    href: socialLinks.whatsapp,
   },
+
   copyright: "All rights reserved.",
+
   social: [
-    { label: "X", href: "https://x.com/leoskyafrica" },
-    { label: "LinkedIn", href: "https://linkedin.com/company/leoskyafrica" },
-    { label: "Instagram", href: "https://instagram.com/leoskyafrica" },
-    { label: "YouTube", href: "https://youtube.com/@leoskyafrica" },
+    {
+      label: "Instagram",
+      href: socialLinks.instagram,
+      icon: "instagram"
+    },
+    {
+      label: "LinkedIn",
+      href: socialLinks.linkedin,
+      icon: "linkedin"
+    },
+    {
+      label: "YouTube",
+      href: socialLinks.youtube,
+      icon: "youtube"
+    },
+    {
+      label: "X",
+      href: socialLinks.x,
+      icon: "x"
+    },
   ],
 };
 

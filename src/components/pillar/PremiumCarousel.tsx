@@ -21,7 +21,9 @@ type PremiumCarouselProps = {
 
 function CardImage({ src, alt }: { src: string; alt: string }) {
   if (isGalleryPlaceholder(src)) {
-    return <ImagePlaceholder label={alt} className="h-full w-full" aspectRatio="" />;
+    return (
+      <ImagePlaceholder label={alt} className="h-full w-full" aspectRatio="" />
+    );
   }
   return (
     <BrandImage
@@ -35,12 +37,16 @@ function CardImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-export default function PremiumCarousel({ items, autoPlayInterval = 4500 }: PremiumCarouselProps) {
+export default function PremiumCarousel({
+  items,
+  autoPlayInterval = 4500,
+}: PremiumCarouselProps) {
   const prefersReducedMotion = useReducedMotion();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+  const itemCount = items.length;
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -62,18 +68,21 @@ export default function PremiumCarousel({ items, autoPlayInterval = 4500 }: Prem
 
   const nextSlide = useCallback(() => {
     setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % items.length);
-  }, [items.length]);
+    setCurrentIndex((prev) => (prev + 1) % itemCount);
+  }, [itemCount]);
 
   const prevSlide = useCallback(() => {
     setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
-  }, [items.length]);
+    setCurrentIndex((prev) => (prev - 1 + itemCount) % itemCount);
+  }, [itemCount]);
 
-  const goToSlide = useCallback((index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
-  }, [currentIndex, items.length]);
+  const goToSlide = useCallback(
+    (index: number) => {
+      setDirection(index > currentIndex ? 1 : -1);
+      setCurrentIndex(index);
+    },
+    [currentIndex],
+  );
 
   // Auto-play
   useEffect(() => {
@@ -94,7 +103,13 @@ export default function PremiumCarousel({ items, autoPlayInterval = 4500 }: Prem
         clearTimeout(autoPlayRef.current);
       }
     };
-  }, [currentIndex, prefersReducedMotion, isPaused, autoPlayInterval, nextSlide]);
+  }, [
+    currentIndex,
+    prefersReducedMotion,
+    isPaused,
+    autoPlayInterval,
+    nextSlide,
+  ]);
 
   // Touch swipe support
   const touchStartRef = useRef(0);
@@ -107,7 +122,7 @@ export default function PremiumCarousel({ items, autoPlayInterval = 4500 }: Prem
   const handleTouchEnd = (e: React.TouchEvent) => {
     touchEndRef.current = e.changedTouches[0].screenX;
     const diff = touchStartRef.current - touchEndRef.current;
-    
+
     if (diff > 50) {
       nextSlide();
     } else if (diff < -50) {
@@ -129,7 +144,7 @@ export default function PremiumCarousel({ items, autoPlayInterval = 4500 }: Prem
       <div className="relative overflow-hidden rounded-3xl">
         <AnimatePresence mode="wait" custom={direction} initial={false}>
           <motion.div
-            key={currentIndex}
+            key={`carousel-slide-${currentIndex}`}
             custom={direction}
             variants={prefersReducedMotion ? {} : slideVariants}
             initial="enter"
@@ -169,8 +184,18 @@ export default function PremiumCarousel({ items, autoPlayInterval = 4500 }: Prem
               >
                 <button className="inline-flex items-center gap-2 text-sm font-medium text-brand-accent transition-colors hover:text-brand-accent/80">
                   Learn More
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
                   </svg>
                 </button>
               </motion.div>
@@ -185,8 +210,18 @@ export default function PremiumCarousel({ items, autoPlayInterval = 4500 }: Prem
         className="absolute left-4 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full border border-brand-secondary/30 bg-brand-dark/60 backdrop-blur-md transition-all duration-300 hover:border-brand-secondary/60 hover:bg-brand-dark/80 hover:scale-110"
         aria-label="Previous slide"
       >
-        <svg className="h-5 w-5 text-brand-cream" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        <svg
+          className="h-5 w-5 text-brand-cream"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
         </svg>
       </button>
       <button
@@ -194,8 +229,18 @@ export default function PremiumCarousel({ items, autoPlayInterval = 4500 }: Prem
         className="absolute right-4 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full border border-brand-secondary/30 bg-brand-dark/60 backdrop-blur-md transition-all duration-300 hover:border-brand-secondary/60 hover:bg-brand-dark/80 hover:scale-110"
         aria-label="Next slide"
       >
-        <svg className="h-5 w-5 text-brand-cream" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        <svg
+          className="h-5 w-5 text-brand-cream"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
         </svg>
       </button>
 
@@ -203,13 +248,13 @@ export default function PremiumCarousel({ items, autoPlayInterval = 4500 }: Prem
       <div className="mt-8 flex justify-center gap-3">
         {items.map((_, index) => (
           <button
-            key={index}
+            key={`carousel-dot-${index}`}
             onClick={() => goToSlide(index)}
             className={clsx(
               "h-2 rounded-full transition-all duration-300",
               index === currentIndex
                 ? "w-8 bg-brand-accent"
-                : "w-2 bg-brand-secondary/30 hover:bg-brand-secondary/50"
+                : "w-2 bg-brand-secondary/30 hover:bg-brand-secondary/50",
             )}
             aria-label={`Go to slide ${index + 1}`}
           />

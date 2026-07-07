@@ -7,3 +7,4 @@ export * from "./partners";
 export * from "./education";
 export * from "./astrotourism";
 export * from "./labs";
+export * from "./events";

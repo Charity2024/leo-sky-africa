@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { eventsPageMetadata } from "@/content/home";
+import { eventsPageMetadata } from "@/content/events";
 import { createPageMetadata } from "@/lib/metadata";
 import EventsPageClient from "./EventsPageClient";
 

@@ -10,7 +10,7 @@ export const astrotourismContent: PillarPageContent = {
   tagline: "Discover Africa Through the Universe",
   heroDescription:
     "Pioneering astrotourism in Africa. Connecting people with the cosmos, preserving dark skies, and inspiring the next generation to look up and dream.",
-  heroImage: `${mediaPaths.images}/pillar-astrotourism.png`,
+  heroImage: `${mediaPaths.gallery}/astrotourism/Stargazing.png`,
   heroWatermark: { position: "center", opacity: 0.05 },
   heroCta: {
     primaryLabel: "Plan an Experience",
@@ -44,14 +44,14 @@ export const astrotourismContent: PillarPageContent = {
       {
         title: "Stargazing",
         description:
-          "Guided telescope sessions under pristine dark skies.",
+          "Guided telescope sessions under the night  sky.",
         image: `${mediaPaths.gallery}/astrotourism/Stargazing.png`,
       },
       {
         title: "Planetarium Shows",
         description:
           "Immersive dome experiences with expert narration.",
-        image: `${mediaPaths.gallery}/astrotourism/Planetarium.png`,
+        image: `${mediaPaths.gallery}/astrotourism/Planeterium.png`,
       },
       {
         title: "Telescope Sessions",
@@ -71,12 +71,11 @@ export const astrotourismContent: PillarPageContent = {
     eyebrow: "Gallery",
     title: "Experiences Under African Skies",
     images: [
-      { src: `${mediaPaths.images}/pillar-astrotourism.png`, alt: "Milky Way over African landscape" },
-      { src: `${mediaPaths.gallery}/astrotourism/stargazing-1.jpg`, alt: "Telescope stargazing session" },
-      { src: `${mediaPaths.gallery}/astrotourism/dark-sky-camp.jpg`, alt: "Dark sky camp at night" },
-      { src: `${mediaPaths.gallery}/astrotourism/astrophotography.jpg`, alt: "Astrophotography workshop" },
-      { src: `${mediaPaths.images}/pillar-astrotourism.png`, alt: "Night sky observation" },
-      { src: `${mediaPaths.gallery}/astrotourism/stargazing-1.jpg`, alt: "Community stargazing event" },
+      { src: `${mediaPaths.gallery}/astrotourism/Stargazing.png`, alt: "Milky Way over African landscape" },
+      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "Telescope stargazing session" },
+      { src: `${mediaPaths.gallery}/astrotourism/Community.png`, alt: "Dark sky camp at night" },
+      { src: `${mediaPaths.images}/dome.png`, alt: "Immersive planetarium experience" },
+      { src: `${mediaPaths.gallery}/astrotourism/Maasai.png`, alt: "Community stargazing event" },
     ],
   },
 
@@ -84,12 +83,6 @@ export const astrotourismContent: PillarPageContent = {
     eyebrow: "Voices",
     title: "From our community.",
     items: [
-      {
-        quote:
-          "Students who had never looked through a telescope were seeing Saturn's rings for the first time. The impact on their interest in science has been incredible.",
-        author: "Grace Wanjiku",
-        role: "Principal, Nairobi Primary Academy",
-      },
       {
         quote:
           "Families, children, and elders all gathered together, learning about constellations and looking at planets. This is what community engagement should look like.",

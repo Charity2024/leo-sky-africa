@@ -16,14 +16,6 @@ export default function Home() {
       <ThreePillars />
       <ImpactSection />
       <EventsSection />
-      <BlogSection
-        posts={blogContent.posts}
-        eyebrow={blogContent.eyebrow}
-        title={blogContent.title}
-        description={blogContent.description}
-        viewAllLabel={blogContent.viewAllLabel}
-        viewAllHref={blogContent.viewAllHref}
-      />
       <PartnersSection />
       <AboutLeoSky />
       <ContactSection />

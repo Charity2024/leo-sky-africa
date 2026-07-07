@@ -14,7 +14,11 @@ export default function ThreePillars() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="pillars" aria-labelledby="pillars-heading" className="scroll-mt-24 bg-brand-dark py-24 lg:py-32">
+    <section
+      id="pillars"
+      aria-labelledby="pillars-heading"
+      className="scroll-mt-24 bg-brand-dark py-24 lg:py-32"
+    >
       <Container>
         <motion.p
           initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
@@ -37,7 +41,11 @@ export default function ThreePillars() {
               ? { opacity: 1, y: 0 }
               : { opacity: 0, y: 20 }
           }
-          transition={{ duration: 0.95, ease: easePremium, delay: prefersReducedMotion ? 0 : 0.08 }}
+          transition={{
+            duration: 0.95,
+            ease: easePremium,
+            delay: prefersReducedMotion ? 0 : 0.08,
+          }}
           className="mx-auto max-w-3xl pb-12 text-center"
         >
           <p className="mb-3 text-[11px] font-medium tracking-[0.36em] text-brand-secondary uppercase">
@@ -47,7 +55,7 @@ export default function ThreePillars() {
             id="pillars-heading"
             className="text-3xl leading-[1.12] font-bold tracking-tight text-brand-cream sm:text-4xl lg:text-[2.75rem]"
           >
-            Three Pathways Into Africa&apos;s Space Future
+            {pillarsContent.title}
           </h2>
         </motion.div>
 
@@ -60,7 +68,11 @@ export default function ThreePillars() {
               initial={prefersReducedMotion ? false : { opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-8% 0px" }}
-              transition={{ duration: 0.85, delay: index * 0.1, ease: easePremium }}
+              transition={{
+                duration: 0.85,
+                delay: index * 0.1,
+                ease: easePremium,
+              }}
             >
               <Link
                 href={pillar.href}

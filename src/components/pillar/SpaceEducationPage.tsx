@@ -142,7 +142,7 @@ export default function SpaceEducationPage({ content }: SpaceEducationPageProps)
                 <div className="mt-12 space-y-6 text-lg leading-relaxed text-brand-body/90 sm:text-xl">
                   {content.mission.paragraphs.map((paragraph, index) => (
                     <motion.p
-                      key={index}
+                      key={`mission-paragraph-${index}`}
                       initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-8% 0px" }}
@@ -205,7 +205,7 @@ export default function SpaceEducationPage({ content }: SpaceEducationPageProps)
                 <div className="space-y-6">
                   {learningExperience.paragraphs.map((paragraph, index) => (
                     <motion.p
-                      key={index}
+                      key={`learning-paragraph-${index}`}
                       initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-8% 0px" }}

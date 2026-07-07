@@ -67,7 +67,7 @@ export default function AboutLeoSky() {
               className="mt-7 space-y-6 text-base leading-[1.8] text-brand-body/90 sm:mt-8 sm:text-[17px] sm:leading-8"
             >
               {aboutContent.description.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <p key={`about-paragraph-${index}`}>{paragraph}</p>
               ))}
             </motion.div>
 

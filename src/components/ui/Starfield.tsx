@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 type StarfieldProps = {
@@ -7,37 +8,56 @@ type StarfieldProps = {
   starCount?: number;
 };
 
-function Star({ index }: { index: number }) {
-  const prefersReducedMotion = useReducedMotion();
-  
-  const randomDuration = 3 + Math.random() * 4;
-  const randomDelay = Math.random() * 2;
-  const randomSize = 1 + Math.random() * 2;
-  const randomOpacity = 0.3 + Math.random() * 0.7;
-  const randomX = Math.random() * 100;
-  const randomY = Math.random() * 100;
+type StarConfig = {
+  id: number;
+  duration: number;
+  delay: number;
+  size: number;
+  opacity: number;
+  x: number;
+  y: number;
+};
 
+function createStarConfig(index: number): StarConfig {
+  return {
+    id: index,
+    duration: 3 + Math.random() * 4,
+    delay: Math.random() * 2,
+    size: 1 + Math.random() * 2,
+    opacity: 0.3 + Math.random() * 0.7,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+  };
+}
+
+function Star({
+  config,
+  prefersReducedMotion,
+}: {
+  config: StarConfig;
+  prefersReducedMotion: boolean;
+}) {
   return (
     <motion.div
       className="absolute rounded-full bg-brand-cream"
       style={{
-        width: randomSize,
-        height: randomSize,
-        left: `${randomX}%`,
-        top: `${randomY}%`,
-        opacity: randomOpacity,
+        width: config.size,
+        height: config.size,
+        left: `${config.x}%`,
+        top: `${config.y}%`,
+        opacity: config.opacity,
       }}
       animate={
         prefersReducedMotion
           ? {}
           : {
-              opacity: [randomOpacity, 0.1, randomOpacity],
+              opacity: [config.opacity, 0.1, config.opacity],
               scale: [1, 0.8, 1],
             }
       }
       transition={{
-        duration: randomDuration,
-        delay: randomDelay,
+        duration: config.duration,
+        delay: config.delay,
         repeat: Infinity,
         repeatType: "reverse",
         ease: "easeInOut",
@@ -46,11 +66,25 @@ function Star({ index }: { index: number }) {
   );
 }
 
-export default function Starfield({ className, starCount = 50 }: StarfieldProps) {
+export default function Starfield({
+  className,
+  starCount = 50,
+}: StarfieldProps) {
+  const prefersReducedMotion = useReducedMotion() ?? false;
+  const stars = useMemo<StarConfig[]>(
+    () =>
+      Array.from({ length: starCount }, (_, index) => createStarConfig(index)),
+    [starCount],
+  );
+
   return (
     <div className={className} aria-hidden="true">
-      {Array.from({ length: starCount }).map((_, index) => (
-        <Star key={index} index={index} />
+      {stars.map((star) => (
+        <Star
+          key={star.id}
+          config={star}
+          prefersReducedMotion={prefersReducedMotion}
+        />
       ))}
     </div>
   );

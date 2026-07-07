@@ -1,7 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import BrandImage from "@/components/ui/BrandImage";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import { isGalleryPlaceholder } from "@/lib/media";
@@ -20,9 +26,23 @@ type PremiumGalleryProps = {
   instagramUrl?: string;
 };
 
-function GalleryItemImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+function GalleryItemImage({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
   if (isGalleryPlaceholder(src)) {
-    return <ImagePlaceholder label={alt} className={clsx("h-full w-full", className)} aspectRatio="" />;
+    return (
+      <ImagePlaceholder
+        label={alt}
+        className={clsx("h-full w-full", className)}
+        aspectRatio=""
+      />
+    );
   }
   return (
     <BrandImage
@@ -36,12 +56,23 @@ function GalleryItemImage({ src, alt, className }: { src: string; alt: string; c
   );
 }
 
-export default function PremiumGallery({ images, title, eyebrow, instagramUrl = "https://instagram.com/leoskyafrica" }: PremiumGalleryProps) {
+export default function PremiumGallery({
+  images,
+  title,
+  eyebrow,
+  instagramUrl = "https://instagram.com/leoskyafrica",
+}: PremiumGalleryProps) {
   const prefersReducedMotion = useReducedMotion();
   const galleryRef = useRef<HTMLElement>(null);
-  const galleryInView = useInView(galleryRef, { once: true, margin: "-10% 0px" });
-  const { scrollYProgress } = useScroll({ target: galleryRef, offset: ["start end", "end start"] });
-  
+  const galleryInView = useInView(galleryRef, {
+    once: true,
+    margin: "-10% 0px",
+  });
+  const { scrollYProgress } = useScroll({
+    target: galleryRef,
+    offset: ["start end", "end start"],
+  });
+
   // Parallax effects for different images
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -40]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -20]);
@@ -88,18 +119,24 @@ export default function PremiumGallery({ images, title, eyebrow, instagramUrl = 
           {images.slice(0, 6).map((image, index) => {
             const config = layoutConfig[index % layoutConfig.length];
             const parallaxY = [y1, y2, y3, y4, y5, y6][index % 6];
-            
+
             return (
               <motion.div
-                key={image.src}
+                key={`${image.src}-${image.alt}-${index}`}
                 style={{ y: prefersReducedMotion ? 0 : parallaxY }}
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
-                animate={galleryInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.85, delay: index * 0.1, ease: easePremium }}
+                animate={
+                  galleryInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
+                transition={{
+                  duration: 0.85,
+                  delay: index * 0.1,
+                  ease: easePremium,
+                }}
                 className={clsx(
                   "group relative overflow-hidden rounded-3xl",
                   config.span,
-                  config.aspect
+                  config.aspect,
                 )}
               >
                 <GalleryItemImage src={image.src} alt={image.alt} />
@@ -134,8 +171,18 @@ export default function PremiumGallery({ images, title, eyebrow, instagramUrl = 
             className="inline-flex items-center gap-2 text-sm font-medium text-brand-accent transition-colors hover:text-brand-accent/80"
           >
             View More Moments
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
             </svg>
           </a>
         </motion.div>

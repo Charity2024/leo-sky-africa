@@ -100,7 +100,7 @@ export default function ImpactSection() {
         <div aria-hidden className="pointer-events-none absolute inset-0">
           {STARS.map((star, index) => (
             <span
-              key={index}
+              key={`impact-star-${index}`}
               className="impact-star"
               style={{
                 top: star.top,

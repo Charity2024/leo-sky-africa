@@ -53,22 +53,38 @@ export type AboutContent = {
   };
 };
 
-export type FooterContent = {
-  description: string;
-  exploreHeading: string;
-  contactHeading: string;
-  newsletterHeading: string;
-  newsletterPlaceholder: string;
-  newsletterSubmitLabel: string;
-  newsletterSuccessMessage: string;
-  newsletterEmailLabel: string;
-  blogHeading: string;
-  blogViewAllLabel: string;
-  blogViewAllHref: string;
-  contactCta: CtaLink;
-  copyright: string;
-  social: readonly { label: string; href: string }[];
+type FooterSocial = {
+  label: string;
+  href: string;
+  icon: "instagram" | "linkedin" | "youtube" | "x";
 };
+
+export interface FooterContent {
+  description: string;
+
+  exploreHeading: string;
+
+  contactHeading: string;
+
+  blogHeading: string;
+
+  blogViewAllLabel: string;
+
+  blogViewAllHref: string;
+
+  contactCta: {
+    label: string;
+    href: string;
+  };
+
+  socialHeading: string;
+
+  tagline: string;
+
+  copyright: string;
+
+  social: FooterSocial[];
+}
 
 export type StatItem = {
   value: number;

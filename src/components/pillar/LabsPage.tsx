@@ -2,11 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import clsx from "clsx";
 import Container from "@/components/ui/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import BrandImage from "@/components/ui/BrandImage";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import CountUp from "@/components/ui/CountUp";
 import Button from "@/components/ui/Button";
 import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
@@ -15,27 +13,11 @@ import PremiumGallery from "@/components/pillar/PremiumGallery";
 import Starfield from "@/components/ui/Starfield";
 import FeaturedActivities from "@/components/pillar/FeaturedActivities";
 import type { PillarPageContent } from "@/content/types";
-import { isGalleryPlaceholder } from "@/lib/media";
 import { easePremium } from "@/lib/motion";
 
 type LabsPageProps = {
   content: PillarPageContent;
 };
-
-function GalleryImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  if (isGalleryPlaceholder(src)) {
-    return <ImagePlaceholder label={alt} className={clsx("h-full w-full", className)} aspectRatio="" />;
-  }
-  return (
-    <BrandImage
-      src={src}
-      alt={alt}
-      fill
-      sizes="(max-width: 768px) 100vw, 50vw"
-      wrapperClassName="h-full w-full"
-    />
-  );
-}
 
 export default function LabsPage({ content }: LabsPageProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -72,7 +54,7 @@ export default function LabsPage({ content }: LabsPageProps) {
             wrapperClassName="absolute inset-0"
           />
           <div className="absolute inset-0 bg-brand-dark/65" />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/30 via-transparent to-brand-dark" />
+          <div className="absolute inset-0 bg-linear-to-b from-brand-dark/30 via-transparent to-brand-dark" />
           <HeroLogoWatermark
             position={content.heroWatermark?.position ?? "left"}
             opacity={content.heroWatermark?.opacity ?? 0.07}
@@ -127,11 +109,17 @@ export default function LabsPage({ content }: LabsPageProps) {
                 <div className="mt-12 space-y-6 text-lg leading-relaxed text-brand-body/90 sm:text-xl">
                   {content.mission.paragraphs.map((paragraph, index) => (
                     <motion.p
-                      key={index}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+                      key={`mission-paragraph-${index}`}
+                      initial={
+                        prefersReducedMotion ? false : { opacity: 0, y: 10 }
+                      }
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-8% 0px" }}
-                      transition={{ duration: 0.85, delay: 0.2 + index * 0.1, ease: easePremium }}
+                      transition={{
+                        duration: 0.85,
+                        delay: 0.2 + index * 0.1,
+                        ease: easePremium,
+                      }}
                     >
                       {paragraph}
                     </motion.p>
@@ -161,11 +149,17 @@ export default function LabsPage({ content }: LabsPageProps) {
               <p className="mb-4 text-[11px] font-medium tracking-[0.36em] text-brand-secondary uppercase">
                 {content.programs.eyebrow}
               </p>
-              <h2 id="programs-heading" className="text-3xl font-bold tracking-tight text-brand-cream sm:text-4xl lg:text-5xl">
+              <h2
+                id="programs-heading"
+                className="text-3xl font-bold tracking-tight text-brand-cream sm:text-4xl lg:text-5xl"
+              >
                 {content.programs.title}
               </h2>
             </motion.div>
-            <PremiumCarousel items={content.programs.items} autoPlayInterval={4500} />
+            <PremiumCarousel
+              items={content.programs.items}
+              autoPlayInterval={4500}
+            />
           </Container>
         </section>
       )}
@@ -175,10 +169,7 @@ export default function LabsPage({ content }: LabsPageProps) {
         <section
           ref={impactRef}
           aria-labelledby="impact-heading"
-          className="relative overflow-hidden py-32 lg:py-48"
-          style={{
-            background: "radial-gradient(ellipse 90% 60% at 50% 40%, rgba(57, 0, 89, 0.25), #030303 70%)",
-          }}
+          className="relative overflow-hidden bg-[radial-gradient(ellipse_90%_60%_at_50%_40%,rgba(57,0,89,0.25),#030303_70%)] py-32 lg:py-48"
         >
           <Container>
             <SectionHeader
@@ -189,22 +180,35 @@ export default function LabsPage({ content }: LabsPageProps) {
             />
             <ul className="grid grid-cols-2 gap-6 lg:grid-cols-4">
               {content.impact.stats.map((stat, index) => (
-                <motion.li
+                <li
                   key={stat.label}
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-8% 0px" }}
-                  transition={{ duration: 0.85, delay: index * 0.08, ease: easePremium }}
                   className="rounded-2xl border border-brand-secondary/10 bg-brand-primary/5 p-8 text-center backdrop-blur-md transition-all duration-500 hover:border-brand-secondary/30 hover:bg-brand-primary/10 lg:p-10"
                 >
-                  <p
-                    id={index === 0 ? "impact-heading" : undefined}
-                    className="text-3xl font-semibold text-brand-accent sm:text-4xl lg:text-5xl"
+                  <motion.div
+                    initial={
+                      prefersReducedMotion ? false : { opacity: 0, y: 24 }
+                    }
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-8% 0px" }}
+                    transition={{
+                      duration: 0.85,
+                      delay: index * 0.08,
+                      ease: easePremium,
+                    }}
                   >
-                    <CountUp value={stat.value} suffix={stat.suffix} active={impactInView} />
-                  </p>
-                  <p className="mt-3 text-sm text-brand-body">{stat.label}</p>
-                </motion.li>
+                    <p
+                      id={index === 0 ? "impact-heading" : undefined}
+                      className="text-3xl font-semibold text-brand-accent sm:text-4xl lg:text-5xl"
+                    >
+                      <CountUp
+                        value={stat.value}
+                        suffix={stat.suffix}
+                        active={impactInView}
+                      />
+                    </p>
+                    <p className="mt-3 text-sm text-brand-body">{stat.label}</p>
+                  </motion.div>
+                </li>
               ))}
             </ul>
           </Container>
@@ -254,7 +258,11 @@ export default function LabsPage({ content }: LabsPageProps) {
                   initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-8% 0px" }}
-                  transition={{ duration: 0.85, delay: index * 0.1, ease: easePremium }}
+                  transition={{
+                    duration: 0.85,
+                    delay: index * 0.1,
+                    ease: easePremium,
+                  }}
                   className="rounded-3xl border border-brand-secondary/10 bg-brand-primary/5 p-10 backdrop-blur-md lg:p-12"
                 >
                   <p className="text-xl leading-relaxed text-brand-body/90 sm:text-2xl">
@@ -262,8 +270,12 @@ export default function LabsPage({ content }: LabsPageProps) {
                   </p>
                   <footer className="mt-8 border-t border-brand-secondary/10 pt-6">
                     <cite className="not-italic">
-                      <span className="block text-sm font-semibold text-brand-cream">{testimonial.author}</span>
-                      <span className="text-xs text-brand-muted">{testimonial.role}</span>
+                      <span className="block text-sm font-semibold text-brand-cream">
+                        {testimonial.author}
+                      </span>
+                      <span className="text-xs text-brand-muted">
+                        {testimonial.role}
+                      </span>
                     </cite>
                   </footer>
                 </motion.blockquote>
@@ -276,7 +288,7 @@ export default function LabsPage({ content }: LabsPageProps) {
       {/* CTA - Premium with animated starfield */}
       <section className="relative overflow-hidden bg-brand-dark pb-32 lg:pb-48">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/50 to-brand-dark" />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent via-brand-dark/50 to-brand-dark" />
           <Starfield className="absolute inset-0" starCount={60} />
         </div>
         <Container className="relative z-10">
@@ -294,7 +306,9 @@ export default function LabsPage({ content }: LabsPageProps) {
               {content.cta.description}
             </p>
             <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button href={content.cta.primaryHref}>{content.cta.primaryLabel}</Button>
+              <Button href={content.cta.primaryHref}>
+                {content.cta.primaryLabel}
+              </Button>
               <Button href={content.cta.secondaryHref} variant="secondary">
                 {content.cta.secondaryLabel}
               </Button>

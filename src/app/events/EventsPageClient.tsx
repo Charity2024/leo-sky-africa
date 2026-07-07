@@ -10,7 +10,7 @@ import Container from "@/components/ui/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import BrandImage from "@/components/ui/BrandImage";
 import Button from "@/components/ui/Button";
-import { eventsContent, eventsPageContent } from "@/content/home";
+import { eventsContent, eventsPageContent } from "@/content/events";
 import { easePremium } from "@/lib/motion";
 
 function EventCard({
@@ -46,7 +46,9 @@ function EventCard({
         <span className="text-[10px] font-bold tracking-widest text-brand-accent uppercase">
           {event.date}
         </span>
-        <h3 className="mt-2 text-lg font-semibold text-brand-cream">{event.title}</h3>
+        <h3 className="mt-2 text-lg font-semibold text-brand-cream">
+          {event.title}
+        </h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-body/80">
           {event.description}
         </p>
@@ -73,7 +75,8 @@ export default function EventsPageClient() {
   const headerInView = useInView(headerRef, { once: true });
 
   const page = eventsPageContent;
-  const events = tab === "upcoming" ? eventsContent.upcoming : eventsContent.past;
+  const events =
+    tab === "upcoming" ? eventsContent.upcoming : eventsContent.past;
 
   return (
     <SiteLayout>
@@ -95,7 +98,9 @@ export default function EventsPageClient() {
             <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-brand-cream sm:text-5xl">
               {page.title}
             </h1>
-            <p className="mt-5 max-w-2xl text-lg text-brand-body/90">{page.description}</p>
+            <p className="mt-5 max-w-2xl text-lg text-brand-body/90">
+              {page.description}
+            </p>
           </motion.div>
         </Container>
       </section>
@@ -120,14 +125,22 @@ export default function EventsPageClient() {
                 <h2 className="text-2xl font-bold text-brand-cream sm:text-3xl">
                   {eventsContent.featured.title}
                 </h2>
-                <p className="mt-4 text-brand-body/90">{eventsContent.featured.description}</p>
+                <p className="mt-4 text-brand-body/90">
+                  {eventsContent.featured.description}
+                </p>
                 <div className="mt-5 space-y-2 text-sm text-brand-muted">
                   <p className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-brand-secondary" aria-hidden />
+                    <Calendar
+                      className="h-4 w-4 text-brand-secondary"
+                      aria-hidden
+                    />
                     {eventsContent.featured.date}
                   </p>
                   <p className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-brand-secondary" aria-hidden />
+                    <MapPin
+                      className="h-4 w-4 text-brand-secondary"
+                      aria-hidden
+                    />
                     {eventsContent.featured.location}
                   </p>
                 </div>
@@ -144,9 +157,17 @@ export default function EventsPageClient() {
 
       <section className="bg-brand-dark py-16 lg:py-24">
         <Container>
-          <SectionHeader eyebrow={page.calendarEyebrow} title={page.calendarTitle} className="mb-8" />
+          <SectionHeader
+            eyebrow={page.calendarEyebrow}
+            title={page.calendarTitle}
+            className="mb-8"
+          />
 
-          <div className="mb-10 flex gap-2" role="tablist" aria-label="Event filter">
+          <div
+            className="mb-10 flex gap-2"
+            role="tablist"
+            aria-label="Event filter"
+          >
             {(["upcoming", "past"] as const).map((t) => (
               <button
                 key={t}
@@ -166,9 +187,17 @@ export default function EventsPageClient() {
             ))}
           </div>
 
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="tabpanel">
+          <ul
+            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            role="tabpanel"
+          >
             {events.map((event, index) => (
-              <EventCard key={event.title} event={event} index={index} defaultLearnMore={page.defaultLearnMore} />
+              <EventCard
+                key={event.title}
+                event={event}
+                index={index}
+                defaultLearnMore={page.defaultLearnMore}
+              />
             ))}
           </ul>
         </Container>
@@ -184,7 +213,10 @@ export default function EventsPageClient() {
           />
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {eventsContent.upcoming.map((event) => (
-              <div key={event.title} className="relative aspect-square overflow-hidden rounded-xl">
+              <div
+                key={event.title}
+                className="relative aspect-square overflow-hidden rounded-xl"
+              >
                 <BrandImage
                   src={event.image}
                   alt={event.title}
@@ -197,7 +229,9 @@ export default function EventsPageClient() {
             ))}
           </div>
           <div className="mt-14 text-center">
-            <Button href={page.registerCta.href}>{page.registerCta.label}</Button>
+            <Button href={page.registerCta.href}>
+              {page.registerCta.label}
+            </Button>
           </div>
         </Container>
       </section>

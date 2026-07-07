@@ -1,12 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import clsx from "clsx";
+import { motion, useReducedMotion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import SectionHeader from "@/components/ui/SectionHeader";
 import BrandImage from "@/components/ui/BrandImage";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import Button from "@/components/ui/Button";
 import HeroLogoWatermark from "@/components/ui/HeroLogoWatermark";
 import Starfield from "@/components/ui/Starfield";
@@ -14,27 +10,11 @@ import PremiumCarousel from "@/components/pillar/PremiumCarousel";
 import PremiumGallery from "@/components/pillar/PremiumGallery";
 import FeaturedActivities from "@/components/pillar/FeaturedActivities";
 import type { PillarPageContent } from "@/content/types";
-import { isGalleryPlaceholder } from "@/lib/media";
 import { easePremium } from "@/lib/motion";
 
 type AstrotourismPageProps = {
   content: PillarPageContent;
 };
-
-function GalleryImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  if (isGalleryPlaceholder(src)) {
-    return <ImagePlaceholder label={alt} className={clsx("h-full w-full", className)} aspectRatio="" />;
-  }
-  return (
-    <BrandImage
-      src={src}
-      alt={alt}
-      fill
-      sizes="(max-width: 768px) 100vw, 50vw"
-      wrapperClassName="h-full w-full"
-    />
-  );
-}
 
 export default function AstrotourismPage({ content }: AstrotourismPageProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -58,7 +38,7 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
     <>
       {/* Hero */}
       <section
-        aria-labelledby="astro-hero-heading"
+        aria-labelledby="astrotourism-hero-heading"
         className="relative flex min-h-screen items-center justify-center overflow-hidden bg-brand-dark"
       >
         <div className="absolute inset-0">
@@ -74,7 +54,7 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
             wrapperClassName="absolute inset-0"
           />
           <div className="absolute inset-0 bg-brand-dark/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-brand-dark/20" />
+          <div className="absolute inset-0 bg-linear-to-t from-brand-dark via-brand-dark/40 to-brand-dark/20" />
           <HeroLogoWatermark
             position={content.heroWatermark?.position ?? "center"}
             opacity={content.heroWatermark?.opacity ?? 0.05}
@@ -87,7 +67,7 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
               {content.kicker}
             </p>
             <h1
-              id="astro-hero-heading"
+              id="astrotourism-hero-heading"
               className="text-4xl font-bold tracking-tight text-brand-cream sm:text-5xl lg:text-6xl xl:text-[5rem] xl:leading-[1.05]"
             >
               {content.title}
@@ -110,7 +90,10 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
 
       {/* Why Astrotourism Matters - Full Width Text with glassmorphism */}
       {whyAstrotourismMatters && (
-        <section id="why-matters" className="scroll-mt-24 bg-brand-dark py-32 lg:py-48">
+        <section
+          id="why-matters"
+          className="scroll-mt-24 bg-brand-dark py-32 lg:py-48"
+        >
           <Container>
             <div className="mx-auto max-w-4xl">
               <motion.div
@@ -129,11 +112,17 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
                 <div className="mt-12 space-y-6 text-lg leading-relaxed text-brand-body/90 sm:text-xl">
                   {whyAstrotourismMatters.paragraphs.map((paragraph, index) => (
                     <motion.p
-                      key={index}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+                      key={`why-paragraph-${index}`}
+                      initial={
+                        prefersReducedMotion ? false : { opacity: 0, y: 10 }
+                      }
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-8% 0px" }}
-                      transition={{ duration: 0.85, delay: 0.3 + index * 0.1, ease: easePremium }}
+                      transition={{
+                        duration: 0.85,
+                        delay: 0.3 + index * 0.1,
+                        ease: easePremium,
+                      }}
                     >
                       {paragraph}
                     </motion.p>
@@ -147,10 +136,7 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
 
       {/* Leadership - Minimal with subtle purple accent gradient */}
       {leadership && (
-        <section 
-          className="py-32 lg:py-48"
-          style={{ background: "radial-gradient(ellipse 80% 50% at 50% 30%, rgba(105, 21, 135, 0.15), #030303 70%)" }}
-        >
+        <section className="bg-[radial-gradient(ellipse_80%_50%_at_50%_30%,rgba(105,21,135,0.15),#030303_70%)] py-32 lg:py-48">
           <Container>
             <div className="mx-auto max-w-3xl">
               <motion.p
@@ -180,11 +166,17 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
               >
                 {leadership.paragraphs.map((paragraph, index) => (
                   <motion.p
-                    key={index}
-                    initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+                    key={`leadership-paragraph-${index}`}
+                    initial={
+                      prefersReducedMotion ? false : { opacity: 0, y: 10 }
+                    }
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-8% 0px" }}
-                    transition={{ duration: 0.85, delay: 0.3 + index * 0.1, ease: easePremium }}
+                    transition={{
+                      duration: 0.85,
+                      delay: 0.3 + index * 0.1,
+                      ease: easePremium,
+                    }}
                   >
                     {paragraph}
                   </motion.p>
@@ -194,8 +186,6 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
           </Container>
         </section>
       )}
-
-
 
       {/* Signature Experiences - Premium Carousel */}
       {signatureExperiences && (
@@ -218,7 +208,10 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
                 {signatureExperiences.title}
               </h2>
             </motion.div>
-            <PremiumCarousel items={signatureExperiences.items} autoPlayInterval={4500} />
+            <PremiumCarousel
+              items={signatureExperiences.items}
+              autoPlayInterval={4500}
+            />
           </Container>
         </section>
       )}
@@ -256,7 +249,11 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
                   initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-8% 0px" }}
-                  transition={{ duration: 0.85, delay: index * 0.08, ease: easePremium }}
+                  transition={{
+                    duration: 0.85,
+                    delay: index * 0.08,
+                    ease: easePremium,
+                  }}
                   className="rounded-2xl border border-brand-secondary/10 bg-brand-primary/5 p-8 backdrop-blur-md transition-all duration-500 hover:border-brand-secondary/30 hover:bg-brand-primary/10 lg:p-10"
                 >
                   <h3 className="text-xl font-semibold text-brand-cream sm:text-2xl">
@@ -274,10 +271,7 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
 
       {/* Featured Experiences - Cards with glassmorphism */}
       {featuredExperiences && (
-        <section 
-          className="py-32 lg:py-48"
-          style={{ background: "radial-gradient(ellipse 90% 60% at 50% 40%, rgba(57, 0, 89, 0.2), #030303 70%)" }}
-        >
+        <section className="bg-[radial-gradient(ellipse_90%_60%_at_50%_40%,rgba(57,0,89,0.2),#030303_70%)] py-32 lg:py-48">
           <Container>
             <motion.div
               initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
@@ -300,7 +294,11 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
                   initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-8% 0px" }}
-                  transition={{ duration: 0.85, delay: index * 0.08, ease: easePremium }}
+                  transition={{
+                    duration: 0.85,
+                    delay: index * 0.08,
+                    ease: easePremium,
+                  }}
                   className="rounded-2xl border border-brand-secondary/10 bg-brand-primary/5 p-8 backdrop-blur-md transition-all duration-500 hover:border-brand-secondary/30 hover:bg-brand-primary/10 lg:p-10"
                 >
                   <h3 className="text-xl font-semibold text-brand-cream">
@@ -353,7 +351,11 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-8% 0px" }}
-                transition={{ duration: 0.85, delay: index * 0.1, ease: easePremium }}
+                transition={{
+                  duration: 0.85,
+                  delay: index * 0.1,
+                  ease: easePremium,
+                }}
                 className="rounded-3xl border border-brand-secondary/10 bg-brand-primary/5 p-10 backdrop-blur-md lg:p-12"
               >
                 <p className="text-xl leading-relaxed text-brand-body/90 sm:text-2xl">
@@ -361,8 +363,12 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
                 </p>
                 <footer className="mt-8 border-t border-brand-secondary/10 pt-6">
                   <cite className="not-italic">
-                    <span className="block text-sm font-semibold text-brand-cream">{testimonial.author}</span>
-                    <span className="text-xs text-brand-muted">{testimonial.role}</span>
+                    <span className="block text-sm font-semibold text-brand-cream">
+                      {testimonial.author}
+                    </span>
+                    <span className="text-xs text-brand-muted">
+                      {testimonial.role}
+                    </span>
                   </cite>
                 </footer>
               </motion.blockquote>
@@ -374,7 +380,7 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
       {/* CTA - Premium with animated starfield */}
       <section className="relative overflow-hidden bg-brand-dark pb-32 lg:pb-48">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/50 to-brand-dark" />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent via-brand-dark/50 to-brand-dark" />
           <Starfield className="absolute inset-0" starCount={60} />
         </div>
         <Container className="relative z-10">
@@ -392,7 +398,9 @@ export default function AstrotourismPage({ content }: AstrotourismPageProps) {
               {content.cta.description}
             </p>
             <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button href={content.cta.primaryHref}>{content.cta.primaryLabel}</Button>
+              <Button href={content.cta.primaryHref}>
+                {content.cta.primaryLabel}
+              </Button>
               <Button href={content.cta.secondaryHref} variant="secondary">
                 {content.cta.secondaryLabel}
               </Button>

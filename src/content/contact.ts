@@ -4,7 +4,7 @@ export const contactSectionContent: ContactSectionContent = {
   eyebrow: "Contact",
   title: "Let's Build Africa's Future in Space",
   description:
-    "Whether you are exploring a partnership, booking an experience, or launching a project — our team is ready to help.",
+  "Whether you're a safari lodge looking to add world-class astrotourism to your offering, a school that wants to bring space science to your students, or an organisation that believes in Africa's space future, We want to hear from you.",
   contactLabels: {
     email: "Email",
     phone: "Phone",

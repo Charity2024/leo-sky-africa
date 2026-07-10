@@ -7,7 +7,7 @@ export const astrotourismContent: PillarPageContent = {
   layoutVariant: "astrotourism",
   kicker: "Exploration",
   title: "Astrotourism",
-  tagline: "Discover Africa Through the Universe",
+  tagline: "You Have Never Seen the Sky Like This Before.",
   heroDescription:
     "Pioneering astrotourism in Africa. Connecting people with the cosmos, preserving dark skies, and inspiring the next generation to look up and dream.",
   heroImage: `${mediaPaths.gallery}/astrotourism/Stargazing.png`,

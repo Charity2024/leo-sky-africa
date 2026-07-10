@@ -4,7 +4,7 @@ export const siteContent = {
   companyName: "Leo Sky Africa",
   tagline: "Africa's Gateway to Space",
   email: "info@leoskyafrica.space",
-  phone: "+254 700 000 000", // Update later
+  phone: "+254 710 891718", // Update later
   location: "Nairobi, Kenya",
 } as const;
 
@@ -23,7 +23,7 @@ export const mediaPaths = {
 } as const;
 
 export const socialLinks = {
-  whatsapp: "https://wa.me/254700000000", // Replace later
+  whatsapp: "https://wa.me/254710891718", // Replace later
   instagram: "https://instagram.com/leoskyafrica",
   linkedin: "https://linkedin.com/company/leoskyafrica",
   youtube: "https://youtube.com/@leoskyafrica",

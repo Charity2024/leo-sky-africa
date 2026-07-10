@@ -14,15 +14,14 @@ export const heroContent: HeroContent = {
   },
 
   description:
-    "We are inspiring the next generation through world-class space education, immersive astronomy experiences and innovation programmes that unlock Africa's future in the global space economy.",
-
+"Leo Sky Africa is the continent's leading authority on space education, astrotourism, and space innovation. Creating world-class experiences at the intersection of science, culture, and Africa's extraordinary skies.",
   primaryCta: {
-    label: "Explore Programmes",
+    label: "Explore Our World",
     href: "/space-education",
   },
 
   secondaryCta: {
-    label: "Reach Out",
+    label: "Patner With Us",
     href: socialLinks.whatsapp,
   },
 
@@ -36,7 +35,7 @@ export const pillarsContent: PillarsContent = {
 
   eyebrow: "What We Do",
 
-  title: "Three pathways into Africa's space future.",
+  title: "The Full Spectrum of Space in Africa..",
 
   learnMoreLabel: "Discover More",
 
@@ -45,7 +44,7 @@ export const pillarsContent: PillarsContent = {
       kicker: "Learning",
       title: "Space Education",
       description:
-        "Empowering students, educators and institutions through immersive STEM programmes, astronomy experiences and practical space learning.",
+      "We take space science out of textbooks and into the real world - mobile planetariums, rocketry workshops, telescope sessions, and space camps that show young Africans that the universe is not far away. It's right above them.",
       href: "/space-education",
       sectionId: "education",
       image: `${mediaPaths.gallery}/education/school.png`,
@@ -56,8 +55,7 @@ export const pillarsContent: PillarsContent = {
       kicker: "Exploration",
       title: "Astrotourism",
       description:
-        "Connecting people with the universe through unforgettable astronomy experiences, dark-sky destinations and community stargazing.",
-      href: "/astrotourism",
+      "Africa has the darkest, clearest skies  on the planet. Leo Sky Africa turns those skies into world-class experiences.",      href: "/astrotourism",
       sectionId: "astrotourism",
       image: `${mediaPaths.gallery}/astrotourism/Community.png`,
       imageAlt: "Community stargazing event",
@@ -67,7 +65,7 @@ export const pillarsContent: PillarsContent = {
       kicker: "Innovation",
       title: "Leo Sky Labs",
       description:
-        "Developing Africa's future innovators through rockets, satellite technology, entrepreneurship and emerging space technologies.",
+      "Africa's next rockets, satellites, and space technologies will be built by Africans. Leo Sky Labs is where that work begins.",
       href: "/leosky-labs",
       sectionId: "labs",
       image: `${mediaPaths.gallery}/leosky-labs/rockets.png`,
@@ -82,7 +80,7 @@ export const impactContent: ImpactContent = {
   title: "Creating Africa's Space Future",
 
   description:
-    "Every programme, partnership and astronomy experience helps equip young Africans with the skills, inspiration and opportunities to participate in the global space economy.",
+    "Since 2014, we have been on the ground; in classrooms, at lodges, under open skies.",
 
   stats: [
     {

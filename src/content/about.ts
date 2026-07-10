@@ -3,17 +3,16 @@ import { mediaPaths } from "./site";
 
 export const aboutContent: AboutContent = {
   eyebrow: "Our Mission",
-  title: "Building Africa's future in the space economy.",
+  title: "We Believe Africa Belongs at the Center of the Space Age.",
   description: [
-    "Leo Sky Africa exists to make space accessible, inspiring, and economically relevant for the next generation of Africans.",
-    "Through education, astrotourism, and Leo Sky Labs, we are creating pathways into one of the world's fastest-growing industries.",
+    "Leo Sky Africa was founded in 2014 by astronomer Kimani Wa Nyoike. The idea was simple: Africa has extraordinary skies, extraordinary talent, and an extraordinary story to tell — and it deserved an organisation built to tell it. Africans in Space, for Africa, by Africans.",
   ],
   cta: {
     label: "Our story",
     href: "/#about",
   },
   image: {
-    src: `${mediaPaths.images}/about.png`,
+    src: `${mediaPaths.images}/kimani.webp`,
     alt: "Astronomical telescope pointed toward a star-filled night sky",
   },
 };

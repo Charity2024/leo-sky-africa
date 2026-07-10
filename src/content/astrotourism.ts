@@ -71,23 +71,27 @@ export const astrotourismContent: PillarPageContent = {
     eyebrow: "Gallery",
     title: "Experiences Under African Skies",
     images: [
-      { src: `${mediaPaths.gallery}/astrotourism/Stargazing.png`, alt: "Milky Way over African landscape" },
-      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "Telescope stargazing session" },
-      { src: `${mediaPaths.gallery}/astrotourism/Community.png`, alt: "Dark sky camp at night" },
-      { src: `${mediaPaths.gallery}/astrotourism/Planeterium.png`, alt: "Immersive planetarium experience" },
-      { src: `${mediaPaths.gallery}/astrotourism/Maasai.png`, alt: "Community stargazing event" },
+      { src: `${mediaPaths.gallery}/astrotourism/Stargazing.png`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/InsidePlaneterium.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/Dome.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/Community.png`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/Planeterium.png`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/Maasai.png`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/training.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/sopa.jpeg`, alt: "" },
     ],
   },
 
   testimonials: {
-    eyebrow: "Voices",
-    title: "From our community.",
+    eyebrow: "",
+    title: "",
     items: [
       {
         quote:
-          "Families, children, and elders all gathered together, learning about constellations and looking at planets. This is what community engagement should look like.",
-        author: "Samuel Kipkorir",
-        role: "Community Leader, Laikipia County",
+          "",
+        author: "",
+        role: "",
       },
     ],
   },

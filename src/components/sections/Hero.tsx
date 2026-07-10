@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { heroContent, heroMedia, pillarsContent } from "@/content/home";
@@ -70,13 +75,16 @@ export default function Hero() {
       {/* Ambient glow accents */}
       <div
         aria-hidden
-        className="pointer-events-none absolute top-1/4 left-1/4 z-[1] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(105,21,135,0.12),transparent_70%)] blur-[120px]"
+        className="pointer-events-none absolute top-1/4 left-1/4 z-[1] size-[40vw] max-w-[520px] rounded-full bg-[radial-gradient(circle,rgba(105,21,135,0.12),transparent_70%)] blur-[120px] sm:size-[420px] lg:max-w-[560px]"
       />
 
       <Container className="relative z-10 flex min-h-dvh items-center pt-24 pb-28">
         <motion.div
-          style={{ y: prefersReducedMotion ? 0 : contentY, opacity: prefersReducedMotion ? 1 : contentOpacity }}
-          className="relative w-full max-w-[720px] text-left"
+          style={{
+            y: prefersReducedMotion ? 0 : contentY,
+            opacity: prefersReducedMotion ? 1 : contentOpacity,
+          }}
+          className="relative w-full max-w-2xl text-left"
         >
           <motion.div
             {...reveal(0)}
@@ -91,7 +99,7 @@ export default function Hero() {
           <motion.h1
             id="hero-heading"
             {...reveal(0.1)}
-            className="text-[2.5rem] leading-[1.08] font-bold tracking-tight text-brand-cream [text-shadow:0_2px_40px_rgba(105,21,135,0.4)] sm:text-[3.75rem] lg:text-[4.5rem] xl:text-[5rem]"
+            className="leading-[1.08] font-bold tracking-tight text-brand-cream [text-shadow:0_2px_40px_rgba(105,21,135,0.4)] text-[clamp(2rem,5vw,5rem)]"
           >
             <span className="block bg-gradient-to-r from-brand-cream via-brand-cream to-brand-secondary/80 bg-clip-text text-transparent">
               {heroContent.title.line1}
@@ -103,7 +111,7 @@ export default function Hero() {
 
           <motion.p
             {...reveal(0.25)}
-            className="mt-8 max-w-[620px] text-base leading-[1.8] text-brand-body/90 [text-shadow:0_1px_20px_rgba(3,3,3,0.7)] sm:text-lg sm:leading-8 lg:text-xl lg:leading-9"
+            className="mt-8 max-w-prose text-base leading-[1.8] text-brand-body/90 [text-shadow:0_1px_20px_rgba(3,3,3,0.7)] sm:text-lg sm:leading-8 lg:text-xl lg:leading-9"
           >
             {heroContent.description}
           </motion.p>
@@ -112,7 +120,9 @@ export default function Hero() {
             {...reveal(0.4)}
             className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5"
           >
-            <Button href={heroContent.primaryCta.href}>{heroContent.primaryCta.label}</Button>
+            <Button href={heroContent.primaryCta.href}>
+              {heroContent.primaryCta.label}
+            </Button>
             <Button href={heroContent.secondaryCta.href} variant="secondary">
               {heroContent.secondaryCta.label}
             </Button>
@@ -127,7 +137,10 @@ export default function Hero() {
               {pillarsContent.pillars.map((pillar, index) => (
                 <li key={pillar.href} className="flex items-center">
                   {index > 0 && (
-                    <span aria-hidden className="mx-4 hidden text-brand-accent/60 md:inline">
+                    <span
+                      aria-hidden
+                      className="mx-4 hidden text-brand-accent/60 md:inline"
+                    >
                       •
                     </span>
                   )}
@@ -153,7 +166,11 @@ export default function Hero() {
       >
         <motion.div
           animate={prefersReducedMotion ? undefined : { y: [0, 8, 0] }}
-          transition={prefersReducedMotion ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          transition={
+            prefersReducedMotion
+              ? undefined
+              : { duration: 3, repeat: Infinity, ease: "easeInOut" }
+          }
           className="flex flex-col items-center gap-3"
         >
           <span className="text-[10px] font-medium tracking-[0.3em] text-brand-muted uppercase">
@@ -161,8 +178,14 @@ export default function Hero() {
           </span>
           <span className="relative flex h-12 w-px items-start justify-center overflow-hidden bg-brand-secondary/20">
             <motion.span
-              animate={prefersReducedMotion ? undefined : { y: ["-100%", "100%"] }}
-              transition={prefersReducedMotion ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+              animate={
+                prefersReducedMotion ? undefined : { y: ["-100%", "100%"] }
+              }
+              transition={
+                prefersReducedMotion
+                  ? undefined
+                  : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }
+              }
               className="absolute h-1/2 w-full bg-brand-accent"
             />
           </span>

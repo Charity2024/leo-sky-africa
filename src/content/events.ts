@@ -68,7 +68,7 @@ export const eventsSectionContent: EventsSectionContent = {
   title: "Connect With the Cosmos",
   description:
     "Join our astrotourism experiences, space education programmes, innovation workshops, and public astronomy events across Africa.",
-  featuredBadge: "★ FEATURED EVENT",
+  featuredBadge:  "FEATURED EVENT",
   upcomingTitle: "Upcoming Programmes",
   viewAllLabel: "View all events →",
   defaultCta: "Register Now",
@@ -87,14 +87,14 @@ export const eventsPageContent: EventsPageContent = {
     upcoming: "Upcoming Events",
     past: "Past Events",
   },
-  galleryEyebrow: "Gallery",
+  galleryEyebrow: "",
   galleryTitle: "Moments from Our Events",
   registerCta: {
     label: "Register for an Event",
     href: "/#contact",
   },
-  defaultCta: "Register",
-  defaultLearnMore: "Learn More",
+  defaultCta: "",
+  defaultLearnMore: "",
 };
 
 export const eventsPageMetadata = {

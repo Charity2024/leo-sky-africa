@@ -2,7 +2,12 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import Container from "@/components/ui/Container";
 import { aboutContent } from "@/content/about";
 
@@ -40,12 +45,11 @@ export default function AboutLeoSky() {
       {/* Background ambient glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-10 left-10 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(224,137,253,0.05),transparent_70%)] blur-[80px]"
+        className="pointer-events-none absolute -top-10 left-10 size-[28vw] max-w-[320px] rounded-full bg-[radial-gradient(circle,rgba(224,137,253,0.05),transparent_70%)] blur-[80px] sm:size-[260px]"
       />
 
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24 items-center">
-          
           {/* Left: Mission Content */}
           <div className="max-w-xl">
             <motion.div {...revealText(0)}>
@@ -100,7 +104,7 @@ export default function AboutLeoSky() {
               }
               viewport={{ once: true, margin: "-12% 0px" }}
               transition={{ duration: 1.25, ease: [0.25, 1, 0.5, 1] }}
-              className="relative aspect-4/5 overflow-hidden rounded-2xl border border-brand-secondary/15 shadow-[0_12px_64px_rgba(105,21,135,0.25)] sm:aspect-5/6 lg:aspect-auto lg:h-[580px]"
+              className="relative aspect-4/5 overflow-hidden rounded-2xl border border-brand-secondary/15 shadow-[0_12px_64px_rgba(105,21,135,0.25)] sm:aspect-5/6 lg:aspect-[4/5]"
             >
               {/* Parallax Image Content */}
               <motion.img
@@ -114,7 +118,11 @@ export default function AboutLeoSky() {
               {/* Floating inner glow layer for high-end feeling */}
               <motion.div
                 animate={prefersReducedMotion ? undefined : { y: [0, -10, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 aria-hidden
                 className="absolute inset-0 pointer-events-none z-10"
               >
@@ -130,7 +138,6 @@ export default function AboutLeoSky() {
               />
             </motion.div>
           </div>
-
         </div>
       </Container>
     </section>

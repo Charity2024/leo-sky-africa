@@ -23,7 +23,11 @@ const navLinkInactive =
 const navLinkActive =
   "text-brand-secondary drop-shadow-[0_0_12px_rgba(224,137,253,0.5)]";
 
-function isNavActive(pathname: string, href: string, activeHash: string | null) {
+function isNavActive(
+  pathname: string,
+  href: string,
+  activeHash: string | null,
+) {
   const hash = getHashFromHref(href);
   if (hash) return pathname === "/" && activeHash === hash;
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -58,14 +62,17 @@ export default function Navbar() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) visible.set(entry.target.id, entry.intersectionRatio);
+          if (entry.isIntersecting)
+            visible.set(entry.target.id, entry.intersectionRatio);
           else visible.delete(entry.target.id);
         });
         if (visible.size === 0) {
           setActiveHash(null);
           return;
         }
-        const best = [...visible.entries()].reduce((a, b) => (b[1] > a[1] ? b : a));
+        const best = [...visible.entries()].reduce((a, b) =>
+          b[1] > a[1] ? b : a,
+        );
         setActiveHash(best[0]);
       },
       { rootMargin: "-25% 0px -45% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
@@ -95,7 +102,10 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [mobileOpen, closeMobileMenu]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     const hash = getHashFromHref(href);
     if (hash && pathname === "/") {
       e.preventDefault();
@@ -118,30 +128,51 @@ export default function Navbar() {
     <motion.header
       initial={false}
       animate={{
-        backgroundColor: scrolled ? "rgba(3, 3, 3, 0.88)" : "rgba(3, 3, 3, 0.45)",
-        borderColor: scrolled ? "rgba(224, 137, 253, 0.15)" : "rgba(224, 137, 253, 0.05)",
-        boxShadow: scrolled ? "0 4px 30px rgba(105, 21, 135, 0.15)" : "0 0 0 rgba(0, 0, 0, 0)",
+        backgroundColor: scrolled
+          ? "rgba(3, 3, 3, 0.78)"
+          : "rgba(3, 3, 3, 0.42)",
+        borderColor: scrolled
+          ? "rgba(224, 137, 253, 0.12)"
+          : "rgba(224, 137, 253, 0.06)",
+        boxShadow: scrolled
+          ? "0 6px 24px rgba(105, 21, 135, 0.12)"
+          : "0 0 0 rgba(0, 0, 0, 0)",
       }}
       transition={motionTransition}
-      className="sticky top-0 z-50 border-b backdrop-blur-[14px] backdrop-saturate-150"
+      className="sticky top-0 z-50 border-b border-brand-secondary/10 bg-brand-dark/30 backdrop-blur-[14px] backdrop-saturate-150"
     >
       <nav aria-label="Main navigation">
         <Container>
-          <div className="grid h-[60px] grid-cols-[1fr_auto_1fr] items-center lg:h-[72px]">
+          <motion.div
+            className="grid grid-cols-[1fr_auto_1fr] items-center"
+            initial={false}
+            animate={{ height: scrolled ? 48 : 52 }}
+            transition={motionTransition}
+          >
             <div className="justify-self-start">
-              <BrandLogo priority className="h-7 w-auto max-w-[148px] sm:h-8 sm:max-w-[168px] lg:h-9 lg:max-w-[188px]" />
+              <BrandLogo
+                priority
+                className="h-5 w-auto max-w-[120px] sm:h-6 sm:max-w-[138px] lg:h-7 lg:max-w-[160px]"
+              />
             </div>
 
             <ul className="hidden items-center justify-center gap-0.5 xl:flex">
               {navigation.map((item) => {
-                const active = isNavActive(pathname, item.href, effectiveActiveHash);
+                const active = isNavActive(
+                  pathname,
+                  item.href,
+                  effectiveActiveHash,
+                );
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
                       aria-current={active ? "page" : undefined}
-                      className={clsx(navLinkBase, active ? navLinkActive : navLinkInactive)}
+                      className={clsx(
+                        navLinkBase,
+                        active ? navLinkActive : navLinkInactive,
+                      )}
                     >
                       {item.title}
                       {active && (
@@ -180,18 +211,32 @@ export default function Navbar() {
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {mobileOpen ? (
-                    <motion.span key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.2 }} className="inline-flex">
+                    <motion.span
+                      key="close"
+                      initial={{ opacity: 0, rotate: -90 }}
+                      animate={{ opacity: 1, rotate: 0 }}
+                      exit={{ opacity: 0, rotate: 90 }}
+                      transition={{ duration: 0.2 }}
+                      className="inline-flex"
+                    >
                       <X className="h-5 w-5" aria-hidden />
                     </motion.span>
                   ) : (
-                    <motion.span key="menu" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }} className="inline-flex">
+                    <motion.span
+                      key="menu"
+                      initial={{ opacity: 0, rotate: 90 }}
+                      animate={{ opacity: 1, rotate: 0 }}
+                      exit={{ opacity: 0, rotate: -90 }}
+                      transition={{ duration: 0.2 }}
+                      className="inline-flex"
+                    >
                       <Menu className="h-5 w-5" aria-hidden />
                     </motion.span>
                   )}
                 </AnimatePresence>
               </button>
             </div>
-          </div>
+          </motion.div>
         </Container>
       </nav>
 
@@ -221,13 +266,20 @@ export default function Navbar() {
               <Container className="py-5">
                 <ul className="flex flex-col gap-1">
                   {navigation.map((item, index) => {
-                    const active = isNavActive(pathname, item.href, effectiveActiveHash);
+                    const active = isNavActive(
+                      pathname,
+                      item.href,
+                      effectiveActiveHash,
+                    );
                     return (
                       <motion.li
                         key={item.href}
                         initial={{ opacity: 0, x: -12 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ ...motionTransition, delay: index * 0.04 }}
+                        transition={{
+                          ...motionTransition,
+                          delay: index * 0.04,
+                        }}
                       >
                         <Link
                           href={item.href}
@@ -242,7 +294,10 @@ export default function Navbar() {
                         >
                           {item.title}
                           {active && (
-                            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand-secondary" />
+                            <span
+                              aria-hidden
+                              className="h-1.5 w-1.5 rounded-full bg-brand-secondary"
+                            />
                           )}
                         </Link>
                       </motion.li>
@@ -250,7 +305,10 @@ export default function Navbar() {
                   })}
                 </ul>
                 <div className="mt-5 border-t border-brand-secondary/10 pt-5">
-                  <Button href={footerContent.contactCta.href} className="w-full py-3 text-sm">
+                  <Button
+                    href={footerContent.contactCta.href}
+                    className="w-full py-3 text-sm"
+                  >
                     {footerContent.contactCta.label}
                   </Button>
                 </div>

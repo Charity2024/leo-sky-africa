@@ -136,6 +136,8 @@ export type EventsSectionContent = {
 };
 
 export type EventsPageContent = {
+  defaultCta: string | undefined;
+  defaultLearnMore: string;
   eyebrow: string;
   title: string;
   description: string;
@@ -146,11 +148,6 @@ export type EventsPageContent = {
     upcoming: string;
     past: string;
   };
-  galleryEyebrow: string;
-  galleryTitle: string;
-  registerCta: CtaLink;
-  defaultCta: string;
-  defaultLearnMore: string;
 };
 
 export type ContactCardType =

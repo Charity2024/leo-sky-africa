@@ -18,15 +18,29 @@ type StarConfig = {
   y: number;
 };
 
-function createStarConfig(index: number): StarConfig {
+// Deterministic PRNG (no Math.random) to keep SSR and hydration identical.
+// Uses a simple LCG; fast, pure, and stable across server/client.
+function createSeededRandom(seed: number) {
+  let state = seed >>> 0;
+  return () => {
+    // LCG: state = (a * state + c) mod 2^32
+    state = (1664525 * state + 1013904223) >>> 0;
+    return state / 4294967296; // [0, 1)
+  };
+}
+
+function createStarConfig(index: number, starCount: number): StarConfig {
+  // Incorporate starCount so changing starCount deterministically changes layout.
+  const rand = createSeededRandom(1337 + index * 1013 + starCount * 7);
+
   return {
     id: index,
-    duration: 3 + Math.random() * 4,
-    delay: Math.random() * 2,
-    size: 1 + Math.random() * 2,
-    opacity: 0.3 + Math.random() * 0.7,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
+    duration: 3 + rand() * 4,
+    delay: rand() * 2,
+    size: 1 + rand() * 2,
+    opacity: 0.3 + rand() * 0.7,
+    x: rand() * 100,
+    y: rand() * 100,
   };
 }
 
@@ -73,7 +87,9 @@ export default function Starfield({
   const prefersReducedMotion = useReducedMotion() ?? false;
   const stars = useMemo<StarConfig[]>(
     () =>
-      Array.from({ length: starCount }, (_, index) => createStarConfig(index)),
+      Array.from({ length: starCount }, (_, index) =>
+        createStarConfig(index, starCount),
+      ),
     [starCount],
   );
 

@@ -11,6 +11,7 @@ export const astrotourismContent: PillarPageContent = {
   heroDescription:
     "Pioneering astrotourism in Africa. Connecting people with the cosmos, preserving dark skies, and inspiring the next generation to look up and dream.",
   heroImage: `${mediaPaths.gallery}/astrotourism/Stargazing.png`,
+  heroVideo: `${mediaPaths.videos}/hero.mp4`,
   heroWatermark: { position: "center", opacity: 0.05 },
   heroCta: {
     primaryLabel: "Plan an Experience",

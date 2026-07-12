@@ -10,6 +10,7 @@ export const labsContent: PillarPageContent = {
   tagline: "Where African ideas become space technologies.",
   heroDescription: "Leo Sky's research, innovation, and engineering hub — developing satellite systems, hardware prototypes, and aerospace technologies that position Africa in the global space economy.",
   heroImage: `${mediaPaths.gallery}/leosky-labs/rockets.png`,
+  heroVideo: `${mediaPaths.videos}/hero.mp4`,
   heroWatermark: { position: "left", opacity: 0.07 },
   mission: {
     eyebrow: "Why It Matters",
@@ -24,19 +25,20 @@ export const labsContent: PillarPageContent = {
     title: "From prototype to payload.",
     itemLabel: "Focus Area",
     items: [
-      {
-        title: "Satellite Systems Development",
-        description: "Designing and testing CubeSat components, communication systems, and payload integration.",
-        image: `${mediaPaths.gallery}/leosky-labs/rockets.png`,
-      },
+      
       {
         title: "Hardware & Rapid Prototyping",
-        description: "Advanced fabrication for aerospace components, sensor systems, and experimental hardware.",
-        image: `${mediaPaths.images}/dome.png`,
+        description: "",
+        image: `${mediaPaths.gallery}/leosky-labs/waterRockets.jpeg`,
+      },
+      {
+        title: "Satellite Systems Development",
+        description:"",
+        image: `${mediaPaths.gallery}/leosky-labs/boad.jpeg`,
       },
       {
         title: "Payload Engineering",
-        description: "Developing instruments and technology demonstrators for satellite platforms.",
+        description: "",
         image: `${mediaPaths.gallery}/leosky-labs/rockets.png`,
       },
     ],
@@ -45,11 +47,10 @@ export const labsContent: PillarPageContent = {
     eyebrow: "Innovation in Action",
     title: "Engineers, prototypes, experiments, technologies shaping Africa's future in space.",
     images: [
-      { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Earth from space above Africa" },
-      { src: `${mediaPaths.images}/dome.png`, alt: "Satellite hardware prototype" },
-      { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Engineering lab workspace" },
-      { src: `${mediaPaths.images}/pillar-innovation.png`, alt: "Payload testing in progress" },
-      { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "Research facility" },
+      { src: `${mediaPaths.gallery}/leosky-labs/rockets.png`, alt: "" },
+      { src: `${mediaPaths.images}/dome.png`, alt: "" },
+      { src: `${mediaPaths.gallery}/leosky-labs/waterRockets.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/leosky-labs/boad.jpeg`, alt: "" },
     ],
   },
 

@@ -78,8 +78,7 @@ export const eventsSectionContent: EventsSectionContent = {
 export const eventsPageContent: EventsPageContent = {
   eyebrow: "Space Events",
   title: "Connect With the Cosmos",
-  description:
-    "Explore Leo Sky Africa's upcoming and past events, from public stargazing nights and Space Camps to STEM workshops and innovation programmes.",
+  description: "Explore Leo Sky Africa's upcoming and past events, from public stargazing nights and Space Camps to STEM workshops and innovation programmes.",
   featuredBadge: "Featured Event",
   calendarEyebrow: "Calendar",
   calendarTitle: "Upcoming & Past Events",
@@ -87,14 +86,8 @@ export const eventsPageContent: EventsPageContent = {
     upcoming: "Upcoming Events",
     past: "Past Events",
   },
-  galleryEyebrow: "",
-  galleryTitle: "Moments from Our Events",
-  registerCta: {
-    label: "Register for an Event",
-    href: "/#contact",
-  },
-  defaultCta: "",
-  defaultLearnMore: "",
+  defaultCta: undefined,
+  defaultLearnMore: ""
 };
 
 export const eventsPageMetadata = {

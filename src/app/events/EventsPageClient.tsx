@@ -203,38 +203,6 @@ export default function EventsPageClient() {
         </Container>
       </section>
 
-      <section className="bg-brand-dark py-16 lg:py-24">
-        <Container>
-          <SectionHeader
-            eyebrow={page.galleryEyebrow}
-            title={page.galleryTitle}
-            align="center"
-            className="mb-10"
-          />
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {eventsContent.upcoming.map((event) => (
-              <div
-                key={event.title}
-                className="relative aspect-square overflow-hidden rounded-xl"
-              >
-                <BrandImage
-                  src={event.image}
-                  alt={event.title}
-                  fill
-                  sizes="25vw"
-                  wrapperClassName="h-full w-full"
-                  rounded="xl"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="mt-14 text-center">
-            <Button href={page.registerCta.href}>
-              {page.registerCta.label}
-            </Button>
-          </div>
-        </Container>
-      </section>
     </SiteLayout>
   );
 }

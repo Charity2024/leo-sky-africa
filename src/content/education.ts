@@ -84,24 +84,7 @@ export const educationContent: PillarPageContent = {
     ],
   },
  
-  testimonials: {
-    eyebrow: "Voices",
-    title: "From our community.",
-    items: [
-      {
-        quote:
-          "Leo Sky Africa transformed how our students see science. For the first time, space feels like a career they can reach.",
-        author: "Dr. Amara Osei",
-        role: "Head of Science, Nairobi Academy",
-      },
-      {
-        quote:
-          "The telescope workshops gave our rural school access to equipment we could never afford. The impact on student engagement has been extraordinary.",
-        author: "James Mutua",
-        role: "STEM Coordinator, Laikipia County",
-      },
-    ],
-  },
+
   
   cta: {
     title: "Bring space education to your community.",

@@ -3,7 +3,7 @@ import type { FooterContent, NavigationItem } from "./types";
 export const siteContent = {
   companyName: "Leo Sky Africa",
   tagline: "Africa's Gateway to Space",
-  email: "info@leoskyafrica.space",
+  email: "info@leoskyafrica.com",
   phone: "+254 710 891718", // Update later
   location: "Nairobi, Kenya",
 } as const;
@@ -30,7 +30,7 @@ export const socialLinks = {
   x: "https://x.com/leoskyafrica",
 
   // Replace with the actual article later
-  story: "https://blog.leoskyafrica.space",
+  story: "https://web.archive.org/web/20211022035517/http://leoskyafrica.com/2019/03/11/if-not-now/",
 } as const;
 
 export const siteDescription =

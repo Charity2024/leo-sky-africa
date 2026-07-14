@@ -14,14 +14,16 @@ export const heroContent: HeroContent = {
   },
 
   description:
-"Leo Sky Africa is the continent's leading authority on space education, astrotourism, and space innovation. Creating world-class experiences at the intersection of science, culture, and Africa's extraordinary skies.",
+    "Leo Sky Africa is a leading authority on Space Education, Astrotourism and Space Innovation & Ecosystem Building. Creating world-class experiences at the intersection of science, culture, and Africa's extraordinary skies.",
+
   primaryCta: {
     label: "Explore Our World",
     href: "/space-education",
   },
 
   secondaryCta: {
-    label: "Patner With Us",
+    label: "Partner With Us",
+
     href: socialLinks.whatsapp,
   },
 
@@ -44,7 +46,7 @@ export const pillarsContent: PillarsContent = {
       kicker: "Learning",
       title: "Space Education",
       description:
-      "We take space science out of textbooks and into the real world - mobile planetariums, rocketry workshops, telescope sessions, and space camps that show young Africans that the universe is not far away. It's right above them.",
+        "We take space science out of textbooks and into the real world - mobile planetariums, rocketry workshops, telescope sessions, and space camps that show young Africans that the universe is not far away. It's right above them.",
       href: "/space-education",
       sectionId: "education",
       image: `${mediaPaths.gallery}/education/school.png`,
@@ -55,7 +57,7 @@ export const pillarsContent: PillarsContent = {
       kicker: "Exploration",
       title: "Astrotourism",
       description:
-      "Africa has the darkest, clearest skies  on the planet. Leo Sky Africa turns those skies into world-class experiences.",      href: "/astrotourism",
+        "Africa has the darkest, clearest skies  on the planet. Leo Sky Africa turns those skies into world-class experiences.", href: "/astrotourism",
       sectionId: "astrotourism",
       image: `${mediaPaths.gallery}/astrotourism/Community.png`,
       imageAlt: "Community stargazing event",
@@ -65,7 +67,7 @@ export const pillarsContent: PillarsContent = {
       kicker: "Innovation",
       title: "Leo Sky Labs",
       description:
-      "Africa's next rockets, satellites, and space technologies will be built by Africans. Leo Sky Labs is where that work begins.",
+        "Africa's next Rockets, Satellites, and Space technologies will be built by Africans. Leo Sky Labs is where that work begins.",
       href: "/leosky-labs",
       sectionId: "labs",
       image: `${mediaPaths.gallery}/leosky-labs/rockets.png`,

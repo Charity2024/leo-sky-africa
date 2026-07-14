@@ -7,16 +7,16 @@ export const labsContent: PillarPageContent = {
   layoutVariant: "labs",
   kicker: "Innovation",
   title: "Leo Sky Labs",
-  tagline: "Where African ideas become space technologies.",
-  heroDescription: "Leo Sky's research, innovation, and engineering hub — developing satellite systems, hardware prototypes, and aerospace technologies that position Africa in the global space economy.",
+  tagline: "Building Africa's sovereign Space capabilities.",
+  heroDescription: "Leo Sky's research, innovation, and engineering hub — developing satellite systems, hardware prototypes, and aerospace technologies that position Africa in the global Space economy.",
   heroImage: `${mediaPaths.gallery}/leosky-labs/rockets.png`,
   heroVideo: `${mediaPaths.videos}/hero.mp4`,
   heroWatermark: { position: "left", opacity: 0.07 },
   mission: {
     eyebrow: "Why It Matters",
-    title: "Building Africa's sovereign space capabilities.",
+    title: "Where African ideas become Space Technologies.",
     paragraphs: [
-      "The global space economy will exceed $1 trillion by 2040. Leo Sky Labs ensures African engineers and researchers claim their share through indigenous technology development.",
+      "The global Space economy will exceed $1 trillion by 2040. Leo Sky Labs ensures African engineers and researchers claim their share through indigenous technology development.",
       "We bridge the gap between concept and deployment — transforming ideas into functional satellite systems, payloads, and aerospace hardware.",
     ],
   },
@@ -56,18 +56,14 @@ export const labsContent: PillarPageContent = {
 
 
   cta: {
-    title: "Transform your idea into space technology.",
+    title: "Transform your idea into Space Technology.",
     description: "Partner with Leo Sky Labs for research collaboration, facility access, and prototype development.",
     primaryLabel: "Start a conversation",
     primaryHref: "/#contact",
     secondaryLabel: "View events",
     secondaryHref: "/events",
   },
-  testimonials: {
-    eyebrow: "",
-    title: "",
-    items: []
-  }
+
 };
 
 export const labsPageMetadata = {

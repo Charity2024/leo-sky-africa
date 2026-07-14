@@ -5,7 +5,7 @@ export const eventsContent: EventsContent = {
   featured: {
     title: "Space Camp",
     description:
-      "Join us for an exciting week of space exploration, hands-on STEM activities, telescope observations, rocketry, and expert-led astronomy sessions.",
+      "Join us for an exciting week of Space Exploration, hands-on STEM activities, Telescope observations, rocketry, and expert-led astronomy sessions.",
     date: "September 12–18, 2026",
     location: "Nairobi, Kenya",
     image: `${mediaPaths.images}/event-spacecamp1.png`,

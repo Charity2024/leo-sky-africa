@@ -343,11 +343,7 @@ export type PillarPageContent = {
       location: string;
     }[];
   };
-  testimonials: {
-    eyebrow: string;
-    title: string;
-    items: readonly Testimonial[];
-  };
+  
   faq?: {
     eyebrow: string;
     title: string;

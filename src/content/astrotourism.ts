@@ -5,11 +5,13 @@ export const astrotourismContent: PillarPageContent = {
   slug: "astrotourism",
   path: "/astrotourism",
   layoutVariant: "astrotourism",
-  kicker: "Exploration",
-  title: "Astrotourism",
-  tagline: "You Have Never Seen the Sky Like This Before.",
+  kicker: "Astrotourism",
+  title: "Astrotourism Training & Experiences",
+  tagline:
+  "Building Africa's astrotourism capacity through world-class training and unforgettable astronomy experiences.",
+
   heroDescription:
-    "Pioneering astrotourism in Africa. Connecting people with the cosmos, preserving dark skies, and inspiring the next generation to look up and dream.",
+  "Leo Sky Africa equips tour guides, hospitality professionals, tourism institutions, and destination partners with the knowledge, practical skills, and immersive experiences needed to deliver authentic astrotourism across Africa.",
   heroImage: `${mediaPaths.gallery}/astrotourism/Stargazing.png`,
   heroVideo: `${mediaPaths.videos}/hero.mp4`,
   heroWatermark: { position: "center", opacity: 0.05 },
@@ -20,27 +22,27 @@ export const astrotourismContent: PillarPageContent = {
     secondaryHref: "#why-matters",
   },
   whyAstrotourismMatters: {
-    eyebrow: "Why It Matters",
-    title: "Africa's dark skies are a global treasure.",
-    paragraphs: [
-      "From the Namib Desert to Laikipia Plateau, Africa offers some of the world's most pristine dark skies — natural observatories with unparalleled views of the cosmos.",
-      "For millennia, African communities have used the stars for navigation, agriculture, and storytelling. Astrotourism preserves this heritage while creating sustainable opportunities.",
-      "Light pollution threatens ecosystems, wildlife, and human health. Responsible astrotourism protects these environments while inspiring the next generation of scientists and dreamers.",
-    ],
-  },
+  eyebrow: "Why It Matters",
+  title: "Looking Up Has Always Been Part of Our Story.",
+  paragraphs: [
+    "Long before modern astronomy, African communities looked to the skies to navigate journeys, mark seasons, and pass knowledge from one generation to the next.",
+    "Today, those same skies present an opportunity to reconnect people with science, culture, and discovery through astrotourism.",
+    "Leo Sky Africa is helping build that future by equipping tourism professionals with the knowledge and practical skills to transform Africa's remarkable night skies into meaningful educational experiences.",
+  ],
+},
   leadership: {
-    eyebrow: "LEO SKY ",
-    title: "Pioneering astrotourism across Africa.",
-    paragraphs: [
-      "We're building a movement, not just offering experiences. As pioneers in Kenya and across the continent, we create public astronomy events that bring communities together under the stars.",
-      "Working at the intersection of science and tourism, we build awareness of dark sky tourism as sustainable development. Making the cosmos accessible to everyone.",
-      "We collaborate with communities, schools, and institutions to create experiences that are educational, inspiring, and economically beneficial. Every event ignites curiosity about the universe.",
-    ],
-  },
+  eyebrow: "Africa's Gateway to Space",
+  title: "Connecting Africa to Space Through Astrotourism.",
+  paragraphs: [
+    "Leo Sky Africa believes space should be accessible to every African. Through astrotourism, we connect people with the night sky while building the skills needed to deliver world-class astronomy experiences.",
+    "Our programmes combine astronomy education, practical training, and immersive experiences that empower tourism professionals to confidently interpret and share the wonders of Africa's skies.",
+    "By building capacity across the tourism sector, we are creating ambassadors who inspire curiosity, celebrate African heritage, and connect more people to space.",
+    "The training is designed for tour guides, safari guides, hotels, tourism institutions, conservancies, national parks, destination managers, and community tourism initiatives."  ],
+},
   signatureExperiences: {
-    eyebrow: "Experiences",
-    title: "Premium astronomy designed to inspire.",
-    itemLabel: "Experience",
+  eyebrow: "Training Programme",
+  title: "Astrotourism Training & Experiences",
+  itemLabel: "Experience",
     items: [
       {
         title: "Stargazing",
@@ -84,26 +86,16 @@ export const astrotourismContent: PillarPageContent = {
     ],
   },
 
-  testimonials: {
-    eyebrow: "",
-    title: "",
-    items: [
-      {
-        quote:
-          "",
-        author: "",
-        role: "",
-      },
-    ],
-  },
+  
   cta: {
-    title: "Experience the universe like never before.",
-    description: "Whether you're a school, family, traveller, or organisation, Leo Sky creates unforgettable astronomy experiences that inspire curiosity and connect people with the cosmos.",
-    primaryLabel: "Plan an Experience",
-    primaryHref: "/#contact",
-    secondaryLabel: "View Events",
-    secondaryHref: "/events",
-  },
+  title: "Let's Build the Future of Astrotourism in Africa.",
+  description:
+    "Partner with Leo Sky Africa to equip your team with the knowledge, practical skills, and confidence to deliver inspiring astronomy experiences that celebrate Africa's skies, culture, and future in space.",
+  primaryLabel: "Partner With Us",
+  primaryHref: "/contact",
+  secondaryLabel: "Explore Our Programmes",
+  secondaryHref: "#experiences",
+},
 };
 
 export const astrotourismPageMetadata = {

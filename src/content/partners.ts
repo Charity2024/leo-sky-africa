@@ -36,15 +36,15 @@ export const partners: readonly Partner[] = [
 export const partnersSectionContent: PartnersSectionContent = {
   eyebrow: "Trusted Partners",
   title:
-    "Building Africa's space future through strategic partnerships, education, and innovation.",
+    "Building Africa's Space future through Strategic Partnerships, Education, and Innovation.",
 };
 
 export const partnersPageContent: PartnersPageContent = {
   metadataDescription:
-    "Building Africa's space future through strategic partnerships with NASA, ESA, UNESCO, Kenya Space Agency, and leading institutions.",
+    "Building Africa's Space future through strategic partnerships with leading institutions.",
   hero: {
     eyebrow: "Trusted Partners",
-    title: "Building Africa's space future together.",
+    title: "Building Africa's Space future together.",
     description:
       "We collaborate with space agencies, universities, and observatories to deliver world-class education, tourism, and innovation programs across the continent.",
   },

@@ -232,57 +232,7 @@ export default function LabsPage({ content }: LabsPageProps) {
         />
       )}
 
-      {/* Testimonials - Glassmorphism cards */}
-      {content.testimonials && (
-        <section className="bg-brand-dark py-32 lg:py-48">
-          <Container>
-            <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-8% 0px" }}
-              transition={{ duration: 0.85, ease: easePremium }}
-              className="mb-20 text-center"
-            >
-              <p className="mb-4 text-[11px] font-medium tracking-[0.36em] text-brand-secondary uppercase">
-                {content.testimonials.eyebrow}
-              </p>
-              <h2 className="text-3xl font-bold tracking-tight text-brand-cream sm:text-4xl lg:text-5xl">
-                {content.testimonials.title}
-              </h2>
-            </motion.div>
-            <div className="grid gap-8 lg:grid-cols-2">
-              {content.testimonials.items.map((testimonial, index) => (
-                <motion.blockquote
-                  key={testimonial.author}
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-8% 0px" }}
-                  transition={{
-                    duration: 0.85,
-                    delay: index * 0.1,
-                    ease: easePremium,
-                  }}
-                  className="rounded-3xl border border-brand-secondary/10 bg-brand-primary/5 p-10 backdrop-blur-md lg:p-12"
-                >
-                  <p className="text-xl leading-relaxed text-brand-body/90 sm:text-2xl">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </p>
-                  <footer className="mt-8 border-t border-brand-secondary/10 pt-6">
-                    <cite className="not-italic">
-                      <span className="block text-sm font-semibold text-brand-cream">
-                        {testimonial.author}
-                      </span>
-                      <span className="text-xs text-brand-muted">
-                        {testimonial.role}
-                      </span>
-                    </cite>
-                  </footer>
-                </motion.blockquote>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
+      
 
       {/* CTA - Premium with animated starfield */}
       <section className="relative overflow-hidden bg-brand-dark pb-32 lg:pb-48">

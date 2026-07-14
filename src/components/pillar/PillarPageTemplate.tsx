@@ -465,79 +465,7 @@ function ImpactSection({
   );
 }
 
-function TestimonialsSection({
-  content,
-  variant,
-}: {
-  content: PillarPageContent;
-  variant: PillarLayoutVariant;
-}) {
-  if (variant === "astrotourism" && content.testimonials.items[0]) {
-    const t = content.testimonials.items[0];
-    return (
-      <section className="bg-brand-dark py-24 lg:py-32">
-        <Container>
-          <SectionHeader
-            eyebrow={content.testimonials.eyebrow}
-            title={content.testimonials.title}
-            align="center"
-            className="mb-12"
-          />
-          <blockquote className="mx-auto max-w-3xl rounded-3xl border border-brand-secondary/10 bg-brand-primary/5 px-8 py-12 text-center backdrop-blur-md lg:px-16">
-            <p className="text-xl leading-relaxed text-brand-body/90 sm:text-2xl">
-              &ldquo;{t.quote}&rdquo;
-            </p>
-            <footer className="mt-8">
-              <cite className="not-italic">
-                <span className="block text-sm font-semibold text-brand-cream">
-                  {t.author}
-                </span>
-                <span className="text-xs text-brand-muted">{t.role}</span>
-              </cite>
-            </footer>
-          </blockquote>
-        </Container>
-      </section>
-    );
-  }
 
-  return (
-    <section className="bg-brand-dark py-24 lg:py-32">
-      <Container>
-        <SectionHeader
-          eyebrow={content.testimonials.eyebrow}
-          title={content.testimonials.title}
-          className="mb-14"
-        />
-        <div
-          className={clsx(
-            "grid gap-8",
-            variant === "labs" ? "lg:grid-cols-1 max-w-2xl" : "lg:grid-cols-2",
-          )}
-        >
-          {content.testimonials.items.map((t) => (
-            <blockquote
-              key={t.author}
-              className="rounded-2xl border border-brand-secondary/10 bg-brand-primary/5 p-8 backdrop-blur-md"
-            >
-              <p className="text-base leading-relaxed text-brand-body/90">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <footer className="mt-6">
-                <cite className="not-italic">
-                  <span className="block text-sm font-semibold text-brand-cream">
-                    {t.author}
-                  </span>
-                  <span className="text-xs text-brand-muted">{t.role}</span>
-                </cite>
-              </footer>
-            </blockquote>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 function RelatedEventsSection({ content }: { content: PillarPageContent }) {
   if (!content.relatedEvents || content.relatedEvents.length === 0) return null;
@@ -674,13 +602,7 @@ export default function PillarPageTemplate({
         impactInView={impactInView}
       />
     ),
-    testimonials: (
-      <TestimonialsSection
-        key="testimonials"
-        content={content}
-        variant={variant}
-      />
-    ),
+    
     events: <RelatedEventsSection key="events" content={content} />,
     faq: content.faq ? (
       <section key="faq" className="bg-brand-dark py-24 lg:py-32">

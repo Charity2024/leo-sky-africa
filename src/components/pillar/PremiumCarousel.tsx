@@ -183,7 +183,7 @@ export default function PremiumCarousel({
                 className="mt-6"
               >
                 <button className="inline-flex items-center gap-2 text-sm font-medium text-brand-accent transition-colors hover:text-brand-accent/80">
-                  Learn More
+                  
                   <svg
                     className="h-4 w-4"
                     fill="none"

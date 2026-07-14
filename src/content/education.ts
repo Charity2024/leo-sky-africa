@@ -70,17 +70,16 @@ export const educationContent: PillarPageContent = {
     eyebrow: "Learning in Action",
     title: "Inspiring curiosity, building STEM skills, empowering the next generation.",
     images: [
+     
+      { src: `${mediaPaths.gallery}/education/1.png`, alt: "" },
       { src: `${mediaPaths.gallery}/education/school.png`, alt: "" },
-      { src: `${mediaPaths.gallery}/education/globe.jpeg`, alt: "" },
-      { src: `${mediaPaths.gallery}/education/sabis2.jpeg`, alt: "" },
-      { src: `${mediaPaths.gallery}/education/sabis3.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/education/2.png`, alt: "" },
+      { src: `${mediaPaths.gallery}/education/3.png`, alt: "" },
       { src: `${mediaPaths.gallery}/education/sabis4.jpeg`, alt: "" },
-      { src: `${mediaPaths.gallery}/education/VR.jpeg`, alt: "" },
-      { src: `${mediaPaths.gallery}/education/moon.jpeg`, alt: "" },
-      { src: `${mediaPaths.gallery}/education/kids.png`, alt: "" },
-      { src: `${mediaPaths.gallery}/education/sabis.jpeg`, alt: "" },
-      { src: `${mediaPaths.gallery}/education/ysk.png`, alt: "" },
-      { src: `${mediaPaths.gallery}/education/camp.png`, alt: "" },
+      { src: `${mediaPaths.gallery}/education/4.png`, alt: "" },
+
+
+     
     ],
   },
  

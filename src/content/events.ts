@@ -5,9 +5,9 @@ export const eventsContent: EventsContent = {
   featured: {
     title: "Space Camp",
     description:
-      "Join us for an exciting week of Space Exploration, hands-on STEM activities, Telescope observations, rocketry, and expert-led astronomy sessions.",
-    date: "September 12–18, 2026",
-    location: "Nairobi, Kenya",
+      "Join us for an exciting week of Space Exploration, hands-on STEM activities, VR,  rocketry, and Planeterium shows.",
+    date: "5th - 8th August, 2026",
+    location: "Acorn Special Tutorials",
     image: `${mediaPaths.images}/event-spacecamp1.png`,
     cta: "Register Now",
     href: "/#contact",

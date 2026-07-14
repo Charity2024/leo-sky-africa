@@ -45,22 +45,22 @@ export const astrotourismContent: PillarPageContent = {
   itemLabel: "Experience",
     items: [
       {
-        title: "Stargazing",
+        title: "Astrotourism Training",
         description:
-          "Guided telescope sessions under the night  sky.",
-        image: `${mediaPaths.gallery}/astrotourism/Stargazing.png`,
+          "",
+        image: `${mediaPaths.gallery}/astrotourism/1.jpeg`,
       },
       {
-        title: "Planetarium Shows",
+        title: "Astrotourism Experiences",
         description:
-          "Immersive dome experiences with expert narration.",
-        image: `${mediaPaths.gallery}/astrotourism/Planeterium.png`,
+          "",
+        image: `${mediaPaths.gallery}/astrotourism/10.jpeg`,
       },
       {
-        title: "Telescope Sessions",
+        title: " Safari Lodge Training",
         description:
-          "Hands-on professional telescope operation.",
-        image: `${mediaPaths.gallery}/astrotourism/Telescope.png`,
+          "",
+        image: `${mediaPaths.gallery}/astrotourism/sopa.jpeg`,
       },
       {
         title: "Community Events",
@@ -74,15 +74,15 @@ export const astrotourismContent: PillarPageContent = {
     eyebrow: "Gallery",
     title: "Experiences Under African Skies",
     images: [
-      { src: `${mediaPaths.gallery}/astrotourism/Stargazing.png`, alt: "" },
-      { src: `${mediaPaths.gallery}/astrotourism/InsidePlaneterium.jpeg`, alt: "" },
-      { src: `${mediaPaths.gallery}/astrotourism/Dome.jpeg`, alt: "" },
-      { src: `${mediaPaths.gallery}/astrotourism/Telescope.png`, alt: "" },
-      { src: `${mediaPaths.gallery}/astrotourism/Community.png`, alt: "" },
-      { src: `${mediaPaths.gallery}/astrotourism/Planeterium.png`, alt: "" },
-      { src: `${mediaPaths.gallery}/astrotourism/Maasai.png`, alt: "" },
-      { src: `${mediaPaths.gallery}/astrotourism/training.jpeg`, alt: "" },
-      { src: `${mediaPaths.gallery}/astrotourism/sopa.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/8.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/2.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/7.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/6.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/4.jpeg`, alt: "" },
+      { src: `${mediaPaths.gallery}/astrotourism/5.jpeg`, alt: "" },
+     
+
+      
     ],
   },
 
